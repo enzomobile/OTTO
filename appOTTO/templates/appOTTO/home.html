@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appOTTO/css/home.css' %}">
+    <script src="{% static 'appOTTO/js/home.js' %}"></script>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Essa é a home page!</h1>
+    <p>Welcome to the home page!</p>
+
+    <div class="button-container">
+        <form action="{% url 'login' %}" method="GET" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <form action="{% url 'cadastro' %}" method="GET" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn">Cadastro</button>
+        </form>
+    </div>
+</body>
+</html>
