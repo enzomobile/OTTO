@@ -1,0 +1,26 @@
+Pessoal, para configurar o ambiente e poder mexer com o trabalho, vocês têm que instalar algumas ferramentas:
+
+-Python 13.12.10;
+    . Depois de baixar o python, use "python -m pip install (django, pyscopg2, virtualenv)" O que está em parênteses é para ir um por um, são as ferramentas a serem utilizadas.
+-Django 5.2.2;
+-PostgreSQL 15.13;
+    . Quando baixar e configurar, defina a senha do usuário 'postgres' como 'root' para usar o banco otto,
+    . Abra o postgres no cmd, use "psql -U postgres", insira a senha e crie o banco de dados 'otto'
+
+-Um visualizador de banco de dados, o que eu uso é HeidiSQL;
+
+-Extensões:
+    . Python,
+    . Django,
+    . Code Runner (opcional),
+    . Error lens (opcional),
+    . Material icon theme (opcional)
+
+Depois de baixar essas ferramentas, vocês vão configurar o git de vocês e dentro de uma pasta, chamada "OTTO" (vocês criam),
+faz o git clone.
+Tendo o repositório na sua máquina, a primeira coisa que você deve fazer é abrir o cmd (no VScode ou janela), e digitar "python -m venv venv", !!!Faça isso dentro do caminho do trabalho!!! Vai criar um ambiente python para deixar as suas bibliotecas e configurações de projeto.
+
+Depois de criado o venv, vocês, no cmd, usam "C:\(local)\OTTO\venv\Scripts\activate.bat" Isso vai ativar o venv.
+Digite "pip install django==5.2.2", "pip install psycopg2". Isso vai instalar o django no ambiente e a Engine do banco de dados do postgreSQL para python. (Opcionalmente, vai aparecer a opção de atualizar o pip install, é só usar o comando que eles dão.)
+
+Qualquer dúvida é só me avisar.

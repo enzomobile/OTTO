@@ -1,4 +1,9 @@
-/venv 
+/venv/
 
-documentation.txt
-# Ignora o venv e o meu txt
+**/__pycache__/
+*.py[cod]
+
+/appOTTO/migrations/*
+!/appOTTO/migrations/__init__.py
+
+# Ignora o venv, todos os caches e as migrations do app.

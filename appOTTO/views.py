@@ -3,7 +3,7 @@ from .models import Usuario
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 
-# Create your views here.
+# Métodos Views.
 def home(request):
     return render(request, 'appOTTO/home.html')
 

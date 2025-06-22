@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+# Tabela de Usuários.
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     nome_usuario = models.CharField(max_length=50)
