@@ -20,17 +20,15 @@ def cadastro(request):
             return redirect('cadastro')
         
         if Usuario.objects.filter(email_usuario=email).exists():
-            messages.error(request, 'Usuário já cadastrado com este e-mail.')
+            messages.error(request, "Usuário já cadastrado com este e-mail.")
             return redirect('cadastro')
         
-        usuario = Usuario(
+        Usuario.objects.create_user(
             nome_usuario=nome,
             email_usuario=email,
+            senha=senha
         )
-        usuario.set_password(senha)
-        usuario.save()
 
-        messages.success(request, 'Usuário cadastrado com sucesso!')
         return redirect('login')
     
     return render(request, 'appOTTO/cadastro.html')
@@ -46,14 +44,14 @@ def login(request):
             auth_login(request, usuario)
             return redirect('dashboard')
         else:
-            messages.error(request, 'Email ou senha inválidos.')
+            messages.error(request, "Usuário ou senha inválidos.")
             return redirect('login')
 
     return render(request, 'appOTTO/login.html')
 
 def logout(request):
     auth_logout(request)
-    return redirect('login')
+    return redirect('home')
 
 @login_required
 def dashboard(request):

@@ -2,16 +2,28 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class UsuarioManager(BaseUserManager):
-    def create_user(self, email_usuario, nome_usuario, senha=None):
+    def create_user(self, email_usuario=None, nome_usuario=None, senha=None, **extra_fields):
         if not email_usuario:
             raise ValueError("O email é obrigatório.")
-        user = self.model(email_usuario=email_usuario, nome_usuario=nome_usuario)
-        user.set_password(senha)
+        user = self.model(
+            email_usuario=email_usuario,
+            nome_usuario=nome_usuario or "",
+            **extra_fields
+        )
+        if senha:
+            user.set_password(senha)
+        else:
+            user.set_unusable_password()
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email_usuario, nome_usuario, senha):
-        user = self.create_user(email_usuario=email_usuario, nome_usuario=nome_usuario, senha=senha)
+    def create_superuser(self, email_usuario, nome_usuario, senha, **extra_fields):
+        user = self.create_user(
+            email_usuario=email_usuario,
+            nome_usuario=nome_usuario,
+            senha=senha,
+            **extra_fields
+        )
         user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)

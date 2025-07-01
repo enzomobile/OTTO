@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,5 +10,11 @@
 <body>
     <h1>Dashboard</h1><br>
     <p>Você está logado!</p>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Sair</button>
+    </form>
+
+    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
 </body>
 </html>

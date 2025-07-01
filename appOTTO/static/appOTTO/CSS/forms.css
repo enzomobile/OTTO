@@ -44,6 +44,33 @@ input:focus {
     outline: none;
 }
 
+.botao-google {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #444;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.botao-google:hover {
+    background-color: #f1f1f1;
+}
+
+.google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
 button[type="submit"] {
     background: #4f8cff;
     color: #fff;
