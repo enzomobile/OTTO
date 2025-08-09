@@ -1,0 +1,164 @@
+*{
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    background-color: #FFFDFA;
+}
+
+.voltar-OTTO{
+    height: 80px;
+    width: 150px;
+}
+
+/* nav */
+
+nav{
+    height: 10vh;
+    width: 100%;
+    padding: 10px 50px;
+    display: flex;
+    align-items: end;
+}
+
+.voltar img{
+    height: 50px;
+    width: 50px;
+}
+
+/* header */
+
+header{
+    height: 85vh;
+    width: 100%;
+    display: flex;
+}
+
+.cadastro{
+    flex: 2;
+}
+
+.informação{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 80px 0;
+    gap: 50px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+input{
+    width: 800px;
+    font-size: 48px;
+    padding: 20px;
+    color: #FFFDFA;
+    background-color: #7676F0;
+    border: none;
+    border-radius: 15px;
+}
+
+input::placeholder{
+    color: #FFFDFA;
+}
+
+.form-senha{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 10px;
+}
+
+.button-senha{
+    background-color: #FFFDFA;
+    border: none;
+    color: #7676F0;
+}
+
+.container-button-logar{
+    width: 100%;
+    text-align: center;
+}
+
+.button-logar{
+    width: 200px;
+    font-size: 40px;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFFDFA;
+    color: #7676F0;
+    padding: 20px;
+    text-align: center;
+}
+
+.google-button{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 800px;
+    font-size: 48px;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.img-google{
+    height: 40px;
+    width: 40px;
+}
+
+.text-google{
+    width: 100%;
+}
+
+.animação{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animação img{
+    height: 40vh;
+    width: 20vw;
+}
+
+
+/* footer */
+
+footer{
+    background-color: #7676F0;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodapé{
+    display: flex;
+    width: 60%;
+    color: #F9DF73;
+    gap: 0px;
+    justify-content: space-around;
+}
+
+.rodapé-info{
+    font-size: 20px;
+    color: #F9DF73;
+    list-style-type: none;
+}

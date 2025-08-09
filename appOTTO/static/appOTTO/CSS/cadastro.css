@@ -1,0 +1,112 @@
+*{
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    background-color: #FFFDFA;
+}
+
+/* nav */
+
+nav{
+    height: 10vh;
+    width: 100%;
+    padding: 10px 50px;
+}
+
+.voltar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+.voltar h2{
+    font-size: 50px;
+}
+
+.voltar-button{
+    height: 50px;
+    width: 50px;
+}
+
+.voltar-OTTO{
+    height: 80px;
+    width: 150px;
+}
+
+
+/* header */
+
+header{
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+}
+
+input{
+    width: 800px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    display: flex;
+    padding: 15px;
+    color: #FFFDFA;
+    background-color: #7676F0;
+    border: none;
+    border-radius: 15px;
+}
+
+input::placeholder{
+    color: #FFFDFA;
+}
+
+.button-logar{
+    width: 200px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-weight: 700;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #FFFDFA;
+    color: #7676F0;
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* footer */
+
+footer{
+    background-color: #7676F0;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rodapé{
+    display: flex;
+    width: 60%;
+    color: #F9DF73;
+    gap: 0px;
+    justify-content: space-around;
+}
+
+.rodapé-info{
+    font-size: 20px;
+    color: #F9DF73;
+    list-style-type: none;
+}
