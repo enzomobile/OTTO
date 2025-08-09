@@ -5,23 +5,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/css/home.css' %}">
-    <script src="{% static 'appOTTO/js/home.js' %}"></script>
-    <title>Home</title>
+    <title>OTTO</title>
 </head>
 <body>
-    <h1>Essa é a home page!</h1>
-    <p>Welcome to the home page!</p>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" alt="" class="voltar-OTTO"></a>
+            </div>
+            <div class="login">
+                <button class="login-button login-button-login botao-navegar" data-url="{% url 'login' %}">LOGIN</button>
+                <button class="login-button login-button-cadastro botao-navegar" data-url="{% url 'cadastro' %}">CADASTRO</button>
+            </div>
+        </nav>
+        <header>
+            <section class="corpo">
+                <div class="corpo-animaçâo">
+                    <a><img src="{% static 'appOTTO/img/substitui animação.png' %}" alt=""></a>
+                </div>
+                <div class="corpo-convite">
+                    <p>De graça, sem enrolação e cheio de diversão <br>— <span>aprenda a programar brincando!</span></p>
+                    <button class="corpo-convite-cadastro botao-navegar"  data-url="{% url 'cadastro' %}"><b>Pronto pra aprender!</b></button>
+                    <button class="corpo-convite-login botao-navegar"  data-url="{% url 'login' %}">Já tenho uma conta</button>
+                </div>
+            </section>
+            <section class="carrossel">
+                <div class="carrossel-container">
+                    <button id="prev" class="carrosel-button">&lt;</button>
 
-    <div class="button-container">
-        <form action="{% url 'login' %}" method="GET" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn">Login</button>
-        </form>
-        <form action="{% url 'cadastro' %}" method="GET" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn">Cadastro</button>
-        </form>
+                    <div class="carrossel-viewport">
+                    <div class="carrossel-inner">
+                        <div class="item">
+                        <div class="carrosel-slide-info">
+                            <h2 id="h2-especial1">O primeiro passo no <span>Universo da Tecnologia</span> começa aqui</h2>
+                            <p>A Plataforma Otto foi desenvolvida para crianças explorarem conceitos de lógica computacional de forma divertida e acessível.</p>
+                        </div>
+                        <div class="carrosel-slide-img">
+                            <img src="{% static 'appOTTO/img/slide1.png' %}">
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="carrosel-slide-info">
+                            <h2 id="h2-especial2"><span>Crie, experimente e <br>aprenda!</span></h2>
+                            <p>Com atividades práticas baseadas no Scratch, é possível desenvolver projetos criativos enquanto se constroem habilidades como lógica, autonomia e resolução de problemas.</p>
+                        </div>
+                        <div class="carrosel-slide-img">
+                            <img src="{% static 'appOTTO/img/slide2.png' %}">
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="carrosel-slide-info">
+                            <h2>Aprender com <span>Segurança e Tranquilidade</span></h2>
+                            <p>Sem conteúdos externos e com controle sobre as interações, garantindo um ambiente 100% apropriado para crianças.</p>
+                        </div>
+                        <div class="carrosel-slide-img">
+                            <img src="{% static 'appOTTO/img/slide3.png' %}">
+                        </div>
+                        </div>
+                        <div class="item">
+                        <div class="carrosel-slide-info">
+                            <h2>Aprender vira uma <span>Aventura</span></h2>
+                            <p>Desafios, conquistas e recompensas fazem parte da experiência. Estimula o engajamento das crianças enquanto elas aprendem conceitos importantes sem nem perceber!</p>
+                        </div>
+                        <div class="carrosel-slide-img">
+                            <img src="{% static 'appOTTO/img/slide4.png' %}">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <button id="next" class="carrosel-button">&gt;</button>
+                </div>
+                </section>
+
+            <section class="informações">
+                <h2>POR QUE ESTUDAR COM O OTTO?</h2>
+                <div class="informações-container">
+                    <div class="informações-container-box">
+                        <h3>Gratuito</h3>
+                        <p>Você não paga nada para aprender com o OTTO. <br> É só entrar e começar!</p>
+                    </div>
+                    <div class="informações-container-box">
+                        <h3>Divertido</h3>
+                        <p>Com a plataforma, estudar vira um jogo. <br> Aprenda se divertindo!</p>
+                    </div>
+                    <div class="informações-container-box">
+                        <h3>Aprenda rápido</h3>
+                        <p>Conteúdos diretos ao ponto, para você aprender sem enrolação.</p>
+                    </div>
+                    <div class="informações-container-box">
+                        <h3>Facilidade</h3>
+                        <p>Funciona no seu celular, tablet ou computador. <br> A qualquer hora, onde quiser.</p>
+                    </div>
+                </div>
+            </section>
+        </header>
+        <footer>
+            <ul class="rodapé">
+                <li class="rodapé-info">Brasil<a href=""></a></li>
+                |
+                <li class="rodapé-info">Termos de Uso<a href=""></a></li>
+                |
+                <li class="rodapé-info">Sobre Nós<a href=""></a></li>
+                |
+                <li class="rodapé-info">Contato<a href=""></a></li>
+            </ul>
+        </footer>
     </div>
+
+    <script src="{% static 'appOTTO/js/home.js' %}"></script>
 </body>
 </html>
