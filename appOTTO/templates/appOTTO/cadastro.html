@@ -10,34 +10,50 @@
     <title>Cadastro</title>
 </head>
 <body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="container">
         <nav>
             <div class="voltar">
                 <a class="btn-voltar" data-url="{% url 'home' %}"><img src="{% static 'appOTTO/img/141987.png' %}" class="voltar-button"></a>
-                <h2>Criar conta</h2>
                 <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
             </div>
         </nav>
         <header>
-            <form method="POST" action="{% url 'cadastro' %}" novalidate>
+            <form method="POST">
                 {% csrf_token %}
+                <h2>Criar conta</h2>
+
                 <input type="text" id="nome_completo" name="nome_completo" required maxlength="150" placeholder="NOME COMPLETO">
-                <input type="text" id="nome_usuario" name="nome_usuario" required maxlength="50" placeholder="NOMME DE USUARIO">
-                <input type="email" id="email" name="email" required maxlength="254" placeholder="EMAIL">
+                <input type="text" id="nome_usuario" name="nome_usuario" required maxlength="50" placeholder="NOME DE USUÁRIO">
+                <input type="email" id="email_usuario" name="email_usuario" required maxlength="254" placeholder="EMAIL">
                 <input type="password" id="senha" name="senha" required minlength="8" placeholder="SENHA">
                 <input type="password" id="confirmar_senha" name="confirmar_senha" required minlength="8" placeholder="CONFIRMAR SENHA">
-                <button class="button-logar" type="submit">CRIAR</button>
+                <div class="container-button-cadastrar">
+                    <button class="button-logar" type="submit">CRIAR</button>
+                </div>
+                <div class="google-btn-container">
+                    <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
+                        <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
+                        <p class="text-google">Cadastrar com o Google</p>
+                    </button>
+                </div>
             </form>
         </header>
         <footer>
-            <ul class="rodapé">
-                <li class="rodapé-info">Brasil<a href=""></a></li>
+            <ul class="rodape">
+                <li class="rodape-info">Brasil<a href=""></a></li>
                 |
-                <li class="rodapé-info">Termos de Uso<a href=""></a></li>
+                <li class="rodape-info">Termos de Uso<a href=""></a></li>
                 |
-                <li class="rodapé-info">Sobre Nós<a href=""></a></li>
+                <li class="rodape-info">Sobre Nós<a href=""></a></li>
                 |
-                <li class="rodapé-info">Contato<a href=""></a></li>
+                <li class="rodape-info">Contato<a href=""></a></li>
             </ul>
         </footer>
     </div>

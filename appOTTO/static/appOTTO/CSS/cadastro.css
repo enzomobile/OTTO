@@ -42,6 +42,8 @@ nav{
 /* header */
 
 header{
+    display: flex;
+    flex-direction: column;
     height: 85vh;
     width: 100%;
     display: flex;
@@ -49,13 +51,20 @@ header{
     align-items: center;
 }
 
+h2{
+    font-size: 40px;
+}
+
 form{
     display: flex;
     flex-direction: column;
+    gap: 30px;
+}
+
+.container-button-cadastrar{
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    padding: 10px;
 }
 
 input{
@@ -97,7 +106,7 @@ footer{
     align-items: center;
 }
 
-.rodapé{
+.rodape{
     display: flex;
     width: 60%;
     color: #F9DF73;
@@ -105,8 +114,66 @@ footer{
     justify-content: space-around;
 }
 
-.rodapé-info{
+.rodape-info{
     font-size: 20px;
     color: #F9DF73;
     list-style-type: none;
+}
+
+/* Cadastrar com o google */
+
+.google-button{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 800px;
+    font-size: 48px;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #FFFDFA;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.img-google{
+    height: 40px;
+    width: 40px;
+}
+
+.text-google{
+    width: 100%;
+}
+
+/* Mensagens de erro e sucesso */
+
+.messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe6e6;
+    border-radius: 5px;
+    padding: 16px 32px;
+    margin: 0;
+    z-index: 1000;
+    list-style: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 300px;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.messages li {
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+
+.success {
+    color: #207227;
+    border: #207227;
+}
+
+.error {
+    color: #b30000;
+    border: #b30000;
 }

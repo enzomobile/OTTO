@@ -216,7 +216,7 @@ nav{
 }
 
 /*informações*/
-.informações{
+.informacoes{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,12 +225,12 @@ nav{
     padding: 100px 100px;
 }
 
-.informações > h2{
+.informacoes > h2{
     color: #F9DF73;
     font-size: 48px;
 }
 
-.informações-container{
+.informacoes-container{
     display: flex;
     flex-wrap: wrap;          
     justify-content: center;  
@@ -238,7 +238,7 @@ nav{
     max-width: 1000px;
 }
 
-.informações-container-box{
+.informacoes-container-box{
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -249,13 +249,13 @@ nav{
     width: 400px;
 }
 
-.informações-container-box > h3{
+.informacoes-container-box > h3{
     color: #F9DF73;
     font-size: 40px;
     font-weight: 400;
 }
 
-.informações-container-box > p{
+.informacoes-container-box > p{
     color: #FFFDFA;
     font-size: 25px;
     font-weight: 400;
@@ -269,7 +269,7 @@ footer{
     align-items: center;
 }
 
-.rodapé{
+.rodape{
     display: flex;
     width: 60%;
     color: #F9DF73;
@@ -277,7 +277,7 @@ footer{
     justify-content: space-around;
 }
 
-.rodapé-info{
+.rodape-info{
     font-size: 20px;
     color: #F9DF73;
     list-style-type: none;
