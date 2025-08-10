@@ -52,13 +52,13 @@ header{
 }
 
 h2{
-    font-size: 40px;
+    font-size: clamp(2rem, 2.5vw, 3rem);
 }
 
 form{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 2rem;
 }
 
 .container-button-cadastrar{
@@ -68,10 +68,10 @@ form{
 }
 
 input{
-    width: 800px;
-    font-size: clamp(1rem, 2.5vw, 2rem);
+    width: 50vw;
+    font-size: clamp(1rem, 2vw, 2rem);
     display: flex;
-    padding: 15px;
+    padding: 0.5rem;
     color: #FFFDFA;
     background-color: #7676F0;
     border: none;
@@ -83,7 +83,7 @@ input::placeholder{
 }
 
 .button-logar{
-    width: 200px;
+    width: 15vh;
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -91,7 +91,39 @@ input::placeholder{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
-    padding: 20px;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Cadastrar com o google */
+
+.google-btn-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-button{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 30vw;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+    padding: 0.5rem;
+    border: none;
+    border-radius: 15px;
+    background-color: #FFFDFA;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.img-google{
+    height: 40px;
+    width: 40px;
+}
+
+.text-google{
+    width: 100%;
     text-align: center;
 }
 
@@ -120,29 +152,6 @@ footer{
     list-style-type: none;
 }
 
-/* Cadastrar com o google */
-
-.google-button{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 800px;
-    font-size: 48px;
-    padding: 20px;
-    border: none;
-    border-radius: 15px;
-    background-color: #FFFDFA;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.img-google{
-    height: 40px;
-    width: 40px;
-}
-
-.text-google{
-    width: 100%;
-}
 
 /* Mensagens de erro e sucesso */
 

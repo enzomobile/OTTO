@@ -53,17 +53,17 @@ header{
 form{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 2rem;
 }
 
 h2{
-    font-size: 40px;
+    font-size: clamp(2rem, 2.5vw, 3rem);
 }
 
 input{
-    width: 800px;
-    font-size: 48px;
-    padding: 20px;
+    width: 50vw;
+    font-size: clamp(2rem, 2.5vw, 3rem);
+    padding: 1rem;
     color: #FFFDFA;
     background-color: #7676F0;
     border: none;
@@ -77,7 +77,6 @@ input::placeholder{
 .form-senha{
     display: flex;
     flex-direction: column;
-    align-items: end;
     gap: 10px;
 }
 
@@ -94,15 +93,15 @@ input::placeholder{
 }
 
 .button-logar{
-    width: 200px;
-    font-size: 40px;
+    width: 15vw;
+    font-size: clamp(2rem, 2.5vw, 3rem);
     font-weight: 700;
     border: none;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
-    padding: 20px;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -110,9 +109,9 @@ input::placeholder{
     display: flex;
     align-items: center;
     text-align: center;
-    width: 800px;
-    font-size: 48px;
-    padding: 20px;
+    width: 50vw;
+    font-size: clamp(2rem, 2.5vw, 3rem);
+    padding: 1rem;
     border: none;
     border-radius: 15px;
     background-color: #FFFDFA;
