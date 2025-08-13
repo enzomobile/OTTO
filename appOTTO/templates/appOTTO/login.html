@@ -33,7 +33,7 @@
                         <input type="email" id="email_usuario" name="email_usuario" required placeholder="EMAIL">
                         <div class="form-senha">
                             <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
-                            <a class="esqueci-senha" href=""><p>ESQUECEU A SENHA?</p></a>
+                            <a class="esqueci-senha" href="{% url 'alterarSenha' %}">ESQUECEU A SENHA?</a>
                         </div>
                         <div class="container-button-logar">
                             <button class="button-logar" type="submit">LOGAR</button>
