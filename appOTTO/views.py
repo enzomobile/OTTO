@@ -67,3 +67,6 @@ def logout(request):
 @login_required
 def dashboard(request):
     return render(request, 'appOTTO/dashboard.html')
+
+def configurações(request):
+    return render(request, 'appOTTO/configurações.html')
