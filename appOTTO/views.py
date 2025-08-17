@@ -3,6 +3,7 @@ from .models import Usuario
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from .models import MensagemSuporte
 
 # Métodos Views.
 def home(request):
@@ -70,3 +71,74 @@ def dashboard(request):
 
 def configurações(request):
     return render(request, 'appOTTO/configurações.html')
+
+@login_required
+def redefinir_senha(request):
+    if request.method == 'POST':
+        email = request.POST.get('email_usuario')
+        confirmar_email = request.POST.get('confirmar_email_usuario')
+        senha = request.POST.get('senha_usuario')
+        confirmar_senha = request.POST.get('confirmar_senha_usuario')
+
+        # Verifica se todos os campos estão preenchidos
+        if not email or not confirmar_email or not senha or not confirmar_senha:
+            messages.error(request, "Todos os campos são obrigatórios.")
+            return redirect('configurações')
+
+        # Confere se os emails e senhas coincidem
+        if email != confirmar_email:
+            messages.error(request, "Os emails não coincidem.")
+            return redirect('configurações')
+
+        if senha != confirmar_senha:
+            messages.error(request, "As senhas não coincidem.")
+            return redirect('configurações')
+
+        # Verifica se o email pertence ao usuário logado
+        usuario = request.user
+        if usuario.email_usuario != email:
+            messages.error(request, "O email informado não corresponde ao seu cadastro.")
+            return redirect('configurações')
+
+        # Atualiza a senha com segurança
+        usuario.set_password(senha)
+        usuario.save()
+
+        messages.success(request, "Senha redefinida com sucesso! Faça login novamente.")
+        return redirect('login')
+
+    # Se não for POST, mantém na página de configurações
+    return redirect('configurações')
+
+@login_required
+def deletar_conta(request):
+    user = request.user
+    if request.method == 'POST':
+        try:
+            user.delete()
+            messages.success(request, "Sua conta foi deletada com sucesso.")
+            return redirect('home')  # Redireciona para 'home' após exclusão
+        except:
+            messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
+            return redirect('configurações')  # Continua na página de configurações
+    return redirect('configurações')
+
+@login_required  # opcional, se só usuários logados podem enviar
+def enviar_suporte(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome_usuario')
+        email = request.POST.get('email_usuario')
+        assunto = request.POST.get('assunto_usuario')
+        mensagem = request.POST.get('mensagem_usuario')
+
+        MensagemSuporte.objects.create(
+            usuario=request.user,
+            nome_usuario=nome,
+            email_usuario=email,
+            assunto_usuario=assunto,
+            mensagem_usuario=mensagem
+        )
+        # redireciona para a mesma página ou para uma página de "obrigado"
+        return redirect('configurações')  
+
+    return render(request, 'configurações.html')

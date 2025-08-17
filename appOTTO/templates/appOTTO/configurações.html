@@ -10,6 +10,13 @@
     <title>Configurações</title>
 </head>
 <body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <div class="container">
         <nav class="nav">
             <div class="logo">
@@ -32,28 +39,30 @@
                         </nav>
 
                         <div class="container-conta conteudo-box">
-                            <form class="container-conta-form">
-                                <label for="E-mail">
+                            <form method="POST" action="{% url 'redefinir_senha' %}" class="container-conta-form">
+                                {% csrf_token %}
+                                
+                                <label for="email">
                                     E-mail
-                                    <input type="text" name="E-mail" placeholder="E-mail..">
+                                    <input type="email" name="email_usuario" placeholder="E-mail.." required>
                                 </label>
                                 
-                                <label for="Confirmar e-mail">
+                                <label for="confirmar_email">
                                     Confirmar e-mail
-                                    <input type="text" name="Confirmar e-mail" placeholder="Confirmar e-mail">
+                                    <input type="email" name="confirmar_email_usuario" placeholder="Confirmar e-mail" required>
                                 </label>
 
                                 <label for="senha">
-                                    Editar senha
-                                    <input type="text" name="senha" placeholder="Editar senha...">
+                                    Nova senha
+                                    <input type="password" name="senha_usuario" placeholder="Nova senha..." required>
                                 </label>
 
-                                <label for="Confirmar senha">
+                                <label for="confirmar_senha">
                                     Confirmar senha
-                                    <input type="text" name="Confirmar senha" placeholder="Confirmar senha...">
+                                    <input type="password" name="confirmar_senha_usuario" placeholder="Confirmar senha..." required>
                                 </label>
 
-                                <button>Salvar</button>
+                                <button type="submit">Salvar</button>
                             </form>
                         </div>
 
@@ -101,26 +110,27 @@
                                         <h2>Ajuda/Suporte – Fale Conosco</h2>
                                     </div>
                                     <div class="conteudo-suporte">
-                                        <form class="conteudo-suporte-form">
+                                        <form class="conteudo-suporte-form" action="{% url 'enviar_suporte' %}" method="post">
+                                            {% csrf_token %}
                                             <div class="form-suporte">
                                                 <h3>Precisa de ajuda? Envie uma mensagem para nossa equipe de suporte:</h3>
                                                 <div class="form-suporte-usuario">
                                                     <div>
                                                         <label for="Nome">Nome de usuário:</label>
-                                                        <input type="text" name="Nome">
+                                                        <input type="text" name="nome_usuario">
                                                     </div>
                                                     <div>
                                                         <label for="E-mail:">E-mail:</label>
-                                                        <input type="text" name="E-mail:">
+                                                        <input type="text" name="email_usuario">
                                                     </div>
                                                     <div>
                                                         <label for="assunto">Assunto:</label>
-                                                        <input type="text" name="assunto">
+                                                        <input type="text" name="assunto_usuario">
                                                     </div>
                                                 </div>
                                                 <div class="form-suporte-mensagem">
                                                     <label for="mensagem">Mensagem (até 300 caracteres):</label>
-                                                    <textarea id="mensagem" name="mensagem" maxlength="300" placeholder="Digite aqui" required></textarea>
+                                                    <textarea id="mensagem" name="mensagem_usuario" maxlength="300" placeholder="Digite aqui" required></textarea>
                                                 </div>
                                                 <button type="button" onclick="formSuporte()" class="form-suporte-button">Enviar</button>
                                             </div>
@@ -390,14 +400,15 @@
                                 </div>
                                 <div class="conteudo-ajuda-excluir ajuda-item" style="display: none;">
                                     <div class="container-conta">
-                                        <div class="conteudo-ajuda-sair-conta">
+                                        <form action="{% url 'deletar_conta' %}" method="post" class="conteudo-ajuda-sair-conta">
+                                            {% csrf_token %}
                                             <h3>Deseja excluir sua conta?</h3>
                                             <p>Todos os seus dados serão perdidos.</p>
                                             <div>
-                                                <button>Sim</button>
+                                                <button type="submit">Sim</button>
                                                 <button onclick="voltarAjuda()">Não</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

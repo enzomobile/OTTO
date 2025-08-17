@@ -282,3 +282,37 @@ footer{
     color: #F9DF73;
     list-style-type: none;
 }
+
+/* Mensagens de erro e sucesso */
+
+.messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe6e6;
+    border-radius: 5px;
+    padding: 16px 32px;
+    margin: 0;
+    z-index: 1000;
+    list-style: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 300px;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.messages li {
+    margin: 0.5em 0;
+    font-weight: bold;
+}
+
+.success {
+    color: #207227;
+    border: #207227;
+}
+
+.error {
+    color: #b30000;
+    border: #b30000;
+}
