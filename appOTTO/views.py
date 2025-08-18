@@ -60,9 +60,6 @@ def login(request):
 
     return render(request, 'appOTTO/login.html')
 
-def alterarSenha(request):
-    return render(request, 'appOTTO/alterarSenha.html')
-
 def logout(request):
     auth_logout(request)
     return redirect('home')

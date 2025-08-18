@@ -34,6 +34,9 @@ class UsuarioManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser precisa ter is_superuser=True.')
         return self.create_user(email, nome_usuario, nome_completo, senha, **extra_fields)
+    
+    def get_by_natural_key(self, email_usuario):
+        return self.get(email_usuario=email_usuario)
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     id_usuario = models.AutoField(primary_key=True)
@@ -52,3 +55,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.nome_usuario
+    
+    @property
+    def email(self):
+        return self.email_usuario
