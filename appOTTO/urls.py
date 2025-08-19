@@ -26,23 +26,26 @@ urlpatterns = [
 
     # Passo 2: Confirmação que email foi enviado
     path('recuperar-senha/feito/', 
-         auth_views.PasswordResetDoneView.as_view(
-             template_name='auth/password_reset_done.html'
-         ), 
-         name='password_reset_done'),
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='auth/password_reset_done.html'
+        ), 
+        name='password_reset_done'
+    ),
 
     # Passo 3: Link do email → Form para redefinir senha
     path('reset/<uidb64>/<token>/',
-         auth_views.PasswordResetConfirmView.as_view(
-             template_name='auth/password_reset_confirm.html',
-             success_url='/reset/feito/'
-         ), 
-         name='password_reset_confirm'),
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='auth/password_reset_confirm.html',
+            success_url='/reset/feito/'
+        ), 
+        name='password_reset_confirm'
+    ),
 
     # Passo 4: Senha alterada com sucesso
     path('reset/feito/',
-         auth_views.PasswordResetCompleteView.as_view(
-             template_name='auth/password_reset_complete.html'
-         ), 
-         name='password_reset_complete'),
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='auth/password_reset_complete.html'
+        ), 
+        name='password_reset_complete'
+    ),
 ]
