@@ -435,6 +435,14 @@ header{
   height: 30vh;
   background-color: #F1F1FF;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-contato > div > img{
+  width: 20vw;
+  height: 30vh;
 }
 
 .form-contato > p{
