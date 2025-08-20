@@ -3,6 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import views as auth_views
 from .passwordResetForm import customPasswordResetForm
+from .views import CustomPasswordResetCompleteView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -43,9 +44,7 @@ urlpatterns = [
 
     # Passo 4: Senha alterada com sucesso
     path('reset/feito/',
-        auth_views.PasswordResetCompleteView.as_view(
-            template_name='auth/password_reset_complete.html'
-        ), 
+        CustomPasswordResetCompleteView.as_view(), 
         name='password_reset_complete'
     ),
 ]

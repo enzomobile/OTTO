@@ -3,6 +3,13 @@ from .models import Usuario
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views as auth_views
+
+# Classe para redirecionar o usuário para a tela login após completar o reset de senha.
+class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    def get(self, request, *args, **kwargs):
+        messages.success(request, "Senha alterada com sucesso! Faça login.")
+        return redirect('login')
 
 # Métodos Views.
 def home(request):
