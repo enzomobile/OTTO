@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .models import MensagemSuporte
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Métodos Views.
 def home(request):
@@ -123,6 +125,7 @@ def deletar_conta(request):
             return redirect('configurações')  # Continua na página de configurações
     return redirect('configurações')
 
+
 @login_required  # opcional, se só usuários logados podem enviar
 def enviar_suporte(request):
     if request.method == 'POST':
@@ -131,6 +134,7 @@ def enviar_suporte(request):
         assunto = request.POST.get('assunto_usuario')
         mensagem = request.POST.get('mensagem_usuario')
 
+        # 1. Salvar no banco
         MensagemSuporte.objects.create(
             usuario=request.user,
             nome_usuario=nome,
@@ -138,7 +142,51 @@ def enviar_suporte(request):
             assunto_usuario=assunto,
             mensagem_usuario=mensagem
         )
-        # redireciona para a mesma página ou para uma página de "obrigado"
-        return redirect('configurações')  
+
+        # 2. Enviar email para o admin
+        corpo_email_admin = f"""
+        Nova mensagem de suporte recebida:
+
+        Nome: {nome}
+        E-mail: {email}
+        Assunto: {assunto}
+        Mensagem:
+        {mensagem}
+        """
+
+        send_mail(
+            subject=f"[SUPORTE] {assunto}",
+            message=corpo_email_admin,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.EMAIL_HOST_USER],  # Admin recebe
+            fail_silently=False,
+        )
+
+        # 3. Enviar cópia para o usuário
+        corpo_email_usuario = f"""
+        Olá {nome},
+
+        Recebemos sua mensagem de suporte com o seguinte conteúdo:
+
+        Assunto: {assunto}
+        Mensagem:
+        {mensagem}
+
+        Nossa equipe entrará em contato em breve.
+
+        Atenciosamente,
+        Suporte OTTO
+        """
+
+        send_mail(
+            subject="Confirmação de recebimento - Suporte OTTO",
+            message=corpo_email_usuario,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[email],  # Envia para o usuário
+            fail_silently=False,
+        )
+
+        # Redireciona para a página de configurações
+        return redirect('configurações')
 
     return render(request, 'configurações.html')
