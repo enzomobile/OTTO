@@ -1,0 +1,425 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/configuracoes.css' %}">
+    <title>Configurações</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">
+                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
+            </div>
+            <ul class="menu">
+                <li class="botao-navegar" data-url="{% url 'dashboard' %}">Home</li>
+                <li>Meu Perfil</li>
+                <li>Fases</li>
+                <li class="active">Configurações</li>
+            </ul>
+        </nav>
+        <header>
+            <section id="configuração" class="conteudo">
+                    <div class="conteudo-container">
+                        <nav class="conteudo-nav">
+                            <button class="botao active" onclick="conteudoNav(this)" data-alvo="conta">Conta</button>
+                            <button class="botao" onclick="conteudoNav(this)" data-alvo="interface">Interface</button>
+                            <button class="botao" onclick="conteudoNav(this)" data-alvo="ajuda">Ajuda e Suporte</button>
+                        </nav>
+
+                        <div class="container-conta conteudo-box">
+                            <form method="POST" class="container-conta-form">
+                                {% csrf_token %}
+                                
+                                <label for="email">
+                                    E-mail
+                                    <input type="email" name="email_usuario" placeholder="E-mail.." required>
+                                </label>
+                                
+                                <label for="confirmar_email">
+                                    Confirmar e-mail
+                                    <input type="email" name="confirmar_email_usuario" placeholder="Confirmar e-mail" required>
+                                </label>
+
+                                <label for="senha">
+                                    Nova senha
+                                    <input type="password" name="senha_usuario" placeholder="Nova senha..." required>
+                                </label>
+
+                                <label for="confirmar_senha">
+                                    Confirmar senha
+                                    <input type="password" name="confirmar_senha_usuario" placeholder="Confirmar senha..." required>
+                                </label>
+
+                                <button type="submit">Salvar</button>
+                            </form>
+                        </div>
+
+                        <div class="container-interface conteudo-box" style="display: none;">
+                            <div class="conteudo-interface">
+                                <div class="conteudo-interface-tema">
+                                    <h3>Tema</h3>
+                                    <ul>
+                                        <li><button class="active">Clara</button></li>
+                                        <li><button>Escura</button></li>
+                                    </ul>
+                                </div>
+                                <div class="conteudo-interface-tema-acessibilidade">
+                                    <h3>Acessibilidade</h3>
+                                    <ul>
+                                        <li><label class="switch"><input class="switch-input" type="checkbox"><span class="slider"></span></label> Ativar/desativar leitura em voz alta ou suporte para texto para fala</li>
+                                        <li><label class="switch"><input class="switch-input" type="checkbox"><span class="slider"></span></label> Navegação por Teclado Visível</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-ajuda conteudo-box" style="display: none;">
+                            
+                            <!-- MENU PRINCIPAL -->
+                            <div class="conteudo-ajuda-menu">
+                                <button data-alvo="suporte" onclick="abrirAjuda(this)">Ajuda / Suporte</button>
+                                <button data-alvo="faq" onclick="abrirAjuda(this)">FAQ</button>
+                                <button data-alvo="termos" onclick="abrirAjuda(this)">Termos de Uso e Política de Privacidade</button>
+                                <button data-alvo="sair" onclick="abrirAjuda(this)">Sair da conta</button>
+                                <button data-alvo="excluir" onclick="abrirAjuda(this)">Excluir conta</button>
+                            </div>
+
+                            <!-- CONTEÚDO DETALHADO -->
+                            <div class="conteudo-ajuda-conteudo" style="display: none;">
+
+                                <!-- BOTÃO VOLTAR -->
+                                <div class="voltar-container">
+                                    <button onclick="voltarAjuda()">voltar</button>
+                                </div>
+
+                                <!-- CONTEÚDOS ESPECÍFICOS -->
+                                <div class="conteudo-ajuda-suporte ajuda-item" style="display: none;">
+                                    <div class="container-titulo">
+                                        <h2>Ajuda/Suporte – Fale Conosco</h2>
+                                    </div>
+                                    <div class="conteudo-suporte">
+                                        <form class="conteudo-suporte-form" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-suporte">
+                                                <h3>Precisa de ajuda? Envie uma mensagem para nossa equipe de suporte:</h3>
+                                                <div class="form-suporte-usuario">
+                                                    <div>
+                                                        <label for="Nome">Nome de usuário:</label>
+                                                        <input type="text" name="nome_usuario">
+                                                    </div>
+                                                    <div>
+                                                        <label for="E-mail:">E-mail:</label>
+                                                        <input type="text" name="email_usuario">
+                                                    </div>
+                                                    <div>
+                                                        <label for="assunto">Assunto:</label>
+                                                        <input type="text" name="assunto_usuario">
+                                                    </div>
+                                                </div>
+                                                <div class="form-suporte-mensagem">
+                                                    <label for="mensagem">Mensagem (até 300 caracteres):</label>
+                                                    <textarea id="mensagem" name="mensagem_usuario" maxlength="300" placeholder="Digite aqui" required></textarea>
+                                                </div>
+                                                <button type="button" onclick="formSuporte()" class="form-suporte-button">Enviar</button>
+                                            </div>
+                                            <div class="form-contato">
+                                                <div>
+                                                     <img src="{% static 'appOTTO/img/suporte.png' %}">
+                                                </div>
+                                                <p>Obrigado por entrar em contato! Responderemos em breve.</p>
+                                                <button type="submit" onclick="formContato()" class="form-suporte-button">Voltar a tela de início</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="conteudo-ajuda-faq ajuda-item" style="display: none;">
+                                    <div class="container-titulo">
+                                        <h2>Perguntas Frequentes (FAQ)</h2>
+                                    </div>
+                                    <div class="conteudo-faq">
+                                        <div class="conteudo-faq-plataforma">
+                                            <h3>Sobre a plataforma</h3>
+                                            <div class="faq-item">
+                                                <h4>A partir de que idade as crianças podem usar a plataforma? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Nossa plataforma é recomendada para crianças a partir de 8 anos. Os módulos são ideais para quem está começando a aprender lógica de programação.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Precisa saber programar para começar? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Não! A plataforma foi feita para iniciantes. As crianças aprendem com tutoriais passo a passo, e linguagem visual.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>É necessário estar conectado à internet? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                     <p>Sim, para acessar todos os recursos, como salvar projetos, assistir aos tutoriais, é necessário estar conectado.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>A plataforma é gratuita? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Sim! Nossa plataforma tem como objetivo democratizar o ensino de programação, garantindo que qualquer criança, de qualquer lugar, possa aprender a programar sem barreiras financeiras.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Por que oferecer programação de forma gratuita para crianças? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <p>Acreditamos que <span>a tecnologia deve ser acessível a todos</span>, desde cedo. Ao introduzir a programação de forma lúdica e inclusiva, queremos: Despertar o interesse pela área de TI desde a infância, Incentivar o pensamento lógico e criativo, Aumentar a diversidade no setor de tecnologia no futuro</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Que habilidades as crianças desenvolvem usando a plataforma? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <p>As crianças desenvolvem pensamento lógico, criatividade, resolução de problemas e autonomia. Tudo isso de forma divertida, prática e segura.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conteudo-faq-jogabilidade">
+                                            <h3>Jogabilidade</h3>
+                                            <div class="faq-item">
+                                                <h4>Como começar um jogo? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <ul>
+                                                    <li>Vá até a página inicial da plataforma, onde aparece seu progresso;</li>
+                                                    <li>Você verá o nome da fase (exemplo: Cidade Noturna – Módulo 1);</li>
+                                                    <li>Clique em <span>“Iniciar”</span> ou <span>“Continuar”</span> ao lado da fase.</li>
+                                                </ul>
+                                                <p>
+                                                    Depois disso, o jogo começa automaticamente.
+                                                </p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Como salvar o progresso? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <p>Você não precisa fazer nada, porque o progresso é salvo automaticamente!</p>
+                                                    <p>Quando você termina uma fase ou sai do jogo, a plataforma lembra onde você parou. Da próxima vez, é só clicar em <span>“Continuar”</span>.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>O que fazer se o jogo travar ou congelar? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <ul>
+                                                        <li>Primeiro, feche a aba do jogo;</li>
+                                                        <li>Abra novamente a Plataforma Otto;</li>
+                                                        <li>Faça login com seu e-mail e senha;</li>
+                                                        <li>Vá até a fase e clique em “Continuar”.</li>
+                                                    </ul>
+                                                    <p>
+                                                        Se mesmo assim não funcionar, vá até a parte “Ajuda/Suporte” no menu para enviar uma mensagem para a equipe.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Como ganhar recompensas ou pontos? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Quando você completa uma fase, você ganha <span>XP (pontos)</span>.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conteudo-faq-acessibilidade">
+                                            <h3>Acessibilidade</h3>
+                                            <div class="faq-item">
+                                                <h4>Quais opções de acessibilidade estão disponíveis? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <p>
+                                                        Na aba “Configurações” em “Interfaces”, você pode encontrar:
+                                                        <ul>
+                                                            <li>Leitura em voz alta (o texto é falado para você);</li>
+                                                            <li>Modo alto contraste (muda as cores para facilitar a leitura);</li>
+                                                            <li>Navegação com teclado visível (Utiliza apenas o teclado).</li>
+                                                        </ul>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conteudo-faq-conta">
+                                            <h3>Conta e Segurança</h3>
+                                            <div class="faq-item">
+                                                <h4>Como redefinir minha senha? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <ul>
+                                                        <li>Na tela de login, clique em <span>“Esqueceu a senha?”</span>;</li>
+                                                        <li>Digite seu e-mail de cadastro;</li>
+                                                    </ul>
+                                                    <p>
+                                                        Você vai receber um link no e-mail para criar uma nova senha.
+                                                    </p>
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="conteudo-faq-privacidade">
+                                            <h3>Privacidade e Dados</h3>
+                                            <div class="faq-item">
+                                                <h4>Como meus dados são usados? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Seus dados (como nome, e-mail e progresso) são usados <span>apenas para o funcionamento da plataforma</span>, como salvar seu progresso e mostrar suas conquistas.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Posso excluir minha conta e dados? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div class="faq-resposta">
+                                                    <ul>
+                                                        <li>Vá até <span>“Configurações”</span>;</li>
+                                                        <li>Clique em <span>Clique em “Ajuda e Suporte”;</span>;</li>
+                                                        <li>Confirme que deseja apagar sua conta e os dados salvos.</li>
+                                                    </ul>
+                                                    <p>
+                                                        <span>Atenção:</span> depois de fazer isso, você não pode recuperar o que perdeu.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Com quem meus dados são compartilhados? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Seus dados <span>não são compartilhados com ninguém de fora</span>. Só a equipe da Plataforma Otto pode vê-los, e isso é explicado na parte de <span>“Termos de Uso”</span> e <span>“Política de Privacidade”</span>, que você pode ler na aba de configurações.</p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Quais são as políticas da plataforma? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <ul>
+                                                        <li>Vá até <span>“Configuração”</span>;</li>
+                                                        <li>Clique em <span>“Ajuda e Suporte”</span> > <span>“Termos de Uso e Política de Privacidade”</span>.</li>
+                                                    </ul>
+                                                    <p>
+                                                        Lá está tudo explicadinho sobre como o site cuida dos seus dados e como funciona.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conteudo-faq-suporte">
+                                            <h3>Suporte Técnico</h3>
+                                            <div class="faq-item">
+                                                <h4>O que fazer se não conseguir entrar na plataforma? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <ul>
+                                                        <li> Verifique se o nome de usuário e a senha estão corretos;</li>
+                                                        <li>Tente clicar em <span>“Esqueci a senha”</span> se necessário.</li>
+                                                    </ul>
+                                                    <p>
+                                                        Se ainda não conseguir, vá até <span>“Ajuda/Suporte”</span> para pedir ajuda.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Como limpar o cache e cookies para resolver problemas? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                        <ul>
+                                                            <li>No navegador (ex: Google Chrome), vá em <span>“Configurações”</span> > <span>“Privacidade”</span> > <span>“Limpar dados de navegação”</span>;</li>
+                                                            <li>Marque Cache e Cookies e clique em <span>“Limpar”</span>;</li>
+                                                            <li>Depois, entre de novo na plataforma.</li>
+                                                        </ul>
+                                                </div>
+                                            </div>
+                                            <div class="faq-item">
+                                                <h4>Como reportar um bug? <button class="faq-toggle" onclick="toggleFaq(this)">+</button></h4>
+                                                <div  class="faq-resposta">
+                                                    <p>Vá até a parte de <span>“Ajuda/Suporte”</span> no menu</p>
+                                                    <p>Preencha com seus dados, o problema que aconteceu e clique em Enviar.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="conteudo-ajuda-termos ajuda-item" style="display: none;">
+                                    <h2>Termos de Uso – OTTO</h2>
+                                    <div class="conteudo-termos">
+                                        <p>Bem-vindo(a) ao OTTO! Este documento explica os termos que regem o uso do nosso site, projetado para ensinar crianças e jovens os fundamentos de IoT (Internet das Coisas) e algoritmos de forma lúdica e interativa. </p>
+                                        <ul class="conteudo-termos-ul">
+                                            <li class="conteudo-termos-ul-li">Aceitação dos Termos 
+                                                <p>Ao acessar ou usar este site, você e/ou seu responsável legal concordam com estes Termos de Uso. Se você for menor de 13 anos, o uso da plataforma deve ser autorizado e supervisionado por um responsável. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Objetivo da Plataforma
+                                                <p>Nosso site tem como objetivo oferecer aprendizado gratuito e divertido sobre conceitos de IoT e algoritmos por meio de jogos e atividades interativas. O conteúdo é voltado principalmente para crianças e adolescentes, de forma segura e educativa. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Cadastro e Conta
+                                                <p>Para acessar algumas funcionalidades, pode ser necessário criar uma conta com um nome de usuário e senha. Ao criar uma conta: </p>
+                                                <ul>
+                                                    <li>Você deve fornecer informações verdadeiras. </li>
+                                                    <li>Pais ou responsáveis devem supervisionar o uso da conta por menores de idade. </li>
+                                                    <li>A conta não deve ser compartilhada com outras pessoas. </li>
+                                                </ul>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Uso Adequado
+                                                <p>Você concorda em usar a plataforma apenas para fins educacionais e de forma respeitosa. É proibido: </p>
+                                                <ul>
+                                                    <li>Utilizar linguagem ofensiva ou conteúdos impróprios; </li>
+                                                    <li>Tentar acessar, modificar ou corromper os sistemas ou dados da plataforma; </li>
+                                                    <li>Copiar, vender ou redistribuir os jogos, cursos ou atividades sem autorização. </li>
+                                                </ul>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Segurança e Privacidade 
+                                                <p>Levamos a segurança das crianças a sério. Coletamos o mínimo de dados necessário para garantir o funcionamento da plataforma. Nenhum dado pessoal sensível é coletado sem consentimento dos pais ou responsáveis. Para mais detalhes, consulte nossa [Política de Privacidade]. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Propriedade Intelectual 
+                                                <p>Todo o conteúdo do site (jogos, ilustrações, textos, algoritmos) é de propriedade da nossa equipe de desenvolvimento ou usado com permissão. Não é permitido copiar ou distribuir esse conteúdo sem autorização. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Modificações na Plataforma
+                                                <p>Podemos atualizar ou modificar partes da plataforma, corrigir erros ou melhorar a experiência do usuário a qualquer momento, sem aviso prévio. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Responsabilidades
+                                                <p>Nos esforçamos para garantir que o site esteja sempre acessível e funcional. No entanto, não garantimos que ele estará livre de falhas, bugs ou interrupções. Também não somos responsáveis por problemas causados por conexões de internet ou dispositivos utilizados pelos usuários. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Encerramento da Conta
+                                                <p>Podemos suspender ou remover contas que violem estes Termos de Uso, especialmente se houver condutas inapropriadas ou riscos à segurança da plataforma. </p>
+                                            </li>
+                                            <li class="conteudo-termos-ul-li">Contato
+                                                <p>Dúvidas ou sugestões? Fale conosco através da seção de contato no site. </p>
+                                            </li>
+                                        </ul>
+                                        <p><span>Última atualização:</span>  30 de abril 2025 </p>
+                                    </div>
+                                </div>
+                                <div class="conteudo-ajuda-sair ajuda-item" style="display: none;">
+                                    <div class="container-conta">
+                                        <form action="{% url 'logout' %}" method="post" class="conteudo-ajuda-sair-conta">
+                                            {% csrf_token %}
+                                            <h3>Deseja sair da conta?</h3>
+                                            <p>Seu progresso é salvo automaticamente.</p>
+                                            <div>
+                                                <button type="submit">Sim</button>
+                                                <button type="button" onclick="voltarAjuda()">Não</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="conteudo-ajuda-excluir ajuda-item" style="display: none;">
+                                    <div class="container-conta">
+                                        <form action="{% url 'deletar_conta' %}" method="post" class="conteudo-ajuda-sair-conta">
+                                            {% csrf_token %}
+                                            <h3>Deseja excluir sua conta?</h3>
+                                            <p>Todos os seus dados serão perdidos.</p>
+                                            <div>
+                                                <button type="submit">Sim</button>
+                                                <button type="button" onclick="voltarAjuda()">Não</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+            </section>
+        </header>
+    </div>
+
+    <script src="{% static 'appOTTO/js/configuracoes.js' %}"></script>
+</body>
+</html>

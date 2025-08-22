@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Classe para redirecionar o usuário para a tela login após completar o reset de senha.
 class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
@@ -67,9 +69,79 @@ def login(request):
 
     return render(request, 'appOTTO/login.html')
 
+@login_required
+def deletar_conta(request):
+    user = request.user
+    if request.method == 'POST':
+        try:
+            user.delete()
+            messages.success(request, "Sua conta foi deletada com sucesso.")
+            return redirect('home')  # Redireciona para 'home' após exclusão
+        except:
+            messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
+            return redirect('configurações')  # Continua na página de configurações
+
+@login_required
+def enviar_suporte(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome_usuario')
+        email = request.POST.get('email_usuario')
+        assunto = request.POST.get('assunto_usuario')
+        mensagem = request.POST.get('mensagem_usuario')
+
+        MensagemSuporte.objects.create(
+            usuario=request.user,
+            nome_usuario=nome,
+            email_usuario=email,
+            assunto_usuario=assunto,
+            mensagem_usuario=mensagem
+        )
+
+        corpo_email_admin = f"""
+        Nova mensagem de suporte recebida:
+        Nome: {nome}
+        E-mail: {email}
+        Assunto: {assunto}
+        Mensagem:
+        {mensagem}
+        """
+
+        send_mail(
+            subject=f"[SUPORTE] {assunto}",
+            message=corpo_email_admin,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.EMAIL_HOST_USER],  # Admin recebe
+            fail_silently=False,
+        )
+
+        corpo_email_usuario = f"""
+        Olá {nome},
+        Recebemos sua mensagem de suporte com o seguinte conteúdo:
+        Assunto: {assunto}
+        Mensagem:
+        {mensagem}
+        Nossa equipe entrará em contato em breve.
+        Atenciosamente,
+        Suporte OTTO
+        """
+
+        send_mail(
+            subject="Confirmação de recebimento - Suporte OTTO",
+            message=corpo_email_usuario,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[email],  # Envia para o usuário
+            fail_silently=False,
+        )
+
+        return redirect('configurações')
+
 def logout(request):
     auth_logout(request)
     return redirect('home')
+
+@login_required
+def config(request):
+    return render(request, 'appOTTO/configuracoes.html')
 
 @login_required
 def dashboard(request):

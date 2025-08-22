@@ -11,6 +11,8 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('config/', views.config, name='config'),
+    path('deletar_conta/', views.deletar_conta, name='deletar_conta'),
 
     # Django urls para trocar senha com 2 fatores.
     path(
