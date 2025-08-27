@@ -89,13 +89,8 @@ nav{
     align-items: center;
 }
 
-/*
-.corpo-animaçâo{
-}
-*/
-
-.corpo-animaçâo img{
-    height: 55vh;
+.corpo-animacao img{
+    height: 70vh;
     width: 30vw;
 }
 

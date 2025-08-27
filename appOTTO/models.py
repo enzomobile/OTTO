@@ -59,3 +59,15 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     @property
     def email(self):
         return self.email_usuario
+    
+class MensagemSuporte(models.Model):
+    id_registro = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, null=True, blank=True)
+    nome_usuario = models.CharField(max_length=150)
+    email_usuario = models.EmailField()
+    assunto_usuario = models.CharField(max_length=200)
+    mensagem_usuario = models.CharField(max_length=300)
+    data_envio_usuario = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.assunto_usuario} - {self.nome_usuario}'

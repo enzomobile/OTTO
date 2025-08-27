@@ -39,31 +39,7 @@
                         </nav>
 
                         <div class="container-conta conteudo-box">
-                            <form method="POST" class="container-conta-form">
-                                {% csrf_token %}
-                                
-                                <label for="email">
-                                    E-mail
-                                    <input type="email" name="email_usuario" placeholder="E-mail.." required>
-                                </label>
-                                
-                                <label for="confirmar_email">
-                                    Confirmar e-mail
-                                    <input type="email" name="confirmar_email_usuario" placeholder="Confirmar e-mail" required>
-                                </label>
-
-                                <label for="senha">
-                                    Nova senha
-                                    <input type="password" name="senha_usuario" placeholder="Nova senha..." required>
-                                </label>
-
-                                <label for="confirmar_senha">
-                                    Confirmar senha
-                                    <input type="password" name="confirmar_senha_usuario" placeholder="Confirmar senha..." required>
-                                </label>
-
-                                <button type="submit">Salvar</button>
-                            </form>
+                            
                         </div>
 
                         <div class="container-interface conteudo-box" style="display: none;">
@@ -115,14 +91,6 @@
                                             <div class="form-suporte">
                                                 <h3>Precisa de ajuda? Envie uma mensagem para nossa equipe de suporte:</h3>
                                                 <div class="form-suporte-usuario">
-                                                    <div>
-                                                        <label for="Nome">Nome de usuário:</label>
-                                                        <input type="text" name="nome_usuario">
-                                                    </div>
-                                                    <div>
-                                                        <label for="E-mail:">E-mail:</label>
-                                                        <input type="text" name="email_usuario">
-                                                    </div>
                                                     <div>
                                                         <label for="assunto">Assunto:</label>
                                                         <input type="text" name="assunto_usuario">

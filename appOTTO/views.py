@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Usuario
+from .models import Usuario, MensagemSuporte
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -84,23 +84,22 @@ def deletar_conta(request):
 @login_required
 def enviar_suporte(request):
     if request.method == 'POST':
-        nome = request.POST.get('nome_usuario')
-        email = request.POST.get('email_usuario')
+        usuario = request.user
         assunto = request.POST.get('assunto_usuario')
         mensagem = request.POST.get('mensagem_usuario')
 
         MensagemSuporte.objects.create(
             usuario=request.user,
-            nome_usuario=nome,
-            email_usuario=email,
+            nome_usuario=usuario.nome_usuario,
+            email_usuario=usuario.email_usuario,
             assunto_usuario=assunto,
             mensagem_usuario=mensagem
         )
 
         corpo_email_admin = f"""
         Nova mensagem de suporte recebida:
-        Nome: {nome}
-        E-mail: {email}
+        Nome: {usuario.nome_usuario}
+        E-mail: {usuario.email_usuario}
         Assunto: {assunto}
         Mensagem:
         {mensagem}
@@ -110,12 +109,12 @@ def enviar_suporte(request):
             subject=f"[SUPORTE] {assunto}",
             message=corpo_email_admin,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.EMAIL_HOST_USER],  # Admin recebe
+            recipient_list=[settings.EMAIL_HOST_USER],
             fail_silently=False,
         )
 
         corpo_email_usuario = f"""
-        Olá {nome},
+        Olá {usuario.nome_usuario},
         Recebemos sua mensagem de suporte com o seguinte conteúdo:
         Assunto: {assunto}
         Mensagem:
@@ -129,10 +128,13 @@ def enviar_suporte(request):
             subject="Confirmação de recebimento - Suporte OTTO",
             message=corpo_email_usuario,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[email],  # Envia para o usuário
+            recipient_list=[usuario.email_usuario],
             fail_silently=False,
         )
 
+        return redirect('configurações')
+    else:
+        messages.error(request, "Método inválido para enviar suporte.")
         return redirect('configurações')
 
 def logout(request):

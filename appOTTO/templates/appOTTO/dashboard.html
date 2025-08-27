@@ -5,17 +5,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/dashboard.css' %}">
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Dashboard</h1><br>
-    <p>Você está logado!</p>
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Sair</button>
-    </form>
-    <a href="{% url 'config' %}">Configurações</a>
-
-    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">
+                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
+            </div>
+            <ul class="menu">
+                <li class="active">Home</li>
+                <li>Meu Perfil</li>
+                <li>Fases</li>
+                <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
+            </ul>
+        </nav>
+        <header>
+            <section id="Home" class="conteudo">
+                <div class="conteudo-container">
+                    <div class="conteudo-container-info">
+                        <div>
+                            <h3>Olá, Fulano!</h3>
+                            <p>Tudo pronto para começar! Vamos nessa?</p>
+                        </div>
+                        <a>Nível 03 - Megabyte</a>
+                    </div>
+                    <div class="conteudo-container-progresso">
+                        <div class="progresso-barra">
+                            <h4>Progresso</h4>
+                            <div>barra</div>
+                        </div>
+                        <div class="progresso-dica">
+                            <div class="balao-dica">
+                                <p>dica</p>
+                            </div>
+                            <img src="{% static 'appOTTO/img/OTTO.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="conteudo-container-curso">
+                        <h4>Curso</h4>
+                        <div class="curso-painel">
+                            <h4>Nome da fase</h4>
+                            <button>Continuar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </header>
+    </div>
+    <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
 </body>
 </html>
