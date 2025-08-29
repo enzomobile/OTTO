@@ -39,7 +39,19 @@
                         </nav>
 
                         <div class="container-conta conteudo-box">
-                            
+                            <form class="container-conta-form" method="post">
+                                {% csrf_token %}
+                                <label for="email">E-mail</label>
+                                <input type="text" name="email" placeholder="E-mail..">
+
+                                <label for="senha">Nova senha</label>
+                                <input type="text" name="senha" placeholder="Editar senha...">
+
+                                <label for="confirmarSenha">Confirmar  nova senha</label>
+                                <input type="text" name="confirmarSenha" placeholder="Confirmar senha...">
+
+                                <button type="submit">Salvar</button>
+                            </form>
                         </div>
 
                         <div class="container-interface conteudo-box" style="display: none;">
@@ -86,21 +98,21 @@
                                         <h2>Ajuda/Suporte – Fale Conosco</h2>
                                     </div>
                                     <div class="conteudo-suporte">
-                                        <form class="conteudo-suporte-form" method="post">
+                                        <form class="conteudo-suporte-form" action="{% url 'suporte' %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-suporte">
                                                 <h3>Precisa de ajuda? Envie uma mensagem para nossa equipe de suporte:</h3>
                                                 <div class="form-suporte-usuario">
                                                     <div>
                                                         <label for="assunto">Assunto:</label>
-                                                        <input type="text" name="assunto_usuario">
+                                                        <input type="text" name="assunto">
                                                     </div>
                                                 </div>
                                                 <div class="form-suporte-mensagem">
                                                     <label for="mensagem">Mensagem (até 300 caracteres):</label>
-                                                    <textarea id="mensagem" name="mensagem_usuario" maxlength="300" placeholder="Digite aqui" required></textarea>
+                                                    <textarea id="mensagem" name="mensagem" maxlength="300" placeholder="Digite aqui" required></textarea>
                                                 </div>
-                                                <button type="button" onclick="formSuporte()" class="form-suporte-button">Enviar</button>
+                                                <button type="submit" onclick="formSuporte()" class="form-suporte-button">Enviar</button>
                                             </div>
                                             <div class="form-contato">
                                                 <div>

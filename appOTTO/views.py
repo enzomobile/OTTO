@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from django.core.mail import send_mail
 from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 
 # Classe para redirecionar o usuário para a tela login após completar o reset de senha.
 class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
@@ -79,14 +80,14 @@ def deletar_conta(request):
             return redirect('home')  # Redireciona para 'home' após exclusão
         except:
             messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
-            return redirect('configurações')  # Continua na página de configurações
+            return redirect('config')  # Continua na página de configurações
 
 @login_required
 def enviar_suporte(request):
     if request.method == 'POST':
         usuario = request.user
-        assunto = request.POST.get('assunto_usuario')
-        mensagem = request.POST.get('mensagem_usuario')
+        assunto = request.POST.get('assunto')
+        mensagem = request.POST.get('mensagem')
 
         MensagemSuporte.objects.create(
             usuario=request.user,
@@ -96,46 +97,54 @@ def enviar_suporte(request):
             mensagem_usuario=mensagem
         )
 
-        corpo_email_admin = f"""
-        Nova mensagem de suporte recebida:
-        Nome: {usuario.nome_usuario}
-        E-mail: {usuario.email_usuario}
-        Assunto: {assunto}
-        Mensagem:
-        {mensagem}
-        """
+        corpo_email_admin_html = f"""
+                                    <html>
+                                        <body style="font-family: Arial, sans-serif; color: #333;">
+                                            <h2 style="color: #2c3e50;">Nova mensagem de suporte recebida:</h2>
+                                            <p><strong>Nome:</strong> {usuario.nome_usuario}</p>
+                                            <p><strong>E-mail:</strong> {usuario.email_usuario}</p>
+                                            <p><strong>Assunto:</strong> {assunto}</p>
+                                            <p><strong>Mensagem:</strong><br>{mensagem}</p>
+                                        </body>
+                                    </html>
+                                    """
 
-        send_mail(
+        email_admin = EmailMultiAlternatives(
             subject=f"[SUPORTE] {assunto}",
-            message=corpo_email_admin,
+            body="Nova mensagem de suporte recebida.",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.EMAIL_HOST_USER],
-            fail_silently=False,
+            to=[settings.EMAIL_HOST_USER]
         )
+        email_admin.attach_alternative(corpo_email_admin_html, "text/html")
+        email_admin.send()
 
         corpo_email_usuario = f"""
-        Olá {usuario.nome_usuario},
-        Recebemos sua mensagem de suporte com o seguinte conteúdo:
-        Assunto: {assunto}
-        Mensagem:
-        {mensagem}
-        Nossa equipe entrará em contato em breve.
-        Atenciosamente,
-        Suporte OTTO
-        """
-
-        send_mail(
+                                    <html>
+                                        <center>
+                                        <body style="font-family: Arial, sans-serif; color: #333;">
+                                            <h1 style="color: #2c3e50;">Olá, <strong>{usuario.nome_usuario}</strong>!</h1>
+                                            <h2>Recebemos sua mensagem de suporte com o seguinte conteúdo:</h2>
+                                            <p><strong>Assunto:</strong> {assunto}</p>
+                                            <p><strong>Sua mensagem:</strong> {mensagem}</p><br>
+                                            <p>Nossa equipe entrará em contato em breve.</p>
+                                            <p>Atenciosamente, <strong>Suporte OTTO</strong></p>
+                                        </body>
+                                        </center>
+                                    </html>
+                                """
+        email = EmailMultiAlternatives(
             subject="Confirmação de recebimento - Suporte OTTO",
-            message=corpo_email_usuario,
+            body="Recebemos sua mensagem de suporte. Nossa equipe entrará em contato em breve.",
             from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[usuario.email_usuario],
-            fail_silently=False,
+            to=[usuario.email_usuario],
         )
+        email.attach_alternative(corpo_email_usuario, "text/html")
+        email.send()
 
-        return redirect('configurações')
+        return redirect('config')
     else:
         messages.error(request, "Método inválido para enviar suporte.")
-        return redirect('configurações')
+        return redirect('config')
 
 def logout(request):
     auth_logout(request)

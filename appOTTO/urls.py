@@ -13,6 +13,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('config/', views.config, name='config'),
     path('deletar_conta/', views.deletar_conta, name='deletar_conta'),
+    path('suporte/', views.enviar_suporte, name='suporte'),
 
     # Django urls para trocar senha com 2 fatores.
     path(
