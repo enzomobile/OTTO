@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/css/login.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>Login</title>
 </head>
 <body>
@@ -19,51 +24,37 @@
     {% endif %}
     <div class="container">
         <nav>
-            <div class="voltar">
-                <a class="btn-voltar" data-url="{% url 'home' %}"><img src="{% static 'appOTTO/img/141987.png' %}" class="voltar-OTTO"></a>
-            </div>
+            <a href="{% url 'home' %}"><img src="{% static 'appOTTO/img/141987.png' %}" alt="Voltar" class="voltar-button"></a>
         </nav>
-        <header>
-            <section class="cadastro">
-                <div class="informacao">
-                    <form method="POST">
-                        {% csrf_token %}
-                        <h2>Conectar Conta</h2>
-                        
-                        <input type="email" id="email_usuario" name="email_usuario" required placeholder="EMAIL">
-                        <div class="form-senha">
-                            <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
-                            <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
-                        </div>
-                        <div class="container-button-logar">
-                            <button class="button-logar" type="submit">LOGAR</button>
-                        </div>
-                        <div class="google-btn-container">
-                            <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
-                                <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
-                                <p class="text-google">Logar com o Google</p>
-                            </button>
-                        </div>
-                    </form>
+        <main>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="">
+                    <h2>Conectar Conta</h2>
                 </div>
-            </section>
+                <input type="email" id="email_usuario" name="email_usuario" required placeholder="EMAIL">
+                
+                <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
+                <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
+                
+                <button class="button-logar" type="submit">LOGAR</button>
+                <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
+                    <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
+                    <p class="text-google">Logar com o Google</p>
+                </button>
+            </form>
             <section class="animacao">
-                <a><img src="{% static 'appOTTO/img/cadastro.png' %}" alt=""></a>
+                <img src="{% static 'appOTTO/img/cadastro.png' %}" alt="OTTO">
             </section>
-        </header>
-        <footer>
-            <ul class="rodape">
-                <li class="rodape-info">Brasil<a href=""></a></li>
-                |
-                <li class="rodape-info">Termos de Uso<a href=""></a></li>
-                |
-                <li class="rodape-info">Sobre Nós<a href=""></a></li>
-                |
-                <li class="rodape-info">Contato<a href=""></a></li>
-            </ul>
-        </footer>
+        </main>
     </div>
-
-    <script src="{% static 'appOTTO/js/home.js' %}"></script>
+    <footer>
+        <ul class="rodape">
+            <a href="#"><li class="rodape-info">Brasil</li></a>
+            <a href="#"><li class="rodape-info">Termos de Uso</li></a>
+            <a href="#"><li class="rodape-info">Sobre Nós</li></a>
+            <a href="#"><li class="rodape-info">Contato</li></a>
+        </ul>
+    </footer>
 </body>
 </html>

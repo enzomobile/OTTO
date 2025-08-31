@@ -1,12 +1,19 @@
 *{
-    font-family: 'Inter', sans-serif;
+    font-family: Inter;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
 .container{
-    background-color: #FFFDFA;
     overflow-y: scroll; 
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -90,8 +97,8 @@ nav{
 }
 
 .corpo-animacao img{
-    height: 70vh;
-    width: 30vw;
+    height: 90%;
+    width: 80%;
 }
 
 .corpo-convite{
@@ -257,19 +264,24 @@ nav{
 }
 
 footer{
+    position: relative;
+    display: flex;
     background-color: #7676F0;
     height: 5vh;
-    display: flex;
-    justify-content: center;
+    margin-top: -5vh;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .rodape{
     display: flex;
-    width: 60%;
+    width: 80%;
+    height: 100%;
     color: #F9DF73;
     gap: 0px;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .rodape-info{

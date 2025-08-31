@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/css/cadastro.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>Cadastro</title>
 </head>
 <body>
@@ -19,12 +24,10 @@
     {% endif %}
     <div class="container">
         <nav>
-            <div class="voltar">
-                <a class="btn-voltar" data-url="{% url 'home' %}"><img src="{% static 'appOTTO/img/141987.png' %}" class="voltar-button"></a>
-                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
-            </div>
+            <a href="{% url 'home' %}"><img src="{% static 'appOTTO/img/141987.png' %}" alt="Voltar" class="voltar-button"></a>
+            <a><img src="{% static 'appOTTO/img/OTTO.png' %}" alt="OTTO" class="voltar-OTTO"></a>
         </nav>
-        <header>
+        <main>
             <form method="POST">
                 {% csrf_token %}
                 <h2>Criar conta</h2>
@@ -34,30 +37,22 @@
                 <input type="email" id="email_usuario" name="email_usuario" required maxlength="254" placeholder="EMAIL">
                 <input type="password" id="senha" name="senha" required minlength="8" placeholder="SENHA">
                 <input type="password" id="confirmar_senha" name="confirmar_senha" required minlength="8" placeholder="CONFIRMAR SENHA">
-                <div class="container-button-cadastrar">
-                    <button class="button-logar" type="submit">CRIAR</button>
-                </div>
-                <div class="google-btn-container">
-                    <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
-                        <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
-                        <p class="text-google">Cadastrar com o Google</p>
-                    </button>
-                </div>
+                
+                <button class="button-cadastrar" type="submit">CRIAR</button>
+                <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
+                    <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
+                    <span class="text-google">Cadastrar com o Google</span>
+                </button>
             </form>
-        </header>
-        <footer>
-            <ul class="rodape">
-                <li class="rodape-info">Brasil<a href=""></a></li>
-                |
-                <li class="rodape-info">Termos de Uso<a href=""></a></li>
-                |
-                <li class="rodape-info">Sobre Nós<a href=""></a></li>
-                |
-                <li class="rodape-info">Contato<a href=""></a></li>
-            </ul>
-        </footer>
+        </main>
     </div>
-
-    <script src="{% static 'appOTTO/js/home.js' %}"></script>
+    <footer>
+        <ul class="rodape">
+            <a href="#"><li class="rodape-info">Brasil</li></a>
+            <a href="#"><li class="rodape-info">Termos de Uso</li></a>
+            <a href="#"><li class="rodape-info">Sobre Nós</li></a>
+            <a href="#"><li class="rodape-info">Contato</li></a>
+        </ul>
+    </footer>
 </body>
 </html>

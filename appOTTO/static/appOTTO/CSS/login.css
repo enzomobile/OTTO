@@ -1,59 +1,81 @@
 *{
-    font-family: 'Inter', sans-serif;
+    font-family: Inter;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.container{
-    background-color: #FFFDFA;
+html, body {
+    height: 100%;
 }
 
-.voltar-OTTO{
-    height: 80px;
-    width: 150px;
+.container {
+    min-height: 100%;
 }
 
-/* nav */
+a {
+    text-decoration: none;
+}
 
 nav{
-    height: 10vh;
-    width: 100%;
-    padding: 10px 50px;
-    display: flex;
-    align-items: end;
-}
-
-.voltar img{
-    height: 50px;
-    width: 50px;
-}
-
-/* header */
-
-header{
-    height: 85vh;
     width: 100%;
     display: flex;
-}
-
-.cadastro{
-    flex: 2;
-}
-
-.informacao{
-    display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    flex-direction: column;
-    padding: 80px 0;
-    gap: 50px;
+    padding: 10px 50px;
+}
+
+.voltar-button{
+    width: 50px;
+    height: 50px;
+}
+
+main{
+    display: flex;
+    padding: 20px;
+    padding-bottom: 100px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
 }
 
 form{
     display: flex;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     flex-direction: column;
     gap: 30px;
+    padding: 10px;
+}
+
+footer{
+    position: relative;
+    display: flex;
+    background-color: #7676F0;
+    height: 5vh;
+    margin-top: -5vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rodape{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    color: #F9DF73;
+    gap: 0px;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.rodape-info{
+    font-size: 20px;
+    color: #F9DF73;
+    list-style-type: none;
 }
 
 h2{
@@ -61,9 +83,11 @@ h2{
 }
 
 input{
-    width: 800px;
-    font-size: 48px;
-    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    display: flex;
+    padding: 15px;
     color: #FFFDFA;
     background-color: #7676F0;
     border: none;
@@ -74,95 +98,60 @@ input::placeholder{
     color: #FFFDFA;
 }
 
-.form-senha{
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: 10px;
-}
-
 .esqueci-senha{
-    background-color: #FFFDFA;
     border: none;
     color: #7676F0;
-    text-decoration: none;
-}
-
-.container-button-logar{
-    width: 100%;
-    text-align: center;
 }
 
 .button-logar{
-    width: 200px;
-    font-size: 40px;
+    height: auto;
+    width: 40%;
+    font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
-.google-button{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 800px;
-    font-size: 48px;
-    padding: 20px;
+.google-button {
+    width: 50%;
+    padding: 10px;
     border: none;
     border-radius: 15px;
     background-color: #FFFDFA;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    cursor: pointer;
 }
 
-.img-google{
-    height: 40px;
-    width: 40px;
+.img-google {
+    height: 24px;
+    width: 24px;
 }
 
-.text-google{
-    width: 100%;
+.text-google {
+    font-size: large;
+    flex: 1;
+    text-align: center;
 }
 
 .animacao{
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .animacao img{
-    height: 60vh;
+    height: auto;
     width: 35vw;
-}
-
-
-/* footer */
-
-footer{
-    background-color: #7676F0;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rodape{
-    display: flex;
-    width: 60%;
-    color: #F9DF73;
-    gap: 0px;
-    justify-content: space-around;
-}
-
-.rodape-info{
-    font-size: 20px;
-    color: #F9DF73;
-    list-style-type: none;
 }
 
 /* Mensagens de erro e sucesso */

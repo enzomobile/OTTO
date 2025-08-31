@@ -22,23 +22,30 @@ function updateSlide() {
 // Avançar
 document.getElementById('next').addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % items.length;
+  clearInterval(intervalo);
+  atualizarSozinho();
   updateSlide();
 });
 
 // Voltar
 document.getElementById('prev').addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + items.length) % items.length;
+  clearInterval(intervalo);
+  atualizarSozinho();
   updateSlide();
 });
 
 // Troca automática a cada 10s
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % items.length;
-  updateSlide();
-}, 10000);
+function atualizarSozinho() {
+  intervalo = setInterval(() => {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateSlide();
+  }, 10000);
+}
 
 // Ajustar ao redimensionar
 window.addEventListener('resize', updateSlide);
 
 // Inicializar
+atualizarSozinho();
 updateSlide();
