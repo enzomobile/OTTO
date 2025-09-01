@@ -1,31 +1,28 @@
 *{
-    font-family: 'Inter', sans-serif;
+    font-family: Inter;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.container{
-    background-color: #FFFDFA;
+a {
+    text-decoration: none;
 }
 
-/* nav */
+.container {
+    min-height: 100%;
+}
+
+html, body {
+    height: 100%;
+}
 
 nav{
-    height: 10vh;
-    width: 100%;
-    padding: 10px 50px;
-}
-
-.voltar{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
-}
-.voltar h2{
-    font-size: 50px;
 }
 
 .voltar-button{
@@ -38,27 +35,37 @@ nav{
     width: 150px;
 }
 
-
-/* header */
-
-header{
+main{
     display: flex;
     flex-direction: column;
-    height: 85vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    padding-bottom: 100px;
 }
 
 h2{
+<<<<<<< HEAD
     font-size: clamp(2rem, 2.5vw, 3rem);
+=======
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 }
 
-form{
+form {
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 2rem;
+=======
+    gap: 20px;
+    align-items: center;
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 }
 
 .container-button-cadastrar{
@@ -68,8 +75,14 @@ form{
 }
 
 input{
+<<<<<<< HEAD
     width: 50vw;
     font-size: clamp(1rem, 2vw, 2rem);
+=======
+    width: 100%;
+    max-width: 600px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     display: flex;
     padding: 0.5rem;
     color: #FFFDFA;
@@ -82,8 +95,13 @@ input::placeholder{
     color: #FFFDFA;
 }
 
+<<<<<<< HEAD
 .button-logar{
     width: 15vh;
+=======
+.button-cadastrar{
+    width: 50%;
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -91,6 +109,7 @@ input::placeholder{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
+<<<<<<< HEAD
     padding: 1rem;
     text-align: center;
 }
@@ -124,26 +143,34 @@ input::placeholder{
 
 .text-google{
     width: 100%;
+=======
+    padding: 10px;
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     text-align: center;
+    cursor: pointer;
 }
-
 
 /* footer */
 
 footer{
+    position: relative;
+    display: flex;
     background-color: #7676F0;
     height: 5vh;
-    display: flex;
-    justify-content: center;
+    margin-top: -5vh;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .rodape{
     display: flex;
-    width: 60%;
+    width: 80%;
+    height: 100%;
     color: #F9DF73;
     gap: 0px;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .rodape-info{
@@ -152,6 +179,35 @@ footer{
     list-style-type: none;
 }
 
+<<<<<<< HEAD
+=======
+/* Cadastrar com o google */
+
+.google-button {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #FFFDFA;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.img-google {
+    height: 24px;
+    width: 24px;
+}
+
+.text-google {
+    font-size: large;
+    flex: 1;
+    text-align: center;
+}
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 
 /* Mensagens de erro e sucesso */
 

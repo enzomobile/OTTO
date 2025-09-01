@@ -1,0 +1,5 @@
+Esses templates devem ser colocados dentro de: venv/lib/django/contrib/auth/templates/auth !!!!!
+
+Cuidado para não colocar dentro de auth/widget <<<<<<<<<<<--------------
+
+Coloque os arquivos html junto do txt password_reset_subject. 

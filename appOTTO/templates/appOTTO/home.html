@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/css/home.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>OTTO</title>
 </head>
 <body>
@@ -20,14 +25,14 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" alt="" class="voltar-OTTO"></a>
+                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" alt="OTTO" class="voltar-OTTO"></a>
             </div>
             <div class="login">
                 <button class="login-button login-button-login botao-navegar" data-url="{% url 'login' %}">LOGIN</button>
                 <button class="login-button login-button-cadastro botao-navegar" data-url="{% url 'cadastro' %}">CADASTRO</button>
             </div>
         </nav>
-        <header>
+        <main>
             <section class="corpo">
                 <div class="corpo-animacao">
                     <a><img src="{% static 'appOTTO/img/page.png' %}" alt=""></a>
@@ -55,7 +60,7 @@
                         </div>
                         <div class="item">
                         <div class="carrosel-slide-info">
-                            <h2 id="h2-especial2"><span>Crie, experimente e <br>aprenda!</span></h2>
+                            <h2 id="h2-especial2"><span>Crie, experimente e aprenda!</span></h2>
                             <p>Com atividades práticas baseadas no Scratch, é possível desenvolver projetos criativos enquanto se constroem habilidades como lógica, autonomia e resolução de problemas.</p>
                         </div>
                         <div class="carrosel-slide-img">
@@ -108,20 +113,16 @@
                     </div>
                 </div>
             </section>
-        </header>
-        <footer>
-            <ul class="rodape">
-                <li class="rodape-info">Brasil<a href=""></a></li>
-                |
-                <li class="rodape-info">Termos de Uso<a href=""></a></li>
-                |
-                <li class="rodape-info">Sobre Nós<a href=""></a></li>
-                |
-                <li class="rodape-info">Contato<a href=""></a></li>
-            </ul>
-        </footer>
+        </main>
     </div>
-
+    <footer>
+        <ul class="rodape">
+            <a href="#"><li class="rodape-info">Brasil</li></a>
+            <a href="#"><li class="rodape-info">Termos de Uso</li></a>
+            <a href="#"><li class="rodape-info">Sobre Nós</li></a>
+            <a href="#"><li class="rodape-info">Contato</li></a>
+        </ul>
+    </footer>
     <script src="{% static 'appOTTO/js/home.js' %}"></script>
 </body>
 </html>

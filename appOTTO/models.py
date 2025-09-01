@@ -34,6 +34,9 @@ class UsuarioManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser precisa ter is_superuser=True.')
         return self.create_user(email, nome_usuario, nome_completo, senha, **extra_fields)
+    
+    def get_by_natural_key(self, email_usuario):
+        return self.get(email_usuario=email_usuario)
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     id_usuario = models.AutoField(primary_key=True)
@@ -53,14 +56,29 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.nome_usuario
     
+<<<<<<< HEAD
+=======
+    @property
+    def email(self):
+        return self.email_usuario
+    
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 class MensagemSuporte(models.Model):
     id_registro = models.AutoField(primary_key=True)
     usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, null=True, blank=True)
     nome_usuario = models.CharField(max_length=150)
     email_usuario = models.EmailField()
     assunto_usuario = models.CharField(max_length=200)
+<<<<<<< HEAD
     mensagem_usuario = models.TextField(max_length=300)
     data_envio_usuario = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.assunto} - {self.nome}'
+=======
+    mensagem_usuario = models.CharField(max_length=300)
+    data_envio_usuario = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.assunto_usuario} - {self.nome_usuario}'
+>>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
