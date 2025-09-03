@@ -11,12 +11,10 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
-<<<<<<< HEAD
     path('configurações/', views.configurações, name='configurações'),
     path('configuracoes/redefinir_senha/', views.redefinir_senha, name='redefinir_senha'),
     path('configuracoes/deletar-conta/', views.deletar_conta, name='deletar_conta'),
     path('enviar-suporte/', views.enviar_suporte, name='enviar_suporte'),
-=======
     path('config/', views.config, name='config'),
     path('deletar_conta/', views.deletar_conta, name='deletar_conta'),
     path('suporte/', views.enviar_suporte, name='suporte'),
@@ -57,5 +55,4 @@ urlpatterns = [
         CustomPasswordResetCompleteView.as_view(), 
         name='password_reset_complete'
     ),
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 ]
