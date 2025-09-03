@@ -47,11 +47,7 @@ main{
 }
 
 h2{
-<<<<<<< HEAD
-    font-size: clamp(2rem, 2.5vw, 3rem);
-=======
     font-size: clamp(1.5rem, 4vw, 2.5rem);
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 }
 
 form {
@@ -60,12 +56,8 @@ form {
     max-width: 600px;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    gap: 2rem;
-=======
     gap: 20px;
     align-items: center;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 }
 
 .container-button-cadastrar{
@@ -75,16 +67,11 @@ form {
 }
 
 input{
-<<<<<<< HEAD
-    width: 50vw;
-    font-size: clamp(1rem, 2vw, 2rem);
-=======
     width: 100%;
     max-width: 600px;
     font-size: clamp(1rem, 2.5vw, 2rem);
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     display: flex;
-    padding: 0.5rem;
+    padding: 15px;
     color: #FFFDFA;
     background-color: #7676F0;
     border: none;
@@ -95,13 +82,8 @@ input::placeholder{
     color: #FFFDFA;
 }
 
-<<<<<<< HEAD
-.button-logar{
-    width: 15vh;
-=======
 .button-cadastrar{
     width: 50%;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -109,43 +91,7 @@ input::placeholder{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
-<<<<<<< HEAD
-    padding: 1rem;
-    text-align: center;
-}
-
-/* Cadastrar com o google */
-
-.google-btn-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.google-button{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 30vw;
-    font-size: clamp(1rem, 1.5vw, 2rem);
-    padding: 0.5rem;
-    border: none;
-    border-radius: 15px;
-    background-color: #FFFDFA;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.img-google{
-    height: 40px;
-    width: 40px;
-}
-
-.text-google{
-    width: 100%;
-=======
     padding: 10px;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     text-align: center;
     cursor: pointer;
 }
@@ -179,8 +125,6 @@ footer{
     list-style-type: none;
 }
 
-<<<<<<< HEAD
-=======
 /* Cadastrar com o google */
 
 .google-button {
@@ -207,7 +151,6 @@ footer{
     flex: 1;
     text-align: center;
 }
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 
 /* Mensagens de erro e sucesso */
 

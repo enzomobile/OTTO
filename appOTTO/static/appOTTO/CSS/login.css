@@ -47,9 +47,6 @@ form{
     align-content: center;
     justify-content: center;
     flex-direction: column;
-<<<<<<< HEAD
-    gap: 2rem;
-=======
     gap: 30px;
     padding: 10px;
 }
@@ -79,25 +76,18 @@ footer{
     font-size: 20px;
     color: #F9DF73;
     list-style-type: none;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 }
 
 h2{
-    font-size: clamp(2rem, 2.5vw, 3rem);
+    font-size: 40px;
 }
 
 input{
-<<<<<<< HEAD
-    width: 50vw;
-    font-size: clamp(2rem, 2.5vw, 3rem);
-    padding: 1rem;
-=======
     width: 100%;
     max-width: 600px;
     font-size: clamp(1rem, 2.5vw, 2rem);
     display: flex;
     padding: 15px;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     color: #FFFDFA;
     background-color: #7676F0;
     border: none;
@@ -108,57 +98,29 @@ input::placeholder{
     color: #FFFDFA;
 }
 
-<<<<<<< HEAD
-.form-senha{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-=======
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 .esqueci-senha{
     border: none;
     color: #7676F0;
 }
 
 .button-logar{
-<<<<<<< HEAD
-    width: 15vw;
-    font-size: clamp(2rem, 2.5vw, 3rem);
-=======
     height: auto;
     width: 40%;
     font-size: clamp(1rem, 2.5vw, 2rem);
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     font-weight: 700;
     border: none;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #FFFDFA;
     color: #7676F0;
-<<<<<<< HEAD
-    padding: 1rem;
-=======
     padding: 10px;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     text-align: center;
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.google-button{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 50vw;
-    font-size: clamp(2rem, 2.5vw, 3rem);
-    padding: 1rem;
-=======
 .google-button {
     width: 50%;
     padding: 10px;
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
     border: none;
     border-radius: 15px;
     background-color: #FFFDFA;
