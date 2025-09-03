@@ -22,14 +22,6 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <h1>Dashboard</h1><br>
-    <p>Você está logado!</p>
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Sair</button>
-    </form>
-
-    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
     <div class="container">
         <nav class="nav">
             <div class="logo">
@@ -79,6 +71,7 @@
             </section>
         </main>
     </div>
+    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
 </body>
 </html>

@@ -122,7 +122,7 @@ def deletar_conta(request):
             return redirect('home')  # Redireciona para 'home' após exclusão
         except:
             messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
-            return redirect('config')  # Continua na página de configurações
+            return redirect('config')  # Continua na página de config
 
 @login_required
 def enviar_suporte(request):
@@ -200,9 +200,6 @@ def config(request):
 def dashboard(request):
     return render(request, 'appOTTO/dashboard.html')
 
-def configurações(request):
-    return render(request, 'appOTTO/configurações.html')
-
 @login_required
 def redefinir_senha(request):
     if request.method == 'POST':
@@ -214,22 +211,22 @@ def redefinir_senha(request):
         # Verifica se todos os campos estão preenchidos
         if not email or not confirmar_email or not senha or not confirmar_senha:
             messages.error(request, "Todos os campos são obrigatórios.")
-            return redirect('configurações')
+            return redirect('config')
 
         # Confere se os emails e senhas coincidem
         if email != confirmar_email:
             messages.error(request, "Os emails não coincidem.")
-            return redirect('configurações')
+            return redirect('config')
 
         if senha != confirmar_senha:
             messages.error(request, "As senhas não coincidem.")
-            return redirect('configurações')
+            return redirect('config')
 
         # Verifica se o email pertence ao usuário logado
         usuario = request.user
         if usuario.email_usuario != email:
             messages.error(request, "O email informado não corresponde ao seu cadastro.")
-            return redirect('configurações')
+            return redirect('config')
 
         # Atualiza a senha com segurança
         usuario.set_password(senha)
@@ -238,87 +235,9 @@ def redefinir_senha(request):
         messages.success(request, "Senha redefinida com sucesso! Faça login novamente.")
         return redirect('login')
 
-    # Se não for POST, mantém na página de configurações
-    return redirect('configurações')
+    # Se não for POST, mantém na página de config
+    return redirect('config')
 
-@login_required
-def deletar_conta(request):
-    user = request.user
-    if request.method == 'POST':
-        try:
-            user.delete()
-            messages.success(request, "Sua conta foi deletada com sucesso.")
-            return redirect('home')  # Redireciona para 'home' após exclusão
-        except:
-            messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
-            return redirect('configurações')  # Continua na página de configurações
-    return redirect('configurações')
-
-
-@login_required  # opcional, se só usuários logados podem enviar
-def enviar_suporte(request):
-    if request.method == 'POST':
-        nome = request.POST.get('nome_usuario')
-        email = request.POST.get('email_usuario')
-        assunto = request.POST.get('assunto_usuario')
-        mensagem = request.POST.get('mensagem_usuario')
-
-        # 1. Salvar no banco
-        MensagemSuporte.objects.create(
-            usuario=request.user,
-            nome_usuario=nome,
-            email_usuario=email,
-            assunto_usuario=assunto,
-            mensagem_usuario=mensagem
-        )
-
-        # 2. Enviar email para o admin
-        corpo_email_admin = f"""
-        Nova mensagem de suporte recebida:
-
-        Nome: {nome}
-        E-mail: {email}
-        Assunto: {assunto}
-        Mensagem:
-        {mensagem}
-        """
-
-        send_mail(
-            subject=f"[SUPORTE] {assunto}",
-            message=corpo_email_admin,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.EMAIL_HOST_USER],  # Admin recebe
-            fail_silently=False,
-        )
-
-        # 3. Enviar cópia para o usuário
-        corpo_email_usuario = f"""
-        Olá {nome},
-
-        Recebemos sua mensagem de suporte com o seguinte conteúdo:
-
-        Assunto: {assunto}
-        Mensagem:
-        {mensagem}
-
-        Nossa equipe entrará em contato em breve.
-
-        Atenciosamente,
-        Suporte OTTO
-        """
-
-        send_mail(
-            subject="Confirmação de recebimento - Suporte OTTO",
-            message=corpo_email_usuario,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[email],  # Envia para o usuário
-            fail_silently=False,
-        )
-
-        # Redireciona para a página de configurações
-        return redirect('configurações')
-
-    return render(request, 'configurações.html')
 @login_required
 def fases(request):
     return render(request, 'appOTTO/fases.html')
