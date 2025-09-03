@@ -16,6 +16,29 @@ body, html{
   display: flex;
 }
 
+progress {
+  width: 80%;
+  height: 15%;
+  border-radius: 10px;
+  background-color: #d400ff75;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #d400ff75;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #be43d6;
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #be43d6;
+  border-radius: 10px;
+}
+
 /* nav */
 
 .nav {
@@ -76,7 +99,7 @@ body, html{
 
 /* header */
 
-header{
+main{
   height: 100vh;
   width: 100%;
   display: flex;

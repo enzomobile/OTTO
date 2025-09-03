@@ -8,6 +8,7 @@ from .views import CustomPasswordResetCompleteView
 urlpatterns = [
     path('', views.home, name='home'),
     path('cadastro/', views.cadastro, name='cadastro'),
+    path('verificar_email/<str:token>/', views.verificar_email, name='verificar_email'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
