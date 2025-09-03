@@ -7,6 +7,8 @@ from django.contrib.auth import views as auth_views
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.urls import reverse
+from django.utils.crypto import get_random_string
 
 # Classe para redirecionar o usuário para a tela login após completar o reset de senha.
 class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
@@ -42,17 +44,51 @@ def cadastro(request):
             messages.error(request, "Nome de usuário já está em uso.")
             return redirect('cadastro')
 
+        request.session['nome_usuario'] = nome_usuario
+        request.session['nome_completo'] = nome_completo
+        request.session['email_usuario'] = email
+        request.session['senha'] = senha
+
+        token = get_random_string(length=32)
+        verification_link = request.build_absolute_uri(reverse('verificar_email', args=[token]))
+
+        send_mail(
+            'Verifique seu Cadastro',
+            f'Clique no link para autenticar seu E-mail: {verification_link}',
+            settings.EMAIL_HOST_USER,
+            [email],
+            fail_silently=False,
+        )
+
+        messages.success(request, "Verifique sua caixa de E-mail!")
+        return redirect('cadastro')
+
+    return render(request, 'appOTTO/cadastro.html')
+
+def verificar_email(request, token):
+    email_usuario = request.session.get('email_usuario')
+    if email_usuario:
+        nome_usuario = request.session.get('nome_usuario')
+        nome_completo = request.session.get('nome_completo')
+        senha = request.session.get('senha')
+
         Usuario.objects.create_user(
-            email_usuario=email,
             nome_usuario=nome_usuario,
             nome_completo=nome_completo,
+            email_usuario=email_usuario,
             senha=senha
         )
 
-        messages.success(request, "Cadastro realizado com sucesso! Faça login.")
+        del request.session['nome_usuario']
+        del request.session['nome_completo']
+        del request.session['email_usuario']
+        del request.session['senha']
+
+        messages.success(request, "Usuário autenticado com sucesso!")
         return redirect('login')
 
-    return render(request, 'appOTTO/cadastro.html')
+    messages.error(request, "Ocorreu um Erro.")
+    return redirect('cadastro')
 
 def login(request):
     if request.method == 'POST':
