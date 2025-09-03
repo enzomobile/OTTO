@@ -157,3 +157,7 @@ def config(request):
 @login_required
 def dashboard(request):
     return render(request, 'appOTTO/dashboard.html')
+
+@login_required
+def fases(request):
+    return render(request, 'appOTTO/fases.html')
