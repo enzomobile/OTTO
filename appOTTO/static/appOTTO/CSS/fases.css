@@ -1,0 +1,124 @@
+*{
+  font-family: Inter;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+body, html{
+  height: 100%;
+}
+
+.container{
+  background-color: #7676F0;
+  height: 100vh;
+  display: flex;
+}
+
+/* nav */
+
+.nav {
+  width: 20%;
+  height: 100vh;
+  padding: 80px 0 0 0; /* Remove padding esquerdo */
+  background-color: #7676F0; /* Garante que a barra azul cubra até a borda */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+.logo {
+  text-align: center;
+  width: 100%;
+  font-size: 22px;
+}
+
+.voltar-OTTO{
+  height: 80px;
+  width: 150px;
+}
+
+.menu {
+  list-style: none;
+  width: 100%;
+}
+
+.menu li {
+  padding: 12px 24px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+
+
+/* Item ativo com destaque */
+.menu li.active {
+  background-color: #f4e66c;
+  color: black;
+  font-weight: bold;
+  padding: 16px 28px;
+  font-size: clamp(1rem, 2vw, 2rem);
+  transform: scale(1.05);
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 0;
+}
+
+
+/* header */
+
+header{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.conteudo{
+  height: 80%;
+  width: 80%;
+  background-image: url("/static/appOTTO/img/mapa.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.conteudo > a {
+  aspect-ratio: 1/1;        
+  width: clamp(20px, 8vw, 60px);    
+  border-radius: 50%;                
+  border: 2px solid white;
+  background-color: #7676F0;      
+  color: white;
+  font-size: clamp(0.5rem, 1vw, 1rem); 
+  display: flex;
+  flex-direction: column;    /* empilha o texto */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.2;          /* deixa mais juntinho */
+}
+
+.conteudo > a:nth-child(odd) {
+  margin-left: -10%; 
+}
+
+.conteudo > a:nth-child(even) {
+  margin-right: -10%; 
+}

@@ -3,11 +3,9 @@ from .models import Usuario, MensagemSuporte
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from .models import MensagemSuporte
 from django.core.mail import send_mail
 from django.conf import settings
-=======
 from django.contrib.auth import views as auth_views
 from django.core.mail import send_mail
 from django.conf import settings
@@ -18,7 +16,6 @@ class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     def get(self, request, *args, **kwargs):
         messages.success(request, "Senha alterada com sucesso! Faça login.")
         return redirect('login')
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 
 # Métodos Views.
 def home(request):
@@ -283,3 +280,6 @@ def enviar_suporte(request):
         return redirect('configurações')
 
     return render(request, 'configurações.html')
+@login_required
+def fases(request):
+    return render(request, 'appOTTO/fases.html')

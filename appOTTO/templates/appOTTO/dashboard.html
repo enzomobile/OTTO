@@ -15,7 +15,6 @@
     <title>Dashboard</title>
 </head>
 <body>
-<<<<<<< HEAD
     {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -31,7 +30,6 @@
     </form>
 
     <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
-=======
     <div class="container">
         <nav class="nav">
             <div class="logo">
@@ -40,7 +38,7 @@
             <ul class="menu">
                 <li class="active">Home</li>
                 <li>Meu Perfil</li>
-                <li>Fases</li>
+                <li class="botao-navegar" data-url="{% url 'fases' %}">Fases</li>
                 <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
             </ul>
         </nav>
@@ -78,6 +76,5 @@
         </header>
     </div>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
->>>>>>> f7264afc60d9fcff2384eb4d7ef19180201804cf
 </body>
 </html>
