@@ -49,8 +49,12 @@ def cadastro(request):
         request.session['email_usuario'] = email
         request.session['senha'] = senha
 
+        # Cria um token, ele é passado para o link de verificação então só dá para autenticar se você acessar o link enviado no e-mail.
         token = get_random_string(length=32)
         verification_link = request.build_absolute_uri(reverse('verificar_email', args=[token]))
+
+        # Salva o token na session para comparar depois
+        request.session['token'] = token
 
         send_mail(
             'Verifique seu Cadastro',
@@ -66,8 +70,10 @@ def cadastro(request):
     return render(request, 'appOTTO/cadastro.html')
 
 def verificar_email(request, token):
-    email_usuario = request.session.get('email_usuario')
-    if email_usuario:
+    session_token = request.session.get('token')
+
+    if session_token and session_token == token:
+        email_usuario = request.session.get('email_usuario')
         nome_usuario = request.session.get('nome_usuario')
         nome_completo = request.session.get('nome_completo')
         senha = request.session.get('senha')
@@ -79,10 +85,7 @@ def verificar_email(request, token):
             senha=senha
         )
 
-        del request.session['nome_usuario']
-        del request.session['nome_completo']
-        del request.session['email_usuario']
-        del request.session['senha']
+        request.session.flush()
 
         messages.success(request, "Usuário autenticado com sucesso!")
         return redirect('login')
