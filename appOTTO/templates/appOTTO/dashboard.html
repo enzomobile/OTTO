@@ -27,12 +27,12 @@
                 <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
             </ul>
         </nav>
-        <header>
+        <main>
             <section id="Home" class="conteudo">
                 <div class="conteudo-container">
                     <div class="conteudo-container-info">
                         <div>
-                            <h3>Olá, Fulano!</h3>
+                            <h3>Olá, {{ user.nome_usuario }}!</h3>
                             <p>Tudo pronto para começar! Vamos nessa?</p>
                         </div>
                         <a>Nível 03 - Megabyte</a>
@@ -40,7 +40,11 @@
                     <div class="conteudo-container-progresso">
                         <div class="progresso-barra">
                             <h4>Progresso</h4>
-                            <div>barra</div>
+                            <p><script>
+                                progresso = document.getElementById("progresso");
+                                valor = progresso.value;
+                            </script></p>
+                            <progress id="progresso" value="32" max="100"> 32% </progress>
                         </div>
                         <div class="progresso-dica">
                             <div class="balao-dica">
@@ -58,7 +62,7 @@
                     </div>
                 </div>
             </section>
-        </header>
+        </main>
     </div>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
 </body>
