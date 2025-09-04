@@ -17,8 +17,8 @@ body, html{
 }
 
 progress {
-  width: 80%;
-  height: 15%;
+  width: 100%;
+  height: 25px;
   border-radius: 10px;
   background-color: #d400ff75;
   appearance: none;
@@ -169,6 +169,11 @@ main{
 
 .progresso-barra > h4{
   font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+.progresso-barra > p {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .progresso-dica{

@@ -13,6 +13,14 @@
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
     <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>Dashboard</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const progresso = document.getElementById("progresso");
+            const porcentagem = document.getElementById("porcentagem");
+            const valor = progresso.value;
+            porcentagem.textContent = valor + "%";
+        });
+    </script>
 </head>
 <body>
     {% if messages %}
@@ -47,11 +55,8 @@
                     <div class="conteudo-container-progresso">
                         <div class="progresso-barra">
                             <h4>Progresso</h4>
-                            <p><script>
-                                progresso = document.getElementById("progresso");
-                                valor = progresso.value;
-                            </script></p>
-                            <progress id="progresso" value="32" max="100"> 32% </progress>
+                            <p id="porcentagem"></p>
+                            <progress id="progresso" value="32" max="100"></progress>
                         </div>
                         <div class="progresso-dica">
                             <div class="balao-dica">

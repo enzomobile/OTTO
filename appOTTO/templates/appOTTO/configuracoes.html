@@ -30,7 +30,7 @@
             <ul class="menu">
                 <li class="botao-navegar" data-url="{% url 'dashboard' %}">Home</li>
                 <li>Meu Perfil</li>
-                <li data-url="{% url 'fases' %}">Fases</li>
+                <li class="botao-navegar" data-url="{% url 'fases' %}">Fases</li>
                 <li class="active">Configurações</li>
             </ul>
         </nav>
@@ -44,16 +44,14 @@
                         </nav>
 
                         <div class="container-conta conteudo-box">
-                            <form class="container-conta-form" method="post">
+                            <form class="container-conta-form" method="post" action="{% url 'redefinir_senha' %}">
                                 {% csrf_token %}
-                                <label for="email">E-mail</label>
-                                <input type="text" name="email" placeholder="E-mail..">
 
                                 <label for="senha">Nova senha</label>
-                                <input type="text" name="senha" placeholder="Editar senha...">
+                                <input type="password" name="senha" placeholder="Editar senha...">
 
                                 <label for="confirmarSenha">Confirmar  nova senha</label>
-                                <input type="text" name="confirmarSenha" placeholder="Confirmar senha...">
+                                <input type="password" name="confirmarSenha" placeholder="Confirmar senha...">
 
                                 <button type="submit">Salvar</button>
                             </form>
@@ -124,7 +122,7 @@
                                                      <img src="{% static 'appOTTO/img/suporte.png' %}">
                                                 </div>
                                                 <p>Obrigado por entrar em contato! Responderemos em breve.</p>
-                                                <button type="submit" onclick="formContato()" class="form-suporte-button">Voltar a tela de início</button>
+                                                <h4>Não saia da tela! Espere sair automaticamente.</h4>
                                             </div>
                                         </form>
                                     </div>
