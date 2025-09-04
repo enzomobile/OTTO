@@ -43,7 +43,8 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     nome_completo = models.CharField(max_length=150)
     nome_usuario = models.CharField(max_length=50, unique=True)
     email_usuario = models.EmailField(max_length=254, unique=True)
-    progresso_usuario = models.IntegerField(default=0)
+    progresso_usuario = models.IntegerField(default=1)
+    nivel_usuario = models.IntegerField(default=1)
     data_criacao_usuario = models.DateTimeField(auto_now_add=True)
 
     is_active = models.BooleanField(default=True)

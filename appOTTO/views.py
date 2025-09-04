@@ -188,6 +188,7 @@ def enviar_suporte(request):
         messages.error(request, "Método inválido para enviar suporte.")
         return redirect('config')
 
+@login_required
 def logout(request):
     auth_logout(request)
     return redirect('home')
@@ -203,39 +204,26 @@ def dashboard(request):
 @login_required
 def redefinir_senha(request):
     if request.method == 'POST':
-        email = request.POST.get('email_usuario')
-        confirmar_email = request.POST.get('confirmar_email_usuario')
-        senha = request.POST.get('senha_usuario')
-        confirmar_senha = request.POST.get('confirmar_senha_usuario')
+        usuario = request.user
+        senha = request.POST.get('senha')
+        confirmar_senha = request.POST.get('confirmarSenha')
 
-        # Verifica se todos os campos estão preenchidos
-        if not email or not confirmar_email or not senha or not confirmar_senha:
+        if not senha or not confirmar_senha:
             messages.error(request, "Todos os campos são obrigatórios.")
-            return redirect('config')
-
-        # Confere se os emails e senhas coincidem
-        if email != confirmar_email:
-            messages.error(request, "Os emails não coincidem.")
             return redirect('config')
 
         if senha != confirmar_senha:
             messages.error(request, "As senhas não coincidem.")
             return redirect('config')
 
-        # Verifica se o email pertence ao usuário logado
-        usuario = request.user
-        if usuario.email_usuario != email:
-            messages.error(request, "O email informado não corresponde ao seu cadastro.")
-            return redirect('config')
-
-        # Atualiza a senha com segurança
         usuario.set_password(senha)
         usuario.save()
 
         messages.success(request, "Senha redefinida com sucesso! Faça login novamente.")
+        auth_logout(request)
         return redirect('login')
 
-    # Se não for POST, mantém na página de config
+    messages.error(request, "Você só pode redefinir a senha enviando o form.")
     return redirect('config')
 
 @login_required
