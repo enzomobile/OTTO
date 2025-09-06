@@ -17,6 +17,8 @@ urlpatterns = [
     path('deletar_conta/', views.deletar_conta, name='deletar_conta'),
     path('suporte/', views.enviar_suporte, name='suporte'),
     path('fases/', views.fases, name='fases'),
+    path('pre_fase/<int:numero>/', views.pre_fase, name='pre_fase'),
+    path('fase/<int:numero>/', views.fase, name='fase'),
 
     # Django urls para trocar senha com 2 fatores.
     path(

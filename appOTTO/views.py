@@ -229,3 +229,30 @@ def redefinir_senha(request):
 @login_required
 def fases(request):
     return render(request, 'appOTTO/fases.html')
+
+FASES = {
+    1: {"titulo": "Fase 1", "descricao": "Explicação da fase 1", "imagem": "img/fases/fase1.png"},
+    2: {"titulo": "Fase 2", "descricao": "Explicação da fase 2", "imagem": "img/fases/fase2.png"},
+    3: {"titulo": "Fase 3", "descricao": "Explicação da fase 3", "imagem": "img/fases/fase3.png"},
+    4: {"titulo": "Fase 4", "descricao": "Explicação da fase 4", "imagem": "img/fases/fase4.png"},
+    5: {"titulo": "Fase 5", "descricao": "Explicação da fase 5", "imagem": "img/fases/fase5.png"},
+    6: {"titulo": "Fase 6", "descricao": "Explicação da fase 6", "imagem": "img/fases/fase6.png"},
+    7: {"titulo": "Fase 7", "descricao": "Explicação da fase 7", "imagem": "img/fases/fase7.png"},
+    8: {"titulo": "Fase 8", "descricao": "Explicação da fase 8", "imagem": "img/fases/fase8.png"},
+    9: {"titulo": "Fase 9", "descricao": "Explicação da fase 9", "imagem": "img/fases/fase9.png"},
+    10: {"titulo": "Fase 10", "descricao": "Explicação da fase 10", "imagem": "img/fases/fase10.png"},
+}
+
+def pre_fase(request, numero):
+    fase = FASES.get(numero)
+    if not fase:
+        raise Http404("Fase não encontrada")
+    # Enviamos o dicionário 'fase' e o 'numero' para o template
+    return render(request, "appOTTO/pre_fase.html", {"fase": fase, "numero": numero})
+
+def fase(request, numero):
+    if numero not in FASES:
+        raise Http404("Fase não encontrada")
+    # Abrimos diretamente o template individual da fase
+    template_name = f"appOTTO/jogo/fase{numero}.html"
+    return render(request, template_name)
