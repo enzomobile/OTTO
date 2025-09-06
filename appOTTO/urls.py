@@ -19,6 +19,8 @@ urlpatterns = [
     path('fases/', views.fases, name='fases'),
     path('pre_fase/<int:numero>/', views.pre_fase, name='pre_fase'),
     path('fase/<int:numero>/', views.fase, name='fase'),
+    path("concluir_fase/<int:numero>/", views.concluir_fase, name="concluir_fase"),
+    path('pos_fase/', views.pos_fase, name='pos_fase'),
 
     # Django urls para trocar senha com 2 fatores.
     path(

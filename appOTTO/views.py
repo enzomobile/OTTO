@@ -256,3 +256,23 @@ def fase(request, numero):
     # Abrimos diretamente o template individual da fase
     template_name = f"appOTTO/jogo/fase{numero}.html"
     return render(request, template_name)
+
+@login_required
+def concluir_fase(request, numero):
+    usuario = request.user
+
+    # Se o progresso do usuário for menor que a fase concluída → atualiza
+    if usuario.progresso_usuario < numero:
+        usuario.progresso_usuario = numero
+        usuario.save()
+
+    # Passa o tempo atual para a tela de pós-fase
+    contexto = {
+        "fase": numero,
+        "tempo": timezone.now().strftime("%d/%m/%Y %H:%M:%S")
+    }
+    return render(request, "pos_fase.html", contexto)
+
+@login_required
+def pos_fase(request):
+    return render(request, 'appOTTO/pos_fase.html')

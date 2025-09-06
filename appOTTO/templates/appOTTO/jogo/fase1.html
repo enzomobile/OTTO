@@ -1,0 +1,80 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/jogo.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
+
+    <!-- Blockly -->
+    <script src="{% static 'appOTTO/blockly/blockly_compressed.js' %}"></script>
+    <script src="{% static 'appOTTO/blockly/blocks_compressed.js' %}"></script>
+    <script src="{% static 'appOTTO/blockly/python_compressed.js' %}"></script>
+    <script src="{% static 'appOTTO/blockly/msg/js/pt-br.js' %}"></script>
+    <title>Jogo Blockly</title>
+</head>
+<body>
+    <div class="container">
+        <main>
+            <section class="corpo">
+                <header>
+                    <a id="menuIcon">☰</a>
+                    <div id="menuLista">
+                        <div id="containerUl">
+                            <div class="Sair" id="DivSair">
+                                <h3>Deseja sair da conta?</h3>
+                                <p>Seu progresso é salvo automaticamente.</p>
+                                <div>
+                                    <button>Sim</button>
+                                    <button id="NãoSair">Não</button>
+                                </div>
+                            </div>
+                            <ul id="Ul">
+                                <li id="Jogabilidade">Jogabilidade
+                                    <img src="img/jogabilidade.png" class="JogabilidadeImg" id="JogabilidadeImg">
+                                </li>
+                                <li id="Sair">Sair do jogo
+                                </li>
+                                <li id="Retomar">Retomar</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
+                </header>
+
+                <article>
+                    <!-- Área de programação -->
+                    <div class="programação">
+                        <div id="blocklyDiv" style="height: 100%; width: 100%; background-color: rgb(2, 38, 69); border-radius: 1vw;"></div>
+                    </div>
+
+                    <!-- Resultado -->
+                    <div class="resultado">
+                        <div>
+                            <pre id="codigoGerado">// O código aparecerá aqui</pre>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Footer mostrando blocos -->
+                <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
+                    <button onclick="criarBloco('controls_if')">SE</button>
+                    <button onclick="criarBloco('controls_repeat_ext')">Repetir</button>
+                    <button onclick="criarBloco('math_number')">Número</button>
+                    <button onclick="criarBloco('text_print')">Imprimir</button>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <script src="{% static 'appOTTO/JS/jogo.js' %}"></script>
+</body>
+</html>
