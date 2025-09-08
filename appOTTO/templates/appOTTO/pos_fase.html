@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +10,6 @@
     <h1>Parabéns!</h1>
     <p>Você concluiu a fase {{ fase }}.</p>
     <p>Concluída em: {{ tempo }}</p>
-    <a href="/mapa/">Voltar ao mapa</a>
+    <a href="{% url 'dashboard' %}">Voltar ao mapa</a>
 </body>
 </html>

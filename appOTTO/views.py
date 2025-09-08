@@ -12,6 +12,8 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
 from django.utils.crypto import get_random_string
+from django.utils import timezone
+
 
 # Classe para redirecionar o usuário para a tela login após completar o reset de senha.
 class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
@@ -253,6 +255,9 @@ def pre_fase(request, numero):
 def fase(request, numero):
     if numero not in FASES:
         raise Http404("Fase não encontrada")
+    
+    request.session["inicio_fase"] = timezone.now().isoformat()
+
     # Abrimos diretamente o template individual da fase
     template_name = f"appOTTO/jogo/fase{numero}.html"
     return render(request, template_name)
@@ -260,18 +265,31 @@ def fase(request, numero):
 @login_required
 def concluir_fase(request, numero):
     usuario = request.user
+    progresso = usuario.progresso_usuario  # <-- agora usa progresso_usuario
 
-    # Se o progresso do usuário for menor que a fase concluída → atualiza
-    if usuario.progresso_usuario < numero:
+    # Recupera o horário salvo no início da fase
+    inicio_str = request.session.get("inicio_fase")
+    if inicio_str:
+        inicio = timezone.datetime.fromisoformat(inicio_str)
+        fim = timezone.now()
+        tempo_total = fim - inicio
+        minutos, segundos = divmod(tempo_total.seconds, 60)
+        tempo_formatado = f"{minutos} min {segundos} s"
+    else:
+        tempo_formatado = "Não registrado"
+
+    # Atualiza progresso apenas se o usuário ainda não tiver concluído essa fase
+    if progresso < numero:
         usuario.progresso_usuario = numero
         usuario.save()
 
-    # Passa o tempo atual para a tela de pós-fase
     contexto = {
+        "usuario": usuario.nome_usuario,  # seu modelo usa nome_usuario
         "fase": numero,
-        "tempo": timezone.now().strftime("%d/%m/%Y %H:%M:%S")
+        "tempo": tempo_formatado,
+        "progresso": usuario.progresso_usuario,  # para exibir na tela
     }
-    return render(request, "pos_fase.html", contexto)
+    return render(request, "appOTTO/pos_fase.html", contexto)
 
 @login_required
 def pos_fase(request):
