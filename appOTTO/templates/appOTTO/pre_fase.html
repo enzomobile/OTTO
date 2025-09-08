@@ -1,9 +1,18 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <title>{{ fase.titulo }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appOTTO/css/login.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
+    <title>{{ fase.titulo }}</title>
 </head>
 <body>
   <a href="{% url 'fases' %}">← Voltar ao mapa</a>
@@ -11,7 +20,7 @@
   <h1>{{ fase.titulo }}</h1>
   <p>{{ fase.descricao }}</p>
 
-  <img src="{% static fase.imagem %}" alt="{{ fase.titulo }}" style="max-width: 320px; height: auto;">
+  <img src="" alt="{{ fase.titulo }}" style="max-width: 320px; height: auto;">
 
   <p>
     <a href="{% url 'fase' numero %}">

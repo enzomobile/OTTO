@@ -4,12 +4,28 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Fase Concluída</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appOTTO/css/pos_fase.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
+    <title>Fase Concluida</title>
 </head>
 <body>
-    <h1>Parabéns!</h1>
-    <p>Você concluiu a fase {{ fase }}.</p>
-    <p>Concluída em: {{ tempo }}</p>
-    <a href="{% url 'dashboard' %}">Voltar ao mapa</a>
+    <div class="container">
+        <main>
+            <section class="corpo">
+                <img src="{% static 'appOTTO/img/OTTO_concluir.png' %}" alt="">
+                <div class="tempo">
+                    <p class="tempo-titulo">tempo</p>
+                    <p class="tempo-conteudo">{{ tempo }}</p>
+                </div>
+                <a href="{% url 'dashboard' %}">Continuar</a>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
