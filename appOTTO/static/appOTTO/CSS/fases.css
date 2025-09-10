@@ -113,6 +113,7 @@ header{
   cursor: pointer;
   text-align: center;
   line-height: 1.2;          /* deixa mais juntinho */
+  text-decoration: none;
 }
 
 .conteudo > a:nth-child(odd) {
