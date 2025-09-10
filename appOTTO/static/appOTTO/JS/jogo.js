@@ -38,15 +38,32 @@ function mostrarCodigo(numeroFase) {
     var respostaEsperada = respostasFases[numeroFase];
 
     if (respostaEsperada == codigo) {
-        concluirFase(numeroFase);
+        mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
+        setTimeout(function() {
+            concluirFase(numeroFase);
+        }, 3000); 
     } else {
-        alert("Resposta incorreta! Tente novamente.");
+        mostrarMensagem("Ops! Tente novamente.", "error");
     }
 }
 
 function concluirFase(numero) {
     // Redireciona para salvar no banco e depois abrir pos_fase.html
     window.location.href = `/concluir_fase/${numero}/`;
+}
+
+// Função para mostrar mensagens (usando CSS já existente)
+function mostrarMensagem(texto, tipo) {
+    // remove mensagens antigas
+    document.querySelectorAll(".messages").forEach(m => m.remove());
+
+    const ul = document.createElement("ul");
+    ul.className = "messages " + tipo;
+    ul.innerHTML = `<li>${texto}</li>`;
+    document.body.appendChild(ul);
+
+    // sumir depois de 3s
+    setTimeout(() => ul.remove(), 3000);
 }
 
 
