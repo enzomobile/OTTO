@@ -112,6 +112,7 @@ header{
   align-items: center;
   cursor: pointer;
   text-align: center;
+  text-decoration: none;
   line-height: 1.2;          /* deixa mais juntinho */
 }
 
