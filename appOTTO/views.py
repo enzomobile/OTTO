@@ -233,16 +233,16 @@ def fases(request):
     return render(request, 'appOTTO/fases.html')
 
 FASES = {
-    1: {"titulo": "Fase 1", "descricao": "Explicação da fase 1"},
-    2: {"titulo": "Fase 2", "descricao": "Explicação da fase 2"},
-    3: {"titulo": "Fase 3", "descricao": "Explicação da fase 3"},
-    4: {"titulo": "Fase 4", "descricao": "Explicação da fase 4"},
-    5: {"titulo": "Fase 5", "descricao": "Explicação da fase 5"},
-    6: {"titulo": "Fase 6", "descricao": "Explicação da fase 6"},
-    7: {"titulo": "Fase 7", "descricao": "Explicação da fase 7"},
-    8: {"titulo": "Fase 8", "descricao": "Explicação da fase 8"},
-    9: {"titulo": "Fase 9", "descricao": "Explicação da fase 9"},
-    10: {"titulo": "Fase 10", "descricao": "Explicação da fase 10"},
+    1: {"fase": "Fase 1", "titulo": "Fase 1", "descricao": "Explicação da fase 1"},
+    2: {"fase": "Fase 2", "titulo": "Fase 2", "descricao": "Explicação da fase 2"},
+    3: {"fase": "Fase 3", "titulo": "Fase 3", "descricao": "Explicação da fase 3"},
+    4: {"fase": "Fase 4", "titulo": "Fase 4", "descricao": "Explicação da fase 4"},
+    5: {"fase": "Fase 5", "titulo": "Fase 5", "descricao": "Explicação da fase 5"},
+    6: {"fase": "Fase 6", "titulo": "Fase 6", "descricao": "Explicação da fase 6"},
+    7: {"fase": "Fase 7", "titulo": "Fase 7", "descricao": "Explicação da fase 7"},
+    8: {"fase": "Fase 8", "titulo": "Fase 8", "descricao": "Explicação da fase 8"},
+    9: {"fase": "Fase 9", "titulo": "Fase 9", "descricao": "Explicação da fase 9"},
+    10: {"fase": "Fase 10", "titulo": "Fase 10", "descricao": "Explicação da fase 10"},
 }
 
 def pre_fase(request, numero):
