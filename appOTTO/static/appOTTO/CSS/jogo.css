@@ -117,6 +117,40 @@ header > a{
 
 .Sair{
     display: none;
+    flex-direction: column;
+    height: 60vh;
+    width: 50vw;
+    background-color: #7676F0;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.Sair > h3{
+    font-size: clamp(1rem, 2vw, 3rem);
+    color: #FFFDFA;
+}
+
+.Sair > p{
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    color: #FFFDFA;
+}
+
+.Sair button{
+    background: none;
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    color: #FFFDFA;
+    padding: 0.5rem 1rem;
+    border: 2px solid #7676F0;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.Sair button:hover{
+    background-color: #F9DF73;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: black;
 }
 
 header > button{

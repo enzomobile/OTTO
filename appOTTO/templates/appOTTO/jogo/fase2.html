@@ -18,7 +18,7 @@
     <script src="{% static 'appOTTO/blockly/blockly_compressed.js' %}"></script>
     <script src="{% static 'appOTTO/blockly/blocks_compressed.js' %}"></script>
     <script src="{% static 'appOTTO/blockly/python_compressed.js' %}"></script>
-    <script src="{% static 'appOTTO/blockly/msg/js/pt-br.js' %}"></script>
+    <script src="{% static 'appOTTO/blockly/msg/pt-br.js' %}"></script>
     <title>Jogo Blockly</title>
 </head>
 <body>
@@ -40,13 +40,13 @@
                                 <h3>Deseja sair da conta?</h3>
                                 <p>Seu progresso é salvo automaticamente.</p>
                                 <div>
-                                    <button>Sim</button>
+                                    <button onclick="window.location.href = '{% url 'fases' %}'">Sim</button>
                                     <button id="NãoSair">Não</button>
                                 </div>
                             </div>
                             <ul id="Ul">
                                 <li id="Jogabilidade">Jogabilidade
-                                    <img src="img/jogabilidade.png" class="JogabilidadeImg" id="JogabilidadeImg">
+                                    <img src="{% static 'appOTTO/img/jogabilidade.png' %}" class="JogabilidadeImg" id="JogabilidadeImg">
                                 </li>
                                 <li id="Sair">Sair do jogo
                                 </li>
@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button onclick="mostrarCodigo(2)">Gerar Código</button>
+                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
                 </header>
 
                 <article>
@@ -73,12 +73,8 @@
 
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
-                    <button onclick="criarBloco('logic_compare')">Comparar</button>
-                    <button onclick="criarBloco('math_number')">Número</button>
-                    <button onclick="criarBloco('math_arithmetic')">Operação (+ - * /)</button>
-                    <button onclick="criarBloco('text')">Texto</button>
-                    <button onclick="criarBloco('controls_if')">SE</button>
                     <button onclick="criarBloco('text_print')">Imprimir</button>
+                    <button onclick="criarBloco('text')">Texto</button>
                 </footer>
             </section>
         </main>

@@ -40,13 +40,13 @@
                                 <h3>Deseja sair da conta?</h3>
                                 <p>Seu progresso é salvo automaticamente.</p>
                                 <div>
-                                    <button>Sim</button>
+                                    <button onclick="window.location.href = '{% url 'fases' %}'">Sim</button>
                                     <button id="NãoSair">Não</button>
                                 </div>
                             </div>
                             <ul id="Ul">
                                 <li id="Jogabilidade">Jogabilidade
-                                    <img src="img/jogabilidade.png" class="JogabilidadeImg" id="JogabilidadeImg">
+                                    <img src="{% static 'appOTTO/img/jogabilidade.png' %}" class="JogabilidadeImg" id="JogabilidadeImg">
                                 </li>
                                 <li id="Sair">Sair do jogo
                                 </li>
