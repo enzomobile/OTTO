@@ -18,7 +18,7 @@
     <script src="{% static 'appOTTO/blockly/blockly_compressed.js' %}"></script>
     <script src="{% static 'appOTTO/blockly/blocks_compressed.js' %}"></script>
     <script src="{% static 'appOTTO/blockly/python_compressed.js' %}"></script>
-    <script src="{% static 'appOTTO/blockly/msg/js/pt-br.js' %}"></script>
+    <script src="{% static 'appOTTO/blockly/msg/pt-br.js' %}"></script>
     <title>Jogo Blockly</title>
 </head>
 <body>
@@ -74,6 +74,7 @@
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
                     <button onclick="criarBloco('text_print')">Imprimir</button>
+                    <button onclick="criarBloco('text')">Texto</button>
                 </footer>
             </section>
         </main>
