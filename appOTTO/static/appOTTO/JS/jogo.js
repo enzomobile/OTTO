@@ -17,7 +17,7 @@
 
 const respostasFases = [
     null,                // índice 0 (ignorado, já que começa da fase 1)
-    "print('Bom dia')",             // fase 1: deve ter "print"
+    "print('Bom dia Otto!')",
     "if",                // fase 2: deve usar "if"
     "while",             // fase 3: deve usar "while"
     "for",               // fase 4: deve usar "for"

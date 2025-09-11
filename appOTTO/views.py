@@ -233,7 +233,7 @@ def fases(request):
     return render(request, 'appOTTO/fases.html')
 
 FASES = {
-    1: {"fase": "Fase 1", "titulo": "Fase 1", "descricao": "Explicação da fase 1"},
+    1: {"fase": "Fase 1", "titulo": "Bom dia Otto", "descricao": "de bom dia para o Otto! use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia Otto!' "},
     2: {"fase": "Fase 2", "titulo": "Fase 2", "descricao": "Explicação da fase 2"},
     3: {"fase": "Fase 3", "titulo": "Fase 3", "descricao": "Explicação da fase 3"},
     4: {"fase": "Fase 4", "titulo": "Fase 4", "descricao": "Explicação da fase 4"},
