@@ -212,10 +212,11 @@ NIVEL = {
 def dashboard(request):
     nivel_usuario = request.user.nivel_usuario
     nivel = NIVEL.get(nivel_usuario)
+    progresso = request.user.progresso_usuario * 10
     if not nivel:
         raise Http404("Nivel de usuário inválido.")
 
-    return render(request, 'appOTTO/dashboard.html', {"nivel": nivel})
+    return render(request, 'appOTTO/dashboard.html', {"nivel": nivel, "progresso": progresso})
 
 @login_required
 def redefinir_senha(request):
