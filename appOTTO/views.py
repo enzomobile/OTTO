@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils import timezone
+from django.http import Http404
 
 
 # Classe para redirecionar o usuário para a tela login após completar o reset de senha.
@@ -199,9 +200,22 @@ def logout(request):
 def config(request):
     return render(request, 'appOTTO/configuracoes.html')
 
+NIVEL = {
+    1: {"nivel": "Nivel 1 - Iniciante"},
+    2: {"nivel": "Nivel 2 - Bronze"},
+    3: {"nivel": "Nivel 3 - Ametista"},
+    4: {"nivel": "Nivel 4 - Rubi"},
+    5: {"nivel": "Nivel 5 - Diamante"},
+}
+
 @login_required
 def dashboard(request):
-    return render(request, 'appOTTO/dashboard.html')
+    nivel_usuario = request.user.nivel_usuario
+    nivel = NIVEL.get(nivel_usuario)
+    if not nivel:
+        raise Http404("Nivel de usuário inválido.")
+
+    return render(request, 'appOTTO/dashboard.html', {"nivel": nivel})
 
 @login_required
 def redefinir_senha(request):
@@ -233,7 +247,7 @@ def fases(request):
     return render(request, 'appOTTO/fases.html')
 
 FASES = {
-    1: {"fase": "Fase 1", "titulo": "Bom dia Otto", "descricao": "de bom dia para o Otto! use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia Otto!' "},
+    1: {"fase": "Fase 1", "titulo": "Bom dia, Otto", "descricao": "Dê bom dia para o Otto! Use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia, Otto!' "},
     2: {"fase": "Fase 2", "titulo": "Fase 2", "descricao": "Explicação da fase 2"},
     3: {"fase": "Fase 3", "titulo": "Fase 3", "descricao": "Explicação da fase 3"},
     4: {"fase": "Fase 4", "titulo": "Fase 4", "descricao": "Explicação da fase 4"},
