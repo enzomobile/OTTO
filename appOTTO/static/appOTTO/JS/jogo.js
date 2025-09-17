@@ -18,7 +18,7 @@
 const respostasFases = [
     null,                // índice 0 (ignorado, já que começa da fase 1)
     "print('Bom dia Otto!')",
-    "if",                
+    "if escolha == 'maçã': print('Ótima escolha, saudável!')",                
     "while",             // fase 3: deve usar "while"
     "for",               // fase 4: deve usar "for"
     "function",          // fase 5: deve usar "function"
