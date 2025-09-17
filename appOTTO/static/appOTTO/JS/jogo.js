@@ -16,9 +16,17 @@
  }
 
 const respostasFases = [
-    null,                // índice 0 (ignorado, já que começa da fase 1)
+    null, 
+                   // índice 0 (ignorado, já que começa da fase 1)
     "print('Bom dia Otto!')",
-    "fruta = None\nfruta = 'Maçã'\nif fruta == 'Maçã' {\nprint('Fruta certa!') \n} else {\nprint('fruta errada!')}",                
+    //resposta 2
+    `fruta = None
+
+fruta = 'Maçã'
+if fruta == 'Maçã':
+  print('Fruta certa!')
+else:
+  print('Fruta errada!')`,                
     "while",             // fase 3: deve usar "while"
     "for",               // fase 4: deve usar "for"
     "function",          // fase 5: deve usar "function"
@@ -30,21 +38,29 @@ const respostasFases = [
 ];
 
 
+function normalize(str) {
+    return str
+        .replace(/\r\n/g, '\n')   // padroniza quebras de linha
+        .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
+        .replace(/^\s+$/gm, '')   // remove espaços no início de cada linha
+        .trim();                  // remove espaços no início e fim da string inteira
+}
+
 function mostrarCodigo(numeroFase) {
-    var codigo = Blockly.Python.workspaceToCode(workspace).trim();
+    var codigo = Blockly.Python.workspaceToCode(workspace);
     document.getElementById("codigoGerado").textContent = codigo;
-    
-    // Resposta esperada da fase
+
     var respostaEsperada = respostasFases[numeroFase];
 
-    if (respostaEsperada == codigo) {
+    if (normalize(respostaEsperada) === normalize(codigo)) {
         mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
         setTimeout(function() {
             concluirFase(numeroFase);
         }, 3000); 
     } else {
         mostrarMensagem("Ops! Tente novamente.", "error");
-        console.log(codigo);
+        console.log("Gerado:", codigo);
+        console.log("Esperado:", respostaEsperada);
     }
 }
 
