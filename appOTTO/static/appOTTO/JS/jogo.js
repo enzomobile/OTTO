@@ -18,7 +18,7 @@
 const respostasFases = [
     null,                // índice 0 (ignorado, já que começa da fase 1)
     "print('Bom dia Otto!')",
-    "if",                
+    "fruta = None\nfruta = 'Maçã'\nif fruta == 'Maçã' {\nprint('Fruta certa!') \n} else {\nprint('fruta errada!')}",                
     "while",             // fase 3: deve usar "while"
     "for",               // fase 4: deve usar "for"
     "function",          // fase 5: deve usar "function"
@@ -31,9 +31,9 @@ const respostasFases = [
 
 
 function mostrarCodigo(numeroFase) {
-    var codigo = Blockly.Python.workspaceToCode(workspace).trim();;
+    var codigo = Blockly.Python.workspaceToCode(workspace).trim();
     document.getElementById("codigoGerado").textContent = codigo;
-
+    
     // Resposta esperada da fase
     var respostaEsperada = respostasFases[numeroFase];
 
@@ -44,6 +44,7 @@ function mostrarCodigo(numeroFase) {
         }, 3000); 
     } else {
         mostrarMensagem("Ops! Tente novamente.", "error");
+        console.log(codigo);
     }
 }
 
