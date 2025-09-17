@@ -6,6 +6,10 @@
   list-style-type: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 body, html{
   height: 100%;
 }

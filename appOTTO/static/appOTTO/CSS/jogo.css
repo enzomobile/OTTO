@@ -12,6 +12,14 @@
 
 /* conteudo */
 
+button:hover, li:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;;
+}
+
 main{
     background-color: #7676F0;
     height: 100vh;

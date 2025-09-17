@@ -248,7 +248,7 @@ def fases(request):
     return render(request, 'appOTTO/fases.html')
 
 FASES = {
-    1: {"fase": "Fase 1", "titulo": "Bom dia, Otto", "descricao": "Dê bom dia para o Otto! Use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia, Otto!' "},
+    1: {"fase": "Fase 1", "titulo": "Bom dia, Otto", "descricao": "Dê bom dia para o Otto! Use o botão de imprimir e junte-o com o de texto para aparecer exatamente a seguinte mensagem: 'Bom dia Otto' "},
     2: {"fase": "Fase 2", "titulo": "Fase 2", "descricao": "Explicação da fase 2"},
     3: {"fase": "Fase 3", "titulo": "Fase 3", "descricao": "Explicação da fase 3"},
     4: {"fase": "Fase 4", "titulo": "Fase 4", "descricao": "Explicação da fase 4"},
@@ -260,6 +260,7 @@ FASES = {
     10: {"fase": "Fase 10", "titulo": "Fase 10", "descricao": "Explicação da fase 10"},
 }
 
+@login_required
 def pre_fase(request, numero):
     fase = FASES.get(numero)
     if not fase:
@@ -267,9 +268,16 @@ def pre_fase(request, numero):
     # Enviamos o dicionário 'fase' e o 'numero' para o template
     return render(request, "appOTTO/pre_fase.html", {"fase": fase, "numero": numero})
 
+@login_required
 def fase(request, numero):
     if numero not in FASES:
         raise Http404("Fase não encontrada")
+    
+    progresso = request.user.progresso_usuario
+
+    if not progresso >= numero - 1:
+        messages.error(request, "Você não tem progresso suficiente para acessar esta fase.")
+        return redirect('fases')
     
     request.session["inicio_fase"] = timezone.now().isoformat()
 
