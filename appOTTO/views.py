@@ -303,7 +303,7 @@ def concluir_fase(request, numero):
 
     # Atualiza progresso apenas se o usuário ainda não tiver concluído essa fase
     if progresso < numero:
-        usuario.progresso_usuario = numero
+        usuario.progresso_usuario = usuario.progresso_usuario + 1
         usuario.save()
 
     contexto = {
