@@ -1,6 +1,18 @@
  // Inicializar workspace SEM toolbox
  const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
 
+ function adicionarVariavel(nome) {
+    if (!workspace.getVariable(nome)) {
+        workspace.createVariable(nome);
+    }
+    // já insere o bloco "definir variável"
+    var block = workspace.newBlock('variables_set');
+    block.setFieldValue(nome, 'VAR');
+    block.initSvg();
+    block.render();
+}
+
+
  // Função para criar blocos a partir do footer
  function criarBloco(tipo) {
      const bloco = workspace.newBlock(tipo);
@@ -19,6 +31,7 @@ const respostasFases = [
     null, 
                    // índice 0 (ignorado, já que começa da fase 1)
     "print('Bom dia Otto!')",
+    
     //resposta 2
     `fruta = None
 
@@ -26,8 +39,23 @@ fruta = 'Maçã'
 if fruta == 'Maçã':
   print('Fruta certa!')
 else:
-  print('Fruta errada!')`,                
-    "while",             // fase 3: deve usar "while"
+  print('Fruta errada!')`,   
+
+    // fase 3: deve usar "while"
+    `nota1 = None
+nota2 = None
+nota3 = None
+media = None
+
+
+nota1 = 7
+nota2 = 7
+nota3 = 7
+media = (nota1 + nota2) + nota3
+if media >= 7:
+  print('Aprovado!')
+else:
+  print('Reprovado!')`,           
     "for",               // fase 4: deve usar "for"
     "function",          // fase 5: deve usar "function"
     "variable",          // fase 6: exemplo
