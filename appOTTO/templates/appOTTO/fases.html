@@ -29,16 +29,17 @@
         </nav>
         <header>
             <section id="Home" class="conteudo">
-                <a href="{% url 'pre_fase' 1 %}"><span>Fase</span> <span>1</span></a>
-                <a href="{% url 'pre_fase' 2 %}"><span>Fase</span> <span>2</span></a>
-                <a href="{% url 'pre_fase' 3 %}"><span>Fase</span> <span>3</span></a>
-                <a href="{% url 'pre_fase' 4 %}"><span>Fase</span> <span>4</span></a>
-                <a href="{% url 'pre_fase' 5 %}"><span>Fase</span> <span>5</span></a>
-                <a href="{% url 'pre_fase' 6 %}"><span>Fase</span> <span>6</span></a>
-                <a href="{% url 'pre_fase' 7 %}"><span>Fase</span> <span>7</span></a>
-                <a href="{% url 'pre_fase' 8 %}"><span>Fase</span> <span>8</span></a>
-                <a href="{% url 'pre_fase' 9 %}"><span>Fase</span> <span>9</span></a>
-                <a href="{% url 'pre_fase' 10 %}"><span>Fase</span> <span>10</span></a>
+                {% for i in fases %}
+                    {% if i <= progresso|add:"1" %}
+                        <a href="{% url 'pre_fase' i %}" class="fase liberada">
+                            <span>Fase</span> <span>{{ i }}</span>
+                        </a>
+                    {% else %}
+                        <a class="fase bloqueada">
+                            <span>Fase</span> <span>{{ i }}</span>
+                        </a>
+                    {% endif %}
+                {% endfor %}
             </section>
         </header>
     </div>

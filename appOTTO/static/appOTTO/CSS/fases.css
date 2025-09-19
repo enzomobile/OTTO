@@ -98,6 +98,19 @@ header{
   align-items: center;
 }
 
+
+.fase.liberada {
+  color: white;
+  cursor: pointer;
+}
+
+.fase.bloqueada {
+  background: #aaa;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none; /* impede clique */
+}
+
 .conteudo > a {
   aspect-ratio: 1/1;        
   width: clamp(20px, 8vw, 60px);    
