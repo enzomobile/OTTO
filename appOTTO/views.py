@@ -230,7 +230,15 @@ def redefinir_senha(request):
 
 @login_required
 def fases(request):
-    return render(request, 'appOTTO/fases.html')
+    usuario = request.user
+    progresso = int(usuario.progresso_usuario)  # garante inteiro
+
+    contexto = {
+        "progresso": progresso,
+        "fases": range(1, 11)  # fases de 1 a 10
+    }
+    return render(request, "appOTTO/fases.html", contexto)
+
 
 FASES = {
     1: {"fase": "Fase 1", "titulo": "Bom dia Otto", "descricao": "de bom dia para o Otto! use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia Otto!' "},
