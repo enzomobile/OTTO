@@ -122,10 +122,10 @@ def deletar_conta(request):
         try:
             user.delete()
             messages.success(request, "Sua conta foi deletada com sucesso.")
-            return redirect('home')  # Redireciona para 'home' após exclusão
+            return redirect('home')
         except:
             messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
-            return redirect('config')  # Continua na página de config
+            return redirect('config')
 
 @login_required
 def enviar_suporte(request):
@@ -245,7 +245,15 @@ def redefinir_senha(request):
 
 @login_required
 def fases(request):
-    return render(request, 'appOTTO/fases.html')
+    usuario = request.user
+    progresso = int(usuario.progresso_usuario)
+
+    contexto = {
+        "progresso": progresso,
+        "fases": range(1, 11)
+    }
+    return render(request, "appOTTO/fases.html", contexto)
+
 
 FASES = {
     1: {"fase": "Fase 1", "titulo": "Bom dia, Otto", "descricao": "Dê bom dia para o Otto! Use o botão de imprimir e junte-o com o de texto para aparecer exatamente a seguinte mensagem: 'Bom dia Otto' "},
@@ -265,7 +273,7 @@ def pre_fase(request, numero):
     fase = FASES.get(numero)
     if not fase:
         raise Http404("Fase não encontrada")
-    # Enviamos o dicionário 'fase' e o 'numero' para o template
+    
     return render(request, "appOTTO/pre_fase.html", {"fase": fase, "numero": numero})
 
 @login_required
@@ -281,16 +289,14 @@ def fase(request, numero):
     
     request.session["inicio_fase"] = timezone.now().isoformat()
 
-    # Abrimos diretamente o template individual da fase
     template_name = f"appOTTO/jogo/fase{numero}.html"
     return render(request, template_name)
 
 @login_required
 def concluir_fase(request, numero):
     usuario = request.user
-    progresso = usuario.progresso_usuario  # <-- agora usa progresso_usuario
+    progresso = usuario.progresso_usuario
 
-    # Recupera o horário salvo no início da fase
     inicio_str = request.session.get("inicio_fase")
     if inicio_str:
         inicio = timezone.datetime.fromisoformat(inicio_str)
@@ -301,16 +307,17 @@ def concluir_fase(request, numero):
     else:
         tempo_formatado = "Não registrado"
 
-    # Atualiza progresso apenas se o usuário ainda não tiver concluído essa fase
     if progresso < numero:
         usuario.progresso_usuario = usuario.progresso_usuario + 1
+        if progresso / 2 == 0:
+            usuario.nivel_usuario = usuario.nivel_usuario + 1
         usuario.save()
 
     contexto = {
-        "usuario": usuario.nome_usuario,  # seu modelo usa nome_usuario
+        "usuario": usuario.nome_usuario,
         "fase": numero,
         "tempo": tempo_formatado,
-        "progresso": usuario.progresso_usuario,  # para exibir na tela
+        "progresso": usuario.progresso_usuario,
     }
     return render(request, "appOTTO/pos_fase.html", contexto)
 

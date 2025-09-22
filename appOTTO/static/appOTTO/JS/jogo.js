@@ -1,6 +1,18 @@
  // Inicializar workspace SEM toolbox
  const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
 
+ function adicionarVariavel(nome) {
+    if (!workspace.getVariable(nome)) {
+        workspace.createVariable(nome);
+    }
+    // já insere o bloco "definir variável"
+    var block = workspace.newBlock('variables_set');
+    block.setFieldValue(nome, 'VAR');
+    block.initSvg();
+    block.render();
+}
+
+
  // Função para criar blocos a partir do footer
  function criarBloco(tipo) {
      const bloco = workspace.newBlock(tipo);
@@ -16,34 +28,64 @@
  }
 
 const respostasFases = [
-    null,                // índice 0 (ignorado, já que começa da fase 1)
+    null,
+
     "print('Bom dia Otto')",
-    "if",                
-    "while",             // fase 3: deve usar "while"
-    "for",               // fase 4: deve usar "for"
-    "function",          // fase 5: deve usar "function"
-    "variable",          // fase 6: exemplo
-    "repeat",            // fase 7: exemplo
-    "math",              // fase 8: exemplo
-    "logic",             // fase 9: exemplo
-    "array"              // fase 10: exemplo
+
+    `fruta = None
+    fruta = 'Banana'
+
+    if fruta == 'Banana':
+      print('Fruta certa')
+    else:
+      print('Fruta errada')`,
+    
+    `nota1 = None
+    nota2 = None
+    nota3 = None
+    media = None
+
+    nota1 = 7
+    nota2 = 7
+    nota3 = 7
+    media = (nota1 + nota2) + nota3
+    if media >= 7:
+      print('Aprovado!')
+    else:
+      print('Reprovado!')`,
+    
+    "for",
+    "function",
+    "variable",
+    "repeat",
+    "math",
+    "logic",
+    "array"
 ];
 
+function normalize(str) {
+    return str
+        .replace(/\r\n/g, '\n')   // padroniza quebras de linha
+        .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
+        .replace(/^\s+$/gm, '')   // remove espaços no início de cada linha
+        .trim();                  // remove espaços no início e fim da string inteira
+}
 
 function mostrarCodigo(numeroFase) {
-    var codigo = Blockly.Python.workspaceToCode(workspace).trim();;
+    var codigo = Blockly.Python.workspaceToCode(workspace);
     document.getElementById("codigoGerado").textContent = codigo;
 
-    // Resposta esperada da fase
     var respostaEsperada = respostasFases[numeroFase];
 
-    if (respostaEsperada == codigo) {
+    if (normalize(respostaEsperada) === normalize(codigo)) {
         mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
         setTimeout(function() {
             concluirFase(numeroFase);
         }, 3000); 
     } else {
         mostrarMensagem("Ops! Tente novamente.", "error");
+        console.log("Gerado:", codigo);
+        console.log("Esperado:", respostaEsperada);
     }
 }
 
