@@ -242,9 +242,9 @@ def fases(request):
 
 FASES = {
     1: {"fase": "Fase 1", "titulo": "Bom dia Otto", "descricao": "de bom dia para o Otto! use o botão de imprimir e junte-o com o de texto para aparecer a seguinte mensagem 'Bom dia Otto!' "},
-    2: {"fase": "Fase 2", "titulo": "Fase 2", "descricao": "Explicação da fase 2"},
-    3: {"fase": "Fase 3", "titulo": "Fase 3", "descricao": "Explicação da fase 3"},
-    4: {"fase": "Fase 4", "titulo": "Fase 4", "descricao": "Explicação da fase 4"},
+    2: {"fase": "Fase 2", "titulo": "Fruta favorita", "descricao": "Ajude OTTO a escolher a fruta certa, sua fruta favorita é a Maçã! Crie a variavel fruta e coloque como seu valor de texto 'Maçã' e depois verifique se a fruta é mesma a maçã use o botão 'SE' e compare se fruta = Maçã e se for imprima 'Fruta certa!' e se não 'Fruta errada!'."},
+    3: {"fase": "Fase 3", "titulo": "Média do OTTO", "descricao": "Ajude o OTTO a calcular sua média de matemática, ele tirou 7, 8 e 6 em suas notas nessa exata sequência! Crie a variavel 'nota1' como 7, 'nota2' como 8 e 'nota3' como 6, e média como a soma das notas 1, 2, 3, some as duas primeiras notas e depois some com a terceira e utilize a botão de operação de somar uma dentro de outra. Após isso, compare usando o 'SE' média >= a 7 e se for imprima 'Aprovado!' e se não imprima 'Reprovado!'."},
+    4: {"fase": "Fase 4", "titulo": "Tentativa e Erro", "descricao": "Ajude o OTTO a acertar o número! comece criando as variaveis 'resposta' e 'tentativa' nessa sequência, defina a resposta como 'Número aleatório (1-4)' e a tentativa como número '1' clique em repetir e coloque para 4 vezes após isso adicione uma verificação 'SE' compare se 'tentativa' é igual a 'resposta' e se for imprimir 'Certo!'. Se não imprima 'Errado!' e logo após defina a variavel 'tentativa' para + 1 adicione o botão de 'Operação' e use a variavel 'tentativa' + 1."},
     5: {"fase": "Fase 5", "titulo": "Fase 5", "descricao": "Explicação da fase 5"},
     6: {"fase": "Fase 6", "titulo": "Fase 6", "descricao": "Explicação da fase 6"},
     7: {"fase": "Fase 7", "titulo": "Fase 7", "descricao": "Explicação da fase 7"},

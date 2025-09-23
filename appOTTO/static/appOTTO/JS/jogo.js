@@ -49,14 +49,30 @@ media = None
 
 
 nota1 = 7
-nota2 = 7
-nota3 = 7
+nota2 = 8
+nota3 = 6
 media = (nota1 + nota2) + nota3
 if media >= 7:
   print('Aprovado!')
 else:
-  print('Reprovado!')`,           
-    "for",               // fase 4: deve usar "for"
+  print('Reprovado!')`,  
+           
+   // fase 4: deve usar "for"
+    `import random
+
+resposta = None
+tentativa = None
+
+
+resposta = random.randint(1, 4)
+tentativa = 1
+for count in range(4):
+  if tentativa == resposta:
+    print('Certo!')
+  else:
+    print('Errado!')
+    tentativa = tentativa + 1`,   
+               
     "function",          // fase 5: deve usar "function"
     "variable",          // fase 6: exemplo
     "repeat",            // fase 7: exemplo
