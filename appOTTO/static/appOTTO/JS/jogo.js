@@ -87,7 +87,20 @@ if carrinho >= 3:
 else:
   print('Ainda há espaço no carrinho!')`,      
      
-    "variable",          // fase 6: exemplo
+  // fase 6: exemplo
+    `chuveiro = None
+alvo = None
+
+
+chuveiro = 30
+alvo = 37
+while chuveiro != alvo:
+  if chuveiro > alvo:
+    chuveiro = chuveiro - 1
+  elif chuveiro < alvo:
+    chuveiro = chuveiro + 1
+print('Temperatura ideal!')`,   
+       
     "repeat",            // fase 7: exemplo
     "math",              // fase 8: exemplo
     "logic",             // fase 9: exemplo
