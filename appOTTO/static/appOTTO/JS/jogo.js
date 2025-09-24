@@ -73,7 +73,20 @@ for count in range(4):
     print('Errado!')
     tentativa = tentativa + 1`,   
                
-    "function",          // fase 5: deve usar "function"
+     // fase 5: deve usar "function"
+    `carrinho = None
+oculos = None
+
+
+carrinho = 0
+oculos = 1
+for count in range(3):
+  carrinho = carrinho + oculos
+if carrinho >= 3:
+  print('Carrinho cheio!')
+else:
+  print('Ainda há espaço no carrinho!')`,      
+     
     "variable",          // fase 6: exemplo
     "repeat",            // fase 7: exemplo
     "math",              // fase 8: exemplo

@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
+                    <button onclick="mostrarCodigo(5)">Gerar Código</button>
                 </header>
 
                 <article>
@@ -73,8 +73,22 @@
 
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
-                    <button onclick="criarBloco('text_print')">Imprimir</button>
+                    <!-- Blocos principais -->
+                    <button onclick="criarBloco('math_number')">Número</button>
+                    <button onclick="criarBloco('variables_get')">Usar variável</button>
+
+                    <!-- Blocos de lógica -->
+                    <button onclick="criarBloco('controls_if')">Se</button>
+                    <button onclick="criarBloco('logic_compare')">Comparar</button>
+                    <button onclick="criarBloco('controls_repeat')">Repetir</button>
+                    <button onclick="criarBloco('math_arithmetic')">Operação</button>
+
+                    <!-- Entrada do jogador -->
+                    <button onclick="adicionarVariavel('carrinho')">Criar variável Carinho</button>
+                    <button onclick="adicionarVariavel('oculos')">Criar variável Óculos</button>
+
                     <button onclick="criarBloco('text')">Texto</button>
+                    <button onclick="criarBloco('text_print')">Imprimir</button>
                 </footer>
             </section>
         </main>
