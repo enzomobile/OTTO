@@ -28,12 +28,12 @@
  }
 
 const respostasFases = [
-    null,
+null,
 
-    "print('Bom dia Otto')",
+"print('Bom dia Otto')",
 
-    `
-
+// Fase 2
+`
 fruta = None
 
 
@@ -43,11 +43,11 @@ if fruta == 'Banana':
   print('Fruta certa')
 else:
   print('Fruta errada')
-
 `,
-    
-    `
-    nota1 = None
+
+//Fase 3
+`
+nota1 = None
 nota2 = None
 nota3 = None
 media = None
@@ -56,14 +56,16 @@ media = None
 nota1 = 7
 nota2 = 8
 nota3 = 6
-media = (nota1 + nota2) + nota3
+media = ((nota1 + nota2) + nota3) / 3
 if media == 7:
   print('Aprovado!')
 else:
-  print('Reprovado!')`,  
-           
-   // fase 4: deve usar "for"
-    `import random
+  print('Reprovado!')
+`,
+
+// fase 4
+`
+import random
 
 resposta = None
 tentativa = None
@@ -76,8 +78,9 @@ for count in range(4):
     print('Certo!')
   else:
     print('Errado!')
-    tentativa = tentativa + 1`,   
-               
+    tentativa = tentativa + 1
+`,
+
     "function",          // fase 5: deve usar "function"
     "variable",          // fase 6: exemplo
     "repeat",            // fase 7: exemplo

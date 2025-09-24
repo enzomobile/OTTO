@@ -34,9 +34,11 @@
                 </div>
                 <input type="email" id="email_usuario" name="email_usuario" required placeholder="EMAIL">
                 
-                <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
-                <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
-                
+                <div class="senha-container">
+                    <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
+                    <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
+                </div>
+
                 <button class="button-logar" type="submit">LOGAR</button>
                 <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
                     <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
