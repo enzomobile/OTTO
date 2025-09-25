@@ -100,8 +100,23 @@ while chuveiro != alvo:
   elif chuveiro < alvo:
     chuveiro = chuveiro + 1
 print('Temperatura ideal!')`,   
+
+  // fase 7: exemplo
+    `carteira = None
+lanche = None
+resposta = None
+troco = None
+
+
+carteira = 50
+lanche = 15
+resposta = 35
+troco = carteira - lanche
+if troco == resposta:
+  print('O troco está certo!')
+else:
+  print('O troco está errado!')`,     
        
-    "repeat",            // fase 7: exemplo
     "math",              // fase 8: exemplo
     "logic",             // fase 9: exemplo
     "array"              // fase 10: exemplo
