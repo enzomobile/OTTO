@@ -132,7 +132,16 @@ treino = True
 if treino == True:
   treinar()`,  
 
-    "logic",             // fase 9: exemplo
+    // fase 9: exemplo
+    `contas = None
+
+
+contas = []
+contas[0] = 5
+contas[1] = 20
+contas[2] = 15
+print(contas)`,    
+       
     "array"              // fase 10: exemplo
 ];
 

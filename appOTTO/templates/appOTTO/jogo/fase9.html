@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
+                    <button onclick="mostrarCodigo(9)">Gerar Código</button>
                 </header>
 
                 <article>
@@ -73,8 +73,19 @@
 
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
-                    <button onclick="criarBloco('text_print')">Imprimir</button>
-                    <button onclick="criarBloco('text')">Texto</button>
+                        <!-- Variáveis -->
+                        <button onclick="adicionarVariavel('contas')">Criar variável Contas</button>
+                        <button onclick="criarBloco('variables_get')">Usar variável</button>
+
+                        <!-- Blocos de listas -->
+                        <button onclick="criarBloco('lists_create_empty')">Criar Lista Vazia</button>
+                        <button onclick="criarBloco('lists_setIndex')">Adicionar Item à Lista</button>
+
+                        <!-- Blocos de número -->
+                        <button onclick="criarBloco('math_number')">Número</button>
+
+                        <!-- Saída -->
+                        <button onclick="criarBloco('text_print')">Imprimir</button>
                 </footer>
             </section>
         </main>
