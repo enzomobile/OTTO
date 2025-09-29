@@ -117,7 +117,21 @@ if troco == resposta:
 else:
   print('O troco está errado!')`,     
        
-    "math",              // fase 8: exemplo
+   // fase 8: exemplo
+    `contador = None
+treino = None
+
+def treinar():
+  global contador, treino
+  contador = contador + 1
+  print('Exercícios feitos:' + str(contador))
+
+
+contador = 0
+treino = True
+if treino == True:
+  treinar()`,  
+
     "logic",             // fase 9: exemplo
     "array"              // fase 10: exemplo
 ];

@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
+                    <button onclick="mostrarCodigo(8)">Gerar Código</button>
                 </header>
 
                 <article>
@@ -73,8 +73,27 @@
 
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
-                    <button onclick="criarBloco('text_print')">Imprimir</button>
-                    <button onclick="criarBloco('text')">Texto</button>
+                        <!-- Variáveis -->
+                        <button onclick="adicionarVariavel('contador')">Criar variável Contador</button>
+                        <button onclick="adicionarVariavel('treino')">Criar variável Treino</button>
+                        <button onclick="criarBloco('variables_get')">Usar variável</button>
+                        <button onclick="criarBloco('logic_boolean')">Verdadeiro/Falso</button>
+
+                        <!-- Controle -->
+                        <button onclick="criarBloco('procedures_callnoreturn')">Chamar Função</button>
+
+                        <!-- Blocos de lógica -->
+                        <button onclick="criarBloco('controls_if')">Se</button>
+                        <button onclick="criarBloco('logic_compare')">Comparar</button>
+                        <button onclick="criarBloco('math_arithmetic')">Operação</button>
+
+                        <!-- Blocos de número -->
+                        <button onclick="criarBloco('math_number')">Número</button>
+
+                        <!-- Saída -->
+                        <button onclick="criarBloco('text_print')">Imprimir</button>
+                        <button onclick="criarBloco('text')">Texto</button>
+                        <button onclick="criarBloco('text_join')">Juntar texto</button>
                 </footer>
             </section>
         </main>
