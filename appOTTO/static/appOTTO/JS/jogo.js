@@ -28,10 +28,10 @@
  }
 
 const respostasFases = [
-    null, 
+    null,
                    // índice 0 (ignorado, já que começa da fase 1)
     "print('Bom dia Otto!')",
-    
+
     //resposta 2
     `fruta = None
 
@@ -39,7 +39,7 @@ fruta = 'Maçã'
 if fruta == 'Maçã':
   print('Fruta certa!')
 else:
-  print('Fruta errada!')`,   
+  print('Fruta errada!')`,
 
     // fase 3: deve usar "while"
     `nota1 = None
@@ -55,8 +55,8 @@ media = (nota1 + nota2) + nota3
 if media >= 7:
   print('Aprovado!')
 else:
-  print('Reprovado!')`,  
-           
+  print('Reprovado!')`,
+
    // fase 4: deve usar "for"
     `import random
 
@@ -71,8 +71,8 @@ for count in range(4):
     print('Certo!')
   else:
     print('Errado!')
-    tentativa = tentativa + 1`,   
-               
+    tentativa = tentativa + 1`,
+
      // fase 5: deve usar "function"
     `carrinho = None
 oculos = None
@@ -85,8 +85,8 @@ for count in range(3):
 if carrinho >= 3:
   print('Carrinho cheio!')
 else:
-  print('Ainda há espaço no carrinho!')`,      
-     
+  print('Ainda há espaço no carrinho!')`,
+
   // fase 6: exemplo
     `chuveiro = None
 alvo = None
@@ -99,7 +99,7 @@ while chuveiro != alvo:
     chuveiro = chuveiro - 1
   elif chuveiro < alvo:
     chuveiro = chuveiro + 1
-print('Temperatura ideal!')`,   
+print('Temperatura ideal!')`,
 
   // fase 7: exemplo
     `carteira = None
@@ -115,8 +115,8 @@ troco = carteira - lanche
 if troco == resposta:
   print('O troco está certo!')
 else:
-  print('O troco está errado!')`,     
-       
+  print('O troco está errado!')`,
+
    // fase 8: exemplo
     `contador = None
 treino = None
@@ -130,7 +130,7 @@ def treinar():
 contador = 0
 treino = True
 if treino == True:
-  treinar()`,  
+  treinar()`,
 
     // fase 9: exemplo
     `contas = None
@@ -140,8 +140,8 @@ contas = []
 contas[0] = 5
 contas[1] = 20
 contas[2] = 15
-print(contas)`,    
-       
+print(contas)`,
+
     "array"              // fase 10: exemplo
 ];
 
@@ -215,7 +215,7 @@ function renderCodigoComDestaque(codigoRaw, erroIndex) {
   }
 }
 
-// --- Substitua sua função mostrarCodigo por esta --- 
+// --- Substitua sua função mostrarCodigo por esta ---
 function mostrarCodigo(numeroFase) {
   // pega o código gerado (bruto) e já exibe (normalizado) no pre
   const codigoRaw = Blockly.Python.workspaceToCode(workspace);
@@ -239,7 +239,7 @@ function mostrarCodigo(numeroFase) {
       const esperadoEsc = escapeHtml(mismatch.esperado || '(vazio)');
       const geradoEsc = escapeHtml(mismatch.gerado || '(vazio)');
 
-      const texto = 
+      const texto =
   `Linha ${mismatch.index + 1} incorreta.\n` +
   `Esperado: ${esperadoEsc}\n` +
   `Seu código: ${geradoEsc}`;
@@ -315,3 +315,20 @@ NãoSair.addEventListener("click", function() {
 Retomar.addEventListener("click", function() {
     menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
 });
+
+// Botão "Rever descrição"
+const btnDescricao = document.getElementById("ReverDescricao"); // seu botão existente
+const modalDescricao = document.getElementById("descricaoModal");
+const fecharDescricao = document.getElementById("fecharDescricao");
+
+if (btnDescricao) {
+    btnDescricao.addEventListener("click", function() {
+        modalDescricao.style.display = "flex"; // mostra o modal
+    });
+}
+
+if (fecharDescricao) {
+    fecharDescricao.addEventListener("click", function() {
+        modalDescricao.style.display = "none"; // esconde o modal
+    });
+}

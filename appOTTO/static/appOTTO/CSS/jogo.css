@@ -39,16 +39,16 @@ header{
 }
 
 header > div{
-    display: none;                
-    position: fixed;            
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;             
-    height: 100vh;                
-    background: #7676F0;                  
+    width: 100vw;
+    height: 100vh;
+    background: #7676F0;
     margin: 0;
     padding: 0;
-    z-index: 2000;               
+    z-index: 2000;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -82,34 +82,34 @@ li {
     align-items: center;
     color: #FFFDFA;
     font-size: clamp(1rem, 1vw, 2rem);
-    padding: 1em;         
-    min-height: 3em;        
-    flex: 1 1 auto;   
-    text-align: center;      
+    padding: 1em;
+    min-height: 3em;
+    flex: 1 1 auto;
+    text-align: center;
 }
 
 #Jogabilidade {
-    flex: 0 0 100%; 
+    flex: 0 0 100%;
 }
 
 ul li:not(#Jogabilidade) {
-    flex: 1;    
+    flex: 1;
 }
 
 header > a{
-    display: inline-block;  
-    font-size: 2vw;  
+    display: inline-block;
+    font-size: 2vw;
     cursor: pointer;
 }
 
 .JogabilidadeImg{
-    display: none;                
-    position: fixed;            
+    display: none;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;             
-    height: 100vh;  
-    z-index: 2000;    
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -161,6 +161,12 @@ header > button{
     border-radius: 10px;
 }
 
+.button-descrição{
+    background-color: #FFFDFA;
+    color: #7676F0;
+    border: 1px solid #7676F0;
+}
+
 
 article{
     width: 100%;
@@ -180,7 +186,7 @@ article > div{
 
 .programação > div{
     height: 100%;
-    width: 100%; 
+    width: 100%;
     background-color: #f0f8ff;
     border-radius: 1vw;
 }
@@ -196,7 +202,7 @@ article > div{
 
 .resultado > div{
     height: 100%;
-    width: 100%; 
+    width: 100%;
     background-color: #D9D9D9;
     border-radius: 1vw;
     border: 1px solid black;
@@ -266,3 +272,51 @@ mark {
     color: #DC0030; /* cor do texto */
     font-weight: bold; /* deixa o texto em negrito */
   }
+
+  /* Modal de descrição */
+.descricao-modal {
+    display: none; /* escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6); /* fundo escuro */
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+.descricao-conteudo {
+    background: #FFFDFA;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 60%;
+    max-width: 600px;
+    text-align: center;
+    color: #7676F0;
+}
+
+.descricao-conteudo h2{
+    font-size: clamp(1rem, 2vw, 3rem);
+}
+
+.descricao-conteudo p{
+    font-size: clamp(1rem, 1.2vw, 3rem);
+    margin: 1rem 0;
+}
+
+.descricao-conteudo button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #7676F0;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.2vw, 3rem);
+}
+.descricao-conteudo button:hover {
+    background: #F9DF73;
+    color: black;
+}
