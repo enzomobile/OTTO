@@ -154,23 +154,105 @@ function normalize(str) {
         .trim();                  // remove espaços no início e fim da string inteira
 }
 
-function mostrarCodigo(numeroFase) {
-    var codigo = Blockly.Python.workspaceToCode(workspace);
-    document.getElementById("codigoGerado").textContent = codigo;
-
-    var respostaEsperada = respostasFases[numeroFase];
-
-    if (normalize(respostaEsperada) === normalize(codigo)) {
-        mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
-        setTimeout(function() {
-            concluirFase(numeroFase);
-        }, 3000); 
-    } else {
-        mostrarMensagem("Ops! Tente novamente.", "error");
-        console.log("Gerado:", codigo);
-        console.log("Esperado:", respostaEsperada);
-    }
+// --- Funções auxiliares (cole acima ou no topo do arquivo jogo.js) ---
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
 }
+
+function normalize(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+      .replace(/\r\n/g, '\n')   // padroniza quebras de linha
+      .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
+      .replace(/^\s+$/gm, '')   // remove linhas que só têm espaços
+      .trim();                  // remove espaços no início/fim geral
+}
+
+// encontra a **primeira** linha diferente (de cima para baixo)
+// retorna objeto { index, esperado, gerado } ou null se não houver diferenças
+function firstMismatchLine(geradoRaw, esperadoRaw) {
+  const glines = normalize(geradoRaw).split('\n');
+  const elines = normalize(esperadoRaw).split('\n');
+  const max = Math.max(glines.length, elines.length);
+  for (let i = 0; i < max; i++) {
+      const g = (glines[i] !== undefined) ? glines[i] : '';
+      const e = (elines[i] !== undefined) ? elines[i] : '';
+      if (g !== e) {
+          return { index: i, esperado: e, gerado: g };
+      }
+  }
+  return null;
+}
+
+// renderiza o código dentro do <pre id="codigoGerado"> e destaca a linha errada (se passada)
+function renderCodigoComDestaque(codigoRaw, erroIndex) {
+  const pre = document.getElementById("codigoGerado");
+  const codigo = normalize(codigoRaw);
+  let lines = codigo.split('\n').map(l => escapeHtml(l));
+
+  // garante que exista a linha a ser destacada (se erroIndex for maior que número de linhas)
+  if (erroIndex !== null && erroIndex !== undefined) {
+      while (lines.length <= erroIndex) lines.push(''); // linhas vazias extras
+  }
+
+  if (erroIndex !== null && erroIndex !== undefined && erroIndex >= 0 && erroIndex < lines.length) {
+      lines[erroIndex] = `<mark>${lines[erroIndex] || '&nbsp;'}</mark>`;
+  }
+
+  // Usa innerHTML dentro do pre para preservar a tag <mark> + quebras de linha em <pre>
+  pre.innerHTML = lines.join('\n');
+  // rolar até a linha marcada (se existir)
+  const mark = pre.querySelector('mark');
+  if (mark) {
+      // scroll suave até a linha marcada
+      mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// --- Substitua sua função mostrarCodigo por esta --- 
+function mostrarCodigo(numeroFase) {
+  // pega o código gerado (bruto) e já exibe (normalizado) no pre
+  const codigoRaw = Blockly.Python.workspaceToCode(workspace);
+  // primeiro apenas renderiza o código (sem destaque) para o usuário ver imediatamente
+  renderCodigoComDestaque(codigoRaw, null);
+
+  const respostaEsperada = respostasFases[numeroFase] || '';
+
+  const mismatch = firstMismatchLine(codigoRaw, respostaEsperada);
+
+  if (!mismatch) {
+      // sem diferenças -> sucesso
+      mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
+      setTimeout(function() {
+          concluirFase(numeroFase);
+      }, 3000);
+  } else {
+      // destaca somente a primeira linha errada e mostra a mensagem com detalhes
+      renderCodigoComDestaque(codigoRaw, mismatch.index);
+
+      const esperadoEsc = escapeHtml(mismatch.esperado || '(vazio)');
+      const geradoEsc = escapeHtml(mismatch.gerado || '(vazio)');
+
+      const texto = 
+  `Linha ${mismatch.index + 1} incorreta.\n` +
+  `Esperado: ${esperadoEsc}\n` +
+  `Seu código: ${geradoEsc}`;
+
+      mostrarMensagem(texto, "error");
+
+      // logs para debug
+      console.log("Primeira diferença encontrada na linha", mismatch.index + 1);
+      console.log("Esperado:", mismatch.esperado);
+      console.log("Gerado:", mismatch.gerado);
+  }
+}
+
 
 function concluirFase(numero) {
     // Redireciona para salvar no banco e depois abrir pos_fase.html

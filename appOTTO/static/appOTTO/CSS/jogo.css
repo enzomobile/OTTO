@@ -248,6 +248,7 @@ footer button{
 .messages li {
     margin: 0.5em 0;
     font-weight: bold;
+    white-space: pre-line; /* respeita \n e <br> */
 }
 
 .success {
@@ -259,3 +260,9 @@ footer button{
     color: #b30000;
     border: #b30000;
 }
+
+mark {
+    background: none;
+    color: #DC0030; /* cor do texto */
+    font-weight: bold; /* deixa o texto em negrito */
+  }
