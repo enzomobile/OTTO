@@ -55,7 +55,17 @@
                         </div>
                     </div>
                     <button onclick="mostrarCodigo(8)">Gerar Código</button>
+                    <button class="button-descrição" id="ReverDescricao">Rever descrição</button>
                 </header>
+
+                <!-- Modal de descrição -->
+                <div id="descricaoModal" class="descricao-modal">
+                    <div class="descricao-conteudo">
+                    <h2>{{ fase.titulo }}</h2>
+                    <p>{{ fase.descricao }}</p>
+                    <button id="fecharDescricao">Voltar</button>
+                    </div>
+                </div>
 
                 <article>
                     <!-- Área de programação -->

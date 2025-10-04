@@ -264,12 +264,12 @@ def pre_fase(request, numero):
 def fase(request, numero):
     if numero not in FASES:
         raise Http404("Fase não encontrada")
-    
+
     request.session["inicio_fase"] = timezone.now().isoformat()
 
-    # Abrimos diretamente o template individual da fase
+    fase = FASES[numero]   # pega a fase do dicionário
     template_name = f"appOTTO/jogo/fase{numero}.html"
-    return render(request, template_name)
+    return render(request, template_name, {"fase": fase, "numero": numero})
 
 @login_required
 def concluir_fase(request, numero):
