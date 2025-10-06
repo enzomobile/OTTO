@@ -142,7 +142,23 @@ contas[1] = 20
 contas[2] = 15
 print(contas)`,
 
-    "array"              // fase 10: exemplo
+
+    // fase 10: exemplo
+    `luzes = None
+musica = None
+plateia = None
+ritmo = None
+luzes = True
+musica = True
+plateia = True
+ritmo = 1
+if luzes and musica and plateia:
+  while ritmo <= 3:
+    print('Tocando ritmo ' + str(plateia))
+    ritmo = ritmo + 1
+  print('Show completo! Todos aplaudem!')
+else:
+  print('Algo deu errado! O show não pode começar.')`            
 ];
 
 
