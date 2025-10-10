@@ -1,36 +1,33 @@
- // Inicializar workspace SEM toolbox
- const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
-
- function adicionarVariavel(nome) {
-    if (!workspace.getVariable(nome)) {
-        workspace.createVariable(nome);
-    }
-    // já insere o bloco "definir variável"
-    var block = workspace.newBlock('variables_set');
-    block.setFieldValue(nome, 'VAR');
-    block.initSvg();
-    block.render();
+// Inicializar workspace SEM toolbox
+const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
+function adicionarVariavel(nome) {
+  if (!workspace.getVariable(nome)) {
+      workspace.createVariable(nome);
+  }
+  // já insere o bloco "definir variável"
+  var block = workspace.newBlock('variables_set');
+  block.setFieldValue(nome, 'VAR');
+  block.initSvg();
+  block.render();
 }
 
-
- // Função para criar blocos a partir do footer
- function criarBloco(tipo) {
-     const bloco = workspace.newBlock(tipo);
-     bloco.initSvg();
-     bloco.render();
-
-     // Centralizar no workspace
-     const metrics = workspace.getMetrics();
-     const centerX = (metrics.viewWidth / 2) - (bloco.getHeightWidth().width / 2);
-     const centerY = (metrics.viewHeight / 2) - (bloco.getHeightWidth().height / 2);
-
-     bloco.moveBy(centerX, centerY);
- }
+// Função para criar blocos a partir do footer
+function criarBloco(tipo) {
+    const bloco = workspace.newBlock(tipo);
+    bloco.initSvg();
+    bloco.render();
+    // Centralizar no workspace
+    const metrics = workspace.getMetrics();
+    const centerX = (metrics.viewWidth / 2) - (bloco.getHeightWidth().width / 2);
+    const centerY = (metrics.viewHeight / 2) - (bloco.getHeightWidth().height / 2);
+    bloco.moveBy(centerX, centerY);
+}
 
 const respostasFases = [
 null,
 
-"print('Bom dia Otto')",
+//Fase 1
+"print('Bom dia Otto!')",
 
 // Fase 2
 `
@@ -42,7 +39,7 @@ fruta = 'Banana'
 if fruta == 'Banana':
   print('Fruta certa')
 else:
-  print('Fruta errada')
+  print('Fruta errada!')
 `,
 
 //Fase 3
@@ -81,12 +78,103 @@ for count in range(4):
     tentativa = tentativa + 1
 `,
 
-    "function",          // fase 5: deve usar "function"
-    "variable",          // fase 6: exemplo
-    "repeat",            // fase 7: exemplo
-    "math",              // fase 8: exemplo
-    "logic",             // fase 9: exemplo
-    "array"              // fase 10: exemplo
+// fase 5
+`
+carrinho = None
+oculos = None
+
+
+carrinho = 0
+oculos = 1
+for count in range(3):
+  carrinho = carrinho + oculos
+if carrinho >= 3:
+  print('Carrinho cheio!')
+else:
+  print('Ainda há espaço no carrinho!')
+`,
+
+// fase 6
+`
+chuveiro = None
+alvo = None
+
+
+chuveiro = 30
+alvo = 37
+while chuveiro != alvo:
+  if chuveiro > alvo:
+    chuveiro = chuveiro - 1
+  elif chuveiro < alvo:
+    chuveiro = chuveiro + 1
+print('Temperatura ideal!')
+`,
+
+// fase 7
+`
+carteira = None
+lanche = None
+resposta = None
+troco = None
+
+
+carteira = 50
+lanche = 15
+resposta = 35
+troco = carteira - lanche
+if troco == resposta:
+  print('O troco está certo!')
+else:
+  print('O troco está errado!')
+`,
+
+// fase 8
+`
+contador = None
+treino = None
+
+def treinar():
+  global contador, treino
+  contador = contador + 1
+  print('Exercícios feitos:' + str(contador))
+
+
+contador = 0
+treino = True
+if treino == True:
+  treinar()
+`,
+
+// fase 9
+`
+contas = None
+
+
+contas = []
+contas[0] = 5
+contas[1] = 20
+contas[2] = 15
+print(contas)
+`,
+
+// fase 10
+`
+luzes = None
+musica = None
+plateia = None
+ritmo = None
+luzes = True
+musica = True
+plateia = True
+ritmo = 1
+if luzes and musica and plateia:
+  while ritmo <= 3:
+    print('Tocando ritmo ' + str(plateia))
+    ritmo = ritmo + 1
+  print('Show completo! Todos aplaudem!')
+else:
+  print('Algo deu errado! O show não pode começar.')
+`            
 ];
 
 function normalize(str) {
@@ -97,22 +185,103 @@ function normalize(str) {
         .trim();                  // remove espaços no início e fim da string inteira
 }
 
+// --- Funções auxiliares (cole acima ou no topo do arquivo jogo.js) ---
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+}
+
+function normalize(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+      .replace(/\r\n/g, '\n')   // padroniza quebras de linha
+      .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
+      .replace(/^\s+$/gm, '')   // remove linhas que só têm espaços
+      .trim();                  // remove espaços no início/fim geral
+}
+
+// encontra a **primeira** linha diferente (de cima para baixo)
+// retorna objeto { index, esperado, gerado } ou null se não houver diferenças
+function firstMismatchLine(geradoRaw, esperadoRaw) {
+  const glines = normalize(geradoRaw).split('\n');
+  const elines = normalize(esperadoRaw).split('\n');
+  const max = Math.max(glines.length, elines.length);
+  for (let i = 0; i < max; i++) {
+      const g = (glines[i] !== undefined) ? glines[i] : '';
+      const e = (elines[i] !== undefined) ? elines[i] : '';
+      if (g !== e) {
+          return { index: i, esperado: e, gerado: g };
+      }
+  }
+  return null;
+}
+
+// renderiza o código dentro do <pre id="codigoGerado"> e destaca a linha errada (se passada)
+function renderCodigoComDestaque(codigoRaw, erroIndex) {
+  const pre = document.getElementById("codigoGerado");
+  const codigo = normalize(codigoRaw);
+  let lines = codigo.split('\n').map(l => escapeHtml(l));
+
+  // garante que exista a linha a ser destacada (se erroIndex for maior que número de linhas)
+  if (erroIndex !== null && erroIndex !== undefined) {
+      while (lines.length <= erroIndex) lines.push(''); // linhas vazias extras
+  }
+
+  if (erroIndex !== null && erroIndex !== undefined && erroIndex >= 0 && erroIndex < lines.length) {
+      lines[erroIndex] = `<mark>${lines[erroIndex] || '&nbsp;'}</mark>`;
+  }
+
+  // Usa innerHTML dentro do pre para preservar a tag <mark> + quebras de linha em <pre>
+  pre.innerHTML = lines.join('\n');
+  // rolar até a linha marcada (se existir)
+  const mark = pre.querySelector('mark');
+  if (mark) {
+      // scroll suave até a linha marcada
+      mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// --- Substitua sua função mostrarCodigo por esta ---
 function mostrarCodigo(numeroFase) {
-    var codigo = Blockly.Python.workspaceToCode(workspace);
-    document.getElementById("codigoGerado").textContent = codigo;
+  // pega o código gerado (bruto) e já exibe (normalizado) no pre
+  const codigoRaw = Blockly.Python.workspaceToCode(workspace);
+  // primeiro apenas renderiza o código (sem destaque) para o usuário ver imediatamente
+  renderCodigoComDestaque(codigoRaw, null);
 
-    var respostaEsperada = respostasFases[numeroFase];
+  const respostaEsperada = respostasFases[numeroFase] || '';
 
-    if (normalize(respostaEsperada) === normalize(codigo)) {
-        mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
-        setTimeout(function() {
-            concluirFase(numeroFase);
-        }, 3000); 
-    } else {
-        mostrarMensagem("Ops! Tente novamente.", "error");
-        console.log("Gerado:", codigo);
-        console.log("Esperado:", respostaEsperada);
-    }
+  const mismatch = firstMismatchLine(codigoRaw, respostaEsperada);
+
+  if (!mismatch) {
+      // sem diferenças -> sucesso
+      mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
+      setTimeout(function() {
+          concluirFase(numeroFase);
+      }, 3000);
+  } else {
+      // destaca somente a primeira linha errada e mostra a mensagem com detalhes
+      renderCodigoComDestaque(codigoRaw, mismatch.index);
+
+      const esperadoEsc = escapeHtml(mismatch.esperado || '(vazio)');
+      const geradoEsc = escapeHtml(mismatch.gerado || '(vazio)');
+
+      const texto =
+  `Linha ${mismatch.index + 1} incorreta.\n` +
+  `Esperado: ${esperadoEsc}\n` +
+  `Seu código: ${geradoEsc}`;
+
+      mostrarMensagem(texto, "error");
+
+      // logs para debug
+      console.log("Primeira diferença encontrada na linha", mismatch.index + 1);
+      console.log("Esperado:", mismatch.esperado);
+      console.log("Gerado:", mismatch.gerado);
+  }
 }
 
 function concluirFase(numero) {
@@ -133,7 +302,6 @@ function mostrarMensagem(texto, tipo) {
     // sumir depois de 3s
     setTimeout(() => ul.remove(), 3000);
 }
-
 
 // Pega o ícone e a lista
 const menuIcon = document.getElementById("menuIcon");
@@ -158,7 +326,6 @@ JogabilidadeImg.addEventListener("click", function(event) {
     JogabilidadeImg.style.display = "none";
 });
 
-
 const Ul = document.getElementById("Ul");
 const Sair = document.getElementById("Sair");
 const DivSair = document.getElementById("DivSair");
@@ -176,3 +343,20 @@ NãoSair.addEventListener("click", function() {
 Retomar.addEventListener("click", function() {
     menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
 });
+
+// Botão "Rever descrição"
+const btnDescricao = document.getElementById("ReverDescricao"); // seu botão existente
+const modalDescricao = document.getElementById("descricaoModal");
+const fecharDescricao = document.getElementById("fecharDescricao");
+
+if (btnDescricao) {
+    btnDescricao.addEventListener("click", function() {
+        modalDescricao.style.display = "flex"; // mostra o modal
+    });
+}
+
+if (fecharDescricao) {
+    fecharDescricao.addEventListener("click", function() {
+        modalDescricao.style.display = "none"; // esconde o modal
+    });
+}
