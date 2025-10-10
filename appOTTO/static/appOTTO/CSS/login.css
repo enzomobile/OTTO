@@ -9,6 +9,14 @@ html, body {
     height: 100%;
 }
 
+.senha-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .container {
     min-height: 100%;
 }
@@ -44,11 +52,15 @@ form{
     display: flex;
     width: 100%;
     align-items: center;
-    align-content: center;
-    justify-content: center;
     flex-direction: column;
     gap: 30px;
     padding: 10px;
+}
+
+.esqueci-senha{
+    border: none;
+    color: #7676F0;
+    align-self: flex-start;
 }
 
 footer{
@@ -98,14 +110,10 @@ input::placeholder{
     color: #FFFDFA;
 }
 
-.esqueci-senha{
-    border: none;
-    color: #7676F0;
-}
-
 .button-logar{
     height: auto;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -119,7 +127,9 @@ input::placeholder{
 }
 
 .google-button {
-    width: 50%;
+    height: 59px;
+    width: 100%;
+    max-width: 600px;
     padding: 10px;
     border: none;
     border-radius: 15px;
@@ -129,6 +139,7 @@ input::placeholder{
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    font-weight: 100;
     cursor: pointer;
 }
 

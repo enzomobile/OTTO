@@ -54,8 +54,18 @@
                             </ul>
                         </div>
                     </div>
-                    <button onclick="mostrarCodigo(1)">Gerar Código</button>
+                    <button onclick="mostrarCodigo(10)">Gerar Código</button>
+                    <button class="button-descrição" id="ReverDescricao">Rever descrição</button>
                 </header>
+
+                <!-- Modal de descrição -->
+                <div id="descricaoModal" class="descricao-modal">
+                    <div class="descricao-conteudo">
+                    <h2>{{ fase.titulo }}</h2>
+                    <p>{{ fase.descricao }}</p>
+                    <button id="fecharDescricao">Voltar</button>
+                    </div>
+                </div>
 
                 <article>
                     <!-- Área de programação -->
@@ -73,8 +83,32 @@
 
                 <!-- Footer mostrando blocos -->
                 <footer id="toolboxFooter" style="overflow-x:auto; white-space:nowrap; padding:1rem;">
+
+                    <!-- Variáveis -->
+                    <button onclick="adicionarVariavel('luzes')">Criar variável luzes</button>
+                    <button onclick="adicionarVariavel('musica')">Criar variável musica</button>
+                    <button onclick="adicionarVariavel('plateia')">Criar variável plateia</button>
+                    <button onclick="adicionarVariavel('ritmo')">Criar variável ritmo</button>
+                    <button onclick="criarBloco('variables_get')">Usar variável</button>
+
+                    <!-- Controle -->
+                    <button onclick="criarBloco('controls_if')">Se</button>
+                    <button onclick="criarBloco('controls_whileUntil')">Enquanto</button>
+
+                    <!-- Lógica -->
+                    <button onclick="criarBloco('logic_operation')">E / Ou</button>
+                    <button onclick="criarBloco('logic_boolean')">Verdadeiro / Falso</button>
+                    <button onclick="criarBloco('logic_compare')">Comparar</button>
+                    <button onclick="criarBloco('math_arithmetic')">Operação</button>
+
+                    <!-- Blocos de número -->
+                    <button onclick="criarBloco('math_number')">Número</button>
+
+                    <!-- Texto -->
                     <button onclick="criarBloco('text_print')">Imprimir</button>
                     <button onclick="criarBloco('text')">Texto</button>
+                    <button onclick="criarBloco('text_join')">Juntar texto</button>
+
                 </footer>
             </section>
         </main>

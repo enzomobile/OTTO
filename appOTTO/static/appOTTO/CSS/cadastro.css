@@ -83,7 +83,8 @@ input::placeholder{
 }
 
 .button-cadastrar{
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -128,13 +129,16 @@ footer{
 /* Cadastrar com o google */
 
 .google-button {
-    width: 60%;
+    height: 59px;
+    width: 100%;
+    max-width: 600px;
     padding: 10px;
     border: none;
     border-radius: 15px;
     background-color: #FFFDFA;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
+    font-weight: 100;
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
