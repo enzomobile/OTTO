@@ -15,6 +15,7 @@ a {
 
 html, body {
     height: 100%;
+    width: 100%;
 }
 
 nav{
@@ -22,17 +23,19 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px;
+    margin: 20px 0px;
 }
 
 .voltar-button{
     height: 50px;
     width: 50px;
+    margin-left: 20px;
 }
 
 .voltar-OTTO{
-    height: 80px;
+    height: 55px;
     width: 150px;
+    margin-right: 20px;
 }
 
 main{
@@ -103,27 +106,10 @@ footer{
     position: relative;
     display: flex;
     background-color: #7676F0;
-    height: 5vh;
-    margin-top: -5vh;
+    height: 30px;
+    margin-top: 10px;
     justify-content: space-evenly;
     align-items: center;
-}
-
-.rodape{
-    display: flex;
-    width: 80%;
-    height: 100%;
-    color: #F9DF73;
-    gap: 0px;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-}
-
-.rodape-info{
-    font-size: 20px;
-    color: #F9DF73;
-    list-style-type: none;
 }
 
 /* Cadastrar com o google */
