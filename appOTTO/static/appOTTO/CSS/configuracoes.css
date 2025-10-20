@@ -1,5 +1,15 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../Fonts/Inter_28pt-Regular.ttf');
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
 *{
-  font-family: Inter;
+  font-family: 'Inter';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,27 +21,35 @@ button:hover {
 }
 
 body, html{
-  height: 100%;
+  width: 100%;
+  background-color: #7676F0;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .container{
-  background-color: #7676F0;
-  height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .voltar-OTTO{
-  height: 80px;
-  width: 150px;
+  width: 90%;
 }
 
-/* nav */
-
+/* Nav */
 .nav {
   width: 20%;
-  height: 100vh;
-  padding: 80px 0 0 0; /* Remove padding esquerdo */
-  background-color: #7676F0; /* Garante que a barra azul cubra até a borda */
+  min-width: 100px;
+  max-width: 200px;
+  margin: 80px 0px 0px 0px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -43,7 +61,6 @@ body, html{
 .logo {
   text-align: center;
   width: 100%;
-  font-size: 22px;
 }
 
 .menu {
@@ -52,7 +69,7 @@ body, html{
 }
 
 .menu li {
-  padding: 12px 24px;
+  padding: 12px 0px 12px 24px;
   margin: 10px 0;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -61,15 +78,13 @@ body, html{
   font-size: clamp(1rem, 2vw, 2rem);
 }
 
-
 /* Item ativo com destaque */
 .menu li.active {
   background-color: #f4e66c;
   color: black;
   font-weight: bold;
-  padding: 16px 28px;
+  padding: 16px 0px 16px 24px;
   font-size: clamp(1rem, 2vw, 2rem);
-  transform: scale(1.05);
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   border-top-left-radius: 0;
@@ -77,19 +92,12 @@ body, html{
   margin-left: 0;
 }
 
-main {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .conteudo{
   height: 80%;
   width: 80%;
   background-color: aliceblue;
   border-radius: 25px;
+  margin: 80px 20px 0px 0px;
   padding: 50px;
   display: flex;
   flex-direction: column;

@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../Fonts/Inter_28pt-Regular.ttf');
+}
+
 *{
-  font-family: Inter;
+  font-family: 'Inter';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,22 +12,32 @@
 }
 
 body, html{
-  height: 100%;
+  background-color: #7676F0;
+  width: 100%;
+}
+
+main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .container{
-  background-color: #7676F0;
-  height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
-/* nav */
-
+/* Nav */
 .nav {
   width: 20%;
-  height: 100vh;
-  padding: 80px 0 0 0; /* Remove padding esquerdo */
-  background-color: #7676F0; /* Garante que a barra azul cubra até a borda */
+  min-width: 100px;
+  max-width: 200px;
+  margin: 80px 0px 0px 0px;
+  background-color: #7676F0;
   color: white;
   display: flex;
   flex-direction: column;
@@ -34,12 +49,10 @@ body, html{
 .logo {
   text-align: center;
   width: 100%;
-  font-size: 22px;
 }
 
 .voltar-OTTO{
-  height: 80px;
-  width: 150px;
+  width: 90%;
 }
 
 .menu {
@@ -74,19 +87,12 @@ body, html{
 }
 
 
-/* header */
-
-header{
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* Conteúdo */
 .conteudo{
-  height: 80%;
+  height: 100%;
   width: 80%;
+  padding: 10px 0px 10px 0px;
+  margin: 80px 20px 0px 0px;
   background-image: url("/static/appOTTO/img/mapa.png");
   background-position: center;
   background-size: cover;
@@ -139,7 +145,6 @@ header{
 }
 
 /* Mensagens de erro e sucesso */
-
 .messages {
     position: fixed;
     top: 20px;

@@ -5,13 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/CSS/dashboard.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
-    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>Dashboard</title>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -21,30 +19,31 @@
             porcentagem.textContent = valor + "%";
         });
     </script>
+    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
+    <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
 </head>
 <body>
-    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
-    <div class="container">
-        <nav class="nav">
-            <div class="logo">
-                <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
-            </div>
-            <ul class="menu">
-                <li class="active">Home</li>
-                <li>Meu Perfil</li>
-                <li class="botao-navegar" data-url="{% url 'fases' %}">Fases</li>
-                <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
-            </ul>
-        </nav>
-        <main>
+    <main>
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO">
+                </div>
+                <ul class="menu">
+                    <li class="active">Home</li>
+                    <li>Meu Perfil</li>
+                    <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
+                    <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
+                </ul>
+            </nav>
             <section id="Home" class="conteudo">
                 <div class="conteudo-container">
                     <div class="conteudo-container-info">
-                        <div>
+                        <div style="gap: 10px;">
                             <h3>Olá, {{ user.nome_usuario }}!</h3>
                             <p>Tudo pronto para começar! Vamos nessa?</p>
                         </div>
-                        <a>{{ nivel.nivel }}</a>
+                        <p style="color: #7676F0;">{{ nivel.nivel }}</p>
                     </div>
                     <div class="conteudo-container-progresso">
                         <div class="progresso-barra">
@@ -52,25 +51,26 @@
                             <p id="porcentagem"></p>
                             <progress id="progresso" value="{{ progresso }}" max="100"></progress>
                         </div>
-                        <div class="progresso-dica">
-                            <div class="balao-dica">
-                                <p>dica</p>
+                        <!--
+                            <div class="progresso-dica">
+                                <div class="balao-dica">
+                                    <p>dica</p>
+                                </div>
+                                <img src="{% static 'appOTTO/img/OTTO.png' %}" alt="">
                             </div>
-                            <img src="{% static 'appOTTO/img/OTTO.png' %}" alt="">
-                        </div>
+                        -->
                     </div>
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
                         <div class="curso-painel">
+                            <img src="" alt="">
                             <h4>Nome da fase</h4>
                             <button>Continuar</button>
                         </div>
                     </div>
                 </div>
             </section>
-        </main>
-    </div>
-    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
-    <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
+        </div>
+    </main>
 </body>
 </html>
