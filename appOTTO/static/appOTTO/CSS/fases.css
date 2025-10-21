@@ -32,7 +32,7 @@ main{
 }
 
 /* Nav */
-.nav {
+nav {
   width: 20%;
   min-width: 100px;
   max-width: 200px;
@@ -175,4 +175,66 @@ main{
 .error {
     color: #b30000;
     border: #b30000;
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+    min-width: none;
+    max-width: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px 0px 0px;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 20%;
+    margin-left: 10px;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .menu li {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 2px;
+    margin: 0px 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+  }
+
+  /* Item ativo com destaque */
+  .menu li.active {
+    background-color: #f4e66c;
+    color: black;
+    font-weight: bold;
+    padding: 4px 10px;
+    margin: 0px;
+    font-size: 12px;
+    transform: scale(1.0);
+    border-radius: 10px;
+  }
+
+  .conteudo {
+    margin: 40px 0px 0px 0px;
+    width: 90%;
+    height: 60vh;
+  }
 }

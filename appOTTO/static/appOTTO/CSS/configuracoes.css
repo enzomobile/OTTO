@@ -93,12 +93,12 @@ main {
 }
 
 .conteudo{
-  height: 80%;
+  height: 100vh;
   width: 80%;
   background-color: aliceblue;
   border-radius: 25px;
   margin: 80px 20px 0px 0px;
-  padding: 50px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -109,10 +109,12 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .conteudo-nav{
   width: 100%;
+  max-width: 800px;
   height: auto;
   display: flex;
   background-color: #7676F0;
@@ -140,14 +142,25 @@ main {
 .conteudo-nav button.active{
   background-color: #f4e66c;
   color: black;
-  transform: scale(1.05);
+}
+
+.container-ajuda {
+  height: 100%;
 }
 
 .conteudo-box{
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.conteudo-suporte-form {
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-conta-form{
@@ -175,8 +188,9 @@ main {
   background-color: #e2e2e2;
   border: none;
   border-radius: 5px;
+  border: 1px solid grey;
   padding: 10px;
-  width: 60%;
+  width: 90%;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
@@ -185,6 +199,7 @@ main {
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   background-color: #f4e66c;
   border-radius: 15px;
+  border: 2px solid black;
 }
 
 .conteudo-interface{
@@ -193,7 +208,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 0 60px;
 }
 
 .conteudo-interface  h3{
@@ -304,6 +318,10 @@ main {
   display: flex;
 }
 
+.conteudo-ajuda-conteudo {
+  height: 100%;
+}
+
 .conteudo-ajuda-menu{
   height: 100%;
   width: 100%;
@@ -319,10 +337,7 @@ main {
   font-size: clamp(1.5rem, 2vw, 2rem);
   background: none;
   border: none;
-}
-
-.conteudo-ajuda-conteudo{
-  height: 100%;
+  text-align: start;
 }
 
 .voltar-container{
@@ -337,6 +352,7 @@ main {
 }
 
 .ajuda-item{
+  width: 100%;
   height: 100%;
 }
 
@@ -358,15 +374,16 @@ main {
 }
 
 .form-suporte{
-  height: 55vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  gap: 20px;
 }
 
 .form-suporte button{
-  width: 15%;
+  width: 100%;
+  max-width: 200px;
 }
 
 .form-suporte-button{
@@ -392,12 +409,6 @@ main {
   padding: 1rem 0;
 }
 
-.form-suporte-usuario > div{
-  display: flex;
-  justify-content: start;
-  gap: 1rem;
-}
-
 .form-suporte label{
   font-size: clamp(1rem, 1vw, 2rem);
   padding: 0.2rem;
@@ -414,11 +425,12 @@ main {
 .form-suporte-mensagem{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form-suporte-mensagem textarea{
   height: 20vh;
-  width: 55vw;
+  width: 100%;
   background-color: #F1F1FF;
   padding: 1rem;
   font-size: clamp(1rem, 1vw, 2rem);
@@ -429,15 +441,14 @@ main {
 
 
 .form-contato{
+  width: 100%;
   display: none;
-  height: 55vh;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
 }
 
 .form-contato > div{
-  width: 30%;
+  width: 100%;
   height: 30vh;
   background-color: #F1F1FF;
   border-radius: 15px;
@@ -447,7 +458,7 @@ main {
 }
 
 .form-contato > div > img{
-  width: 20vw;
+  width: 50vh;
   height: 30vh;
 }
 
@@ -462,8 +473,7 @@ main {
 }
 
 .conteudo-ajuda-faq{
-  height: 90%;
-  overflow: hidden;
+  height: 100%;
 }
 
 .conteudo-ajuda-faq h2{
@@ -498,7 +508,8 @@ main {
 
 
 .conteudo-faq {
-  height: 55vh;
+  height: 60vh;
+  max-height: 400px;
   overflow-y: auto;  
   padding: 10px;
   display: flex;
@@ -601,7 +612,7 @@ main {
   border-radius: 15px;
   padding: 3rem;
   height: 80%;
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -641,36 +652,65 @@ main {
   border: aliceblue 1px solid;
 }
 
-/* Mensagens de erro e sucesso */
+@media screen and (max-width: 550px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-.messages {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffe6e6;
-    border-radius: 5px;
-    padding: 16px 32px;
-    margin: 0;
-    z-index: 1000;
-    list-style: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    min-width: 300px;
-    max-width: 90vw;
+  .nav {
+    width: 100%;
+    min-width: none;
+    max-width: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px 0px 0px;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 20%;
+    margin-left: 10px;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .menu li {
     text-align: center;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 2px;
+    margin: 0px 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+  }
 
-.messages li {
-    margin: 0.5em 0;
+  /* Item ativo com destaque */
+  .menu li.active {
+    background-color: #f4e66c;
+    color: black;
     font-weight: bold;
-}
+    padding: 4px 10px;
+    margin: 0px;
+    font-size: 12px;
+    transform: scale(1.0);
+    border-radius: 10px;
+  }
 
-.success {
-    color: #207227;
-    border: #207227;
-}
-
-.error {
-    color: #b30000;
-    border: #b30000;
+  .conteudo {
+    margin: 40px 0px 0px 0px;
+    width: 90%;
+    height: 100vh;
+    max-height: 600px;
+  }
 }

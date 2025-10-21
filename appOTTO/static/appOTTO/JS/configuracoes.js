@@ -83,14 +83,6 @@ function toggleFaq(button) {
   }
 }
 
-function formSuporte(){
-
-    document.querySelector('.form-suporte').style.display = 'none'
-
-    document.querySelector('.form-contato').style.display = 'flex';
-
-}
-
 function formContato(){
 
     document.querySelector('.form-contato').style.display = 'none';
