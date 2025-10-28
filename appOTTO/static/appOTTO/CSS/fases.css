@@ -36,7 +36,7 @@ nav {
   width: 20%;
   min-width: 100px;
   max-width: 200px;
-  margin: 80px 0px 0px 0px;
+  margin: 50px 0px 0px 0px;
   background-color: #7676F0;
   color: white;
   display: flex;
@@ -85,10 +85,9 @@ nav {
 
 /* Conteúdo */
 .conteudo{
-  height: 80vh;
   width: 80%;
   padding: 10px 0px 10px 0px;
-  margin: 80px 20px 0px 0px;
+  margin: 40px 20px 0px 0px;
   background-image: url("/static/appOTTO/img/mapa.png");
   background-position: center;
   background-size: cover;

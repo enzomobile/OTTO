@@ -61,10 +61,6 @@ nav{
     background-color: #FFFDFA;
 }
 
-.login-button:hover{
-    font-size: clamp(2rem, 2.1vw, 3rem);
-}
-
 .login-button-login{
     border: none;
     font-weight: 700;
@@ -121,19 +117,11 @@ nav{
     transition: 0.5s;
 }
 
-.corpo-convite-cadastro:hover{
-    font-size: clamp(2rem, 2.1vw, 3rem);
-}
-
 .corpo-convite-login{
     font-size: clamp(2rem, 2vw, 3rem);
     border: none;
     background-color: #FFFDFA;
     transition: 0.5s;
-}
-
-.corpo-convite-login:hover{
-    font-size: clamp(2rem, 2.1vw, 3rem);
 }
 
 /* Carrossel */
