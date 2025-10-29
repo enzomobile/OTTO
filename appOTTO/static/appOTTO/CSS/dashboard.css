@@ -241,7 +241,7 @@ nav {
   border: 1px solid black;
   width: 100%;
   min-height: 200px;
-  background-size: cover;    
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 15px;
@@ -252,6 +252,7 @@ nav {
 }
 
 .curso-painel > h4{
+  text-align: center;
   color: aliceblue;
   font-size: clamp(3rem, 4vw, 5rem);
   font-weight: 400;
@@ -325,5 +326,9 @@ nav {
   .conteudo {
     margin: 40px 0px 0px 0px;
     width: 90%;
+  }
+
+  .curso-painel > h4 {
+    font-size: 28px;
   }
 }

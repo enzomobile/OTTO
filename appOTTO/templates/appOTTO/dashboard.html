@@ -62,9 +62,9 @@
                     </div>
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
-                        <div class="curso-painel">
-                            <img src="" alt="">
-                            <button style="continuarCurso">Continuar</button>
+                        <div class="curso-painel" style="background-image: url({% static fase.img %});">
+                            <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'" style="continuarCurso">Continuar</button>
+                            <h4>{{ fase.titulo }}</h4>
                         </div>
                     </div>
                 </div>

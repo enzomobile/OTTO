@@ -1,13 +1,13 @@
 document.querySelectorAll(".botao-navegar").forEach(function(botao) {
-    botao.addEventListener("click", function() {
-        window.location.href = this.dataset.url;
-    });
+  botao.addEventListener("click", function() {
+    window.location.href = this.dataset.url;
+  });
 });
 
 document.querySelectorAll(".btn-voltar").forEach(function(botao) {
-    botao.addEventListener("click", function() {
-        window.location.href = this.dataset.url;
-    });
+  botao.addEventListener("click", function() {
+    window.location.href = this.dataset.url;
+  });
 });
 
 const carrosselInner = document.querySelector('.carrossel-inner');

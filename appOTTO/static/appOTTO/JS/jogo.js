@@ -2,7 +2,7 @@
 const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
 function adicionarVariavel(nome) {
   if (!workspace.getVariable(nome)) {
-      workspace.createVariable(nome);
+    workspace.createVariable(nome);
   }
   // já insere o bloco "definir variável"
   var block = workspace.newBlock('variables_set');
@@ -13,33 +13,33 @@ function adicionarVariavel(nome) {
 
 // Função para criar blocos a partir do footer
 function criarBloco(tipo) {
-    const bloco = workspace.newBlock(tipo);
-    bloco.initSvg();
-    bloco.render();
-    // Centralizar no workspace
-    const metrics = workspace.getMetrics();
-    const centerX = (metrics.viewWidth / 2) - (bloco.getHeightWidth().width / 2);
-    const centerY = (metrics.viewHeight / 2) - (bloco.getHeightWidth().height / 2);
-    bloco.moveBy(centerX, centerY);
+  const bloco = workspace.newBlock(tipo);
+  bloco.initSvg();
+  bloco.render();
+  // Centralizar no workspace
+  const metrics = workspace.getMetrics();
+  const centerX = (metrics.viewWidth / 2) - (bloco.getHeightWidth().width / 2);
+  const centerY = (metrics.viewHeight / 2) - (bloco.getHeightWidth().height / 2);
+  bloco.moveBy(centerX, centerY);
 }
 
 const respostasFases = [
 null,
 
 //Fase 1
-"print('Bom dia Otto!')",
+"print('Bom dia, Otto')",
 
 // Fase 2
 `
 fruta = None
 
 
-fruta = 'Banana'
+fruta = 'Maçã'
 
-if fruta == 'Banana':
+if fruta == 'Maçã':
   print('Fruta certa')
 else:
-  print('Fruta errada!')
+  print('Fruta errada')
 `,
 
 //Fase 3
@@ -55,9 +55,9 @@ nota2 = 8
 nota3 = 6
 media = ((nota1 + nota2) + nota3) / 3
 if media == 7:
-  print('Aprovado!')
+  print('Aprovado')
 else:
-  print('Reprovado!')
+  print('Reprovado')
 `,
 
 // fase 4
@@ -72,9 +72,9 @@ resposta = random.randint(1, 4)
 tentativa = 1
 for count in range(4):
   if tentativa == resposta:
-    print('Certo!')
+    print('Certo')
   else:
-    print('Errado!')
+    print('Errado')
     tentativa = tentativa + 1
 `,
 
@@ -89,9 +89,9 @@ oculos = 1
 for count in range(3):
   carrinho = carrinho + oculos
 if carrinho >= 3:
-  print('Carrinho cheio!')
+  print('Carrinho cheio')
 else:
-  print('Ainda há espaço no carrinho!')
+  print('Ainda há espaço no carrinho')
 `,
 
 // fase 6
@@ -107,7 +107,7 @@ while chuveiro != alvo:
     chuveiro = chuveiro - 1
   elif chuveiro < alvo:
     chuveiro = chuveiro + 1
-print('Temperatura ideal!')
+print('Temperatura ideal')
 `,
 
 // fase 7
@@ -123,9 +123,9 @@ lanche = 15
 resposta = 35
 troco = carteira - lanche
 if troco == resposta:
-  print('O troco está certo!')
+  print('O troco está certo')
 else:
-  print('O troco está errado!')
+  print('O troco está errado')
 `,
 
 // fase 8
@@ -171,24 +171,24 @@ if luzes and musica and plateia:
   while ritmo <= 3:
     print('Tocando ritmo ' + str(plateia))
     ritmo = ritmo + 1
-  print('Show completo! Todos aplaudem!')
+  print('Show completo, Todos aplaudam')
 else:
-  print('Algo deu errado! O show não pode começar.')
-`            
+  print('Algo deu errado, O show não pode começar')
+`
 ];
 
 function normalize(str) {
-    return str
-        .replace(/\r\n/g, '\n')   // padroniza quebras de linha
-        .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
-        .replace(/^\s+$/gm, '')   // remove espaços no início de cada linha
-        .trim();                  // remove espaços no início e fim da string inteira
+  return str
+    .replace(/\r\n/g, '\n')   // padroniza quebras de linha
+    .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
+    .replace(/^\s+$/gm, '')   // remove espaços no início de cada linha
+    .trim();                  // remove espaços no início e fim da string inteira
 }
 
 // --- Funções auxiliares (cole acima ou no topo do arquivo jogo.js) ---
 function escapeHtml(str) {
   if (str === undefined || str === null) return '';
-  return String(str)
+    return String(str)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -198,7 +198,7 @@ function escapeHtml(str) {
 
 function normalize(str) {
   if (str === undefined || str === null) return '';
-  return String(str)
+    return String(str)
       .replace(/\r\n/g, '\n')   // padroniza quebras de linha
       .replace(/\s+$/gm, '')    // remove espaços no final de cada linha
       .replace(/^\s+$/gm, '')   // remove linhas que só têm espaços
@@ -212,11 +212,11 @@ function firstMismatchLine(geradoRaw, esperadoRaw) {
   const elines = normalize(esperadoRaw).split('\n');
   const max = Math.max(glines.length, elines.length);
   for (let i = 0; i < max; i++) {
-      const g = (glines[i] !== undefined) ? glines[i] : '';
-      const e = (elines[i] !== undefined) ? elines[i] : '';
-      if (g !== e) {
-          return { index: i, esperado: e, gerado: g };
-      }
+    const g = (glines[i] !== undefined) ? glines[i] : '';
+    const e = (elines[i] !== undefined) ? elines[i] : '';
+    if (g !== e) {
+      return { index: i, esperado: e, gerado: g };
+    }
   }
   return null;
 }
@@ -229,11 +229,11 @@ function renderCodigoComDestaque(codigoRaw, erroIndex) {
 
   // garante que exista a linha a ser destacada (se erroIndex for maior que número de linhas)
   if (erroIndex !== null && erroIndex !== undefined) {
-      while (lines.length <= erroIndex) lines.push(''); // linhas vazias extras
+    while (lines.length <= erroIndex) lines.push(''); // linhas vazias extras
   }
 
   if (erroIndex !== null && erroIndex !== undefined && erroIndex >= 0 && erroIndex < lines.length) {
-      lines[erroIndex] = `<mark>${lines[erroIndex] || '&nbsp;'}</mark>`;
+    lines[erroIndex] = `<mark>${lines[erroIndex] || '&nbsp;'}</mark>`;
   }
 
   // Usa innerHTML dentro do pre para preservar a tag <mark> + quebras de linha em <pre>
@@ -241,8 +241,8 @@ function renderCodigoComDestaque(codigoRaw, erroIndex) {
   // rolar até a linha marcada (se existir)
   const mark = pre.querySelector('mark');
   if (mark) {
-      // scroll suave até a linha marcada
-      mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // scroll suave até a linha marcada
+    mark.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 
@@ -258,49 +258,46 @@ function mostrarCodigo(numeroFase) {
   const mismatch = firstMismatchLine(codigoRaw, respostaEsperada);
 
   if (!mismatch) {
-      // sem diferenças -> sucesso
-      mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
-      setTimeout(function() {
-          concluirFase(numeroFase);
-      }, 3000);
+    // sem diferenças -> sucesso
+    mostrarMensagem("Parabéns! Você concluiu a fase.", "success");
+    setTimeout(function() {
+      concluirFase(numeroFase);
+    }, 3000);
   } else {
-      // destaca somente a primeira linha errada e mostra a mensagem com detalhes
-      renderCodigoComDestaque(codigoRaw, mismatch.index);
+    // destaca somente a primeira linha errada e mostra a mensagem com detalhes
+    renderCodigoComDestaque(codigoRaw, mismatch.index);
+    const esperadoEsc = escapeHtml(mismatch.esperado || '(vazio)');
+    const geradoEsc = escapeHtml(mismatch.gerado || '(vazio)');
+    const texto =
+    `Linha ${mismatch.index + 1} incorreta.\n` +
+    `Esperado: ${esperadoEsc}\n` +
+    `Seu código: ${geradoEsc}`;
 
-      const esperadoEsc = escapeHtml(mismatch.esperado || '(vazio)');
-      const geradoEsc = escapeHtml(mismatch.gerado || '(vazio)');
-
-      const texto =
-  `Linha ${mismatch.index + 1} incorreta.\n` +
-  `Esperado: ${esperadoEsc}\n` +
-  `Seu código: ${geradoEsc}`;
-
-      mostrarMensagem(texto, "error");
-
-      // logs para debug
-      console.log("Primeira diferença encontrada na linha", mismatch.index + 1);
-      console.log("Esperado:", mismatch.esperado);
-      console.log("Gerado:", mismatch.gerado);
+    mostrarMensagem(texto, "error");
+    // logs para debug
+    console.log("Primeira diferença encontrada na linha", mismatch.index + 1);
+    console.log("Esperado:", mismatch.esperado);
+    console.log("Gerado:", mismatch.gerado);
   }
 }
 
 function concluirFase(numero) {
-    // Redireciona para salvar no banco e depois abrir pos_fase.html
-    window.location.href = `/concluir_fase/${numero}/`;
+  // Redireciona para salvar no banco e depois abrir pos_fase.html
+  window.location.href = `/concluir_fase/${numero}/`;
 }
 
 // Função para mostrar mensagens (usando CSS já existente)
 function mostrarMensagem(texto, tipo) {
-    // remove mensagens antigas
-    document.querySelectorAll(".messages").forEach(m => m.remove());
+  // remove mensagens antigas
+  document.querySelectorAll(".messages").forEach(m => m.remove());
 
-    const ul = document.createElement("ul");
-    ul.className = "messages " + tipo;
-    ul.innerHTML = `<li>${texto}</li>`;
-    document.body.appendChild(ul);
+  const ul = document.createElement("ul");
+  ul.className = "messages " + tipo;
+  ul.innerHTML = `<li>${texto}</li>`;
+  document.body.appendChild(ul);
 
-    // sumir depois de 3s
-    setTimeout(() => ul.remove(), 3000);
+  // sumir depois de 3s
+  setTimeout(() => ul.remove(), 3000);
 }
 
 // Pega o ícone e a lista
@@ -309,7 +306,7 @@ const menuLista = document.getElementById("menuLista");
 
 // Quando clicar no ícone ☰, alterna mostrar/esconder
 menuIcon.addEventListener("click", function() {
-    menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
+  menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
 });
 
 const Jogabilidade = document.getElementById("Jogabilidade");
@@ -317,13 +314,13 @@ const JogabilidadeImg = document.getElementById("JogabilidadeImg");
 
 // Clicar no li abre a imagem
 Jogabilidade.addEventListener("click", function() {
-    JogabilidadeImg.style.display = "block";
+  JogabilidadeImg.style.display = "block";
 });
 
 // Clicar na imagem fecha (sem reabrir)
 JogabilidadeImg.addEventListener("click", function(event) {
-    event.stopPropagation(); // impede que clique "suba" para o li
-    JogabilidadeImg.style.display = "none";
+  event.stopPropagation(); // impede que clique "suba" para o li
+  JogabilidadeImg.style.display = "none";
 });
 
 const Ul = document.getElementById("Ul");
@@ -333,15 +330,15 @@ const NãoSair = document.getElementById("NãoSair");
 const Retomar = document.getElementById("Retomar");
 // Clicar no li abre a imagem
 Sair.addEventListener("click", function() {
-    Ul.style.display = "none";
-    DivSair.style.display = "flex";
+  Ul.style.display = "none";
+  DivSair.style.display = "flex";
 });
 NãoSair.addEventListener("click", function() {
-    DivSair.style.display = "none";
-    Ul.style.display = "flex";
+  DivSair.style.display = "none";
+  Ul.style.display = "flex";
 });
 Retomar.addEventListener("click", function() {
-    menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
+  menuLista.style.display = (menuLista.style.display === "flex") ? "none" : "flex";
 });
 
 // Botão "Rever descrição"
@@ -350,13 +347,13 @@ const modalDescricao = document.getElementById("descricaoModal");
 const fecharDescricao = document.getElementById("fecharDescricao");
 
 if (btnDescricao) {
-    btnDescricao.addEventListener("click", function() {
-        modalDescricao.style.display = "flex"; // mostra o modal
-    });
+  btnDescricao.addEventListener("click", function() {
+    modalDescricao.style.display = "flex"; // mostra o modal
+  });
 }
 
 if (fecharDescricao) {
-    fecharDescricao.addEventListener("click", function() {
-        modalDescricao.style.display = "none"; // esconde o modal
-    });
+  fecharDescricao.addEventListener("click", function() {
+    modalDescricao.style.display = "none"; // esconde o modal
+  });
 }
