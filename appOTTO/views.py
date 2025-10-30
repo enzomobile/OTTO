@@ -299,6 +299,10 @@ def fase(request, numero):
 
 @login_required
 def concluir_fase(request, numero):
+    referer = request.META.get('HTTP_REFERER')
+    if not referer:
+        return render(request, 'appOTTO/home.html')
+    
     usuario = request.user
     progresso = usuario.progresso_usuario
 
@@ -328,7 +332,3 @@ def concluir_fase(request, numero):
         "progresso": usuario.progresso_usuario,
     }
     return render(request, "appOTTO/pos_fase.html", contexto)
-
-@login_required
-def pos_fase(request):
-    return render(request, 'appOTTO/pos_fase.html')

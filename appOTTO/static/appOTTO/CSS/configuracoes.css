@@ -224,6 +224,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 10px;
 }
 
 .conteudo-interface-tema > ul{
@@ -252,6 +253,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding: 10px;
 }
 
 .conteudo-interface-tema-acessibilidade > ul{
@@ -715,7 +717,6 @@ main {
   .conteudo {
     margin: 40px 0px 0px 0px;
     width: 90%;
-  
     max-height: 600px;
   }
 

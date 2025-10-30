@@ -184,6 +184,7 @@ header > button{
 
 article{
     width: 100%;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     flex: none;
@@ -198,8 +199,13 @@ article > div{
 }
 
 .programacao > div{
-    min-height: 230px;
+    min-height: 200px;
+    max-height: 230px;
     width: 100%;
+}
+
+.injectionDiv {
+    border-radius: 20px;
     border: 1px solid grey;
 }
 
@@ -210,10 +216,11 @@ article > div{
 
 .resultado{
     padding: 20px;
+    min-height: 230px;
+    max-height: 230px;
 }
 
 .resultado > div{
-    min-height: 230px;
     width: 100%;
     background-color: #D9D9D9;
     border-radius: 10px;
@@ -348,5 +355,9 @@ mark {
 @media screen and (max-width: 840px) {
     article {
         flex-direction: column;
+    }
+
+    footer {
+        margin: 40px 0px 0px 0px;
     }
 }
