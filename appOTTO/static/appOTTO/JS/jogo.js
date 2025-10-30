@@ -1,5 +1,30 @@
 // Inicializar workspace SEM toolbox
-const workspace = Blockly.inject('blocklyDiv', { toolbox: null });
+const workspace = Blockly.inject('blocklyDiv', {
+  trashcan: true,
+  renderer: 'geras',
+  zoom: {
+    controls: true,
+    startScale: 1.0,
+    maxScale: 2.0,
+    minScale: 0.5,
+    scaleSpeed: 1.2
+  },
+  grid: {
+    spacing: 20,
+    length: 3,
+    colour: '#ccc',
+    snap: true
+  },
+  move:{
+    scrollbars: {
+      horizontal: true,
+      vertical: true
+    },
+    drag: true,
+    wheel: false
+  },
+});
+
 function adicionarVariavel(nome) {
   if (!workspace.getVariable(nome)) {
     workspace.createVariable(nome);
