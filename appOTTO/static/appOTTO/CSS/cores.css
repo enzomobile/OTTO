@@ -1,0 +1,18 @@
+:root,
+:root.claro {
+    --cor_claro: black;
+    --cor_escuro: white; 
+    --cor_primaria: #7676F0;
+    --cor_secundaria: #F9DF73;
+    --cor_terciaria: #7676F0;
+    --cor_fundo_conteudo: aliceblue;
+}
+
+:root.escuro {
+    --cor_claro: white;
+    --cor_escuro: black; 
+    --cor_primaria: #2A006E;
+    --cor_secundaria: #FFD52E;
+    --cor_terciaria: #303030;
+    --cor_fundo_conteudo: #0f0d29;
+}

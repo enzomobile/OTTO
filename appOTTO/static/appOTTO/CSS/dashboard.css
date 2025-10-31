@@ -26,7 +26,7 @@ main{
 
 body, html{
   width: 100%;
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
 }
 
 .container{
@@ -40,23 +40,23 @@ progress {
   width: 100%;
   height: 25px;
   border-radius: 10px;
-  background-color: #7676F0;
-  border: 1px solid black;
+  background-color: var(--cor_primaria);
+  border: 1px solid var(--cor_claro);
   appearance: none;
 }
 
 progress::-webkit-progress-bar {
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
   border-radius: 10px;
 }
 
 progress::-webkit-progress-value {
-  background-color: #F9DF73;
+  background-color: var(--cor_secundaria);
   border-radius: 10px;
 }
 
 progress::-moz-progress-bar {
-  background-color: #F9DF73;
+  background-color: var(--cor_secundaria);
   border-radius: 10px;
 }
 
@@ -66,7 +66,6 @@ nav {
   min-width: 100px;
   max-width: 200px;
   margin: 40px 0px 0px 0px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -98,8 +97,7 @@ nav {
 
 /* Item ativo com destaque */
 .menu li.active {
-  background-color: #f4e66c;
-  color: black;
+  background-color: var(--cor_secundaria);
   font-weight: bold;
   padding: 16px 28px;
   font-size: clamp(1rem, 2vw, 2rem);
@@ -114,7 +112,7 @@ nav {
 .conteudo{
   width: 80%;
   min-height: 80vh;
-  background-color: aliceblue;
+  background-color: var(--cor_fundo_conteudo);
   border-radius: 25px;
   margin: 40px 20px 0px 0px;
   padding: 50px 30px 50px 30px;
@@ -152,11 +150,17 @@ nav {
   justify-content: space-between;
 }
 
+.conteudo-container-info p {
+  color: #7676F0;
+}
+
 .conteudo-container-info > div > h3{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
 .conteudo-container-info > div > p{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 0.5vw, 2rem);
 }
 
@@ -174,10 +178,12 @@ nav {
 }
 
 .progresso-barra > h4{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
 .progresso-barra > p {
+  color: var(--cor_claro);
   display: flex;
   justify-content: flex-end;
 }
@@ -234,6 +240,7 @@ nav {
 }
 
 .conteudo-container-curso > h4{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
@@ -252,8 +259,8 @@ nav {
 }
 
 .curso-painel > h4{
+  color: var(--cor_fundo_conteudo);
   text-align: center;
-  color: aliceblue;
   font-size: clamp(3rem, 4vw, 5rem);
   font-weight: 400;
 }
@@ -264,7 +271,7 @@ nav {
   font-weight: bold;
   border: solid black 2px;
   border-radius: 10px;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   cursor: pointer;
 }
 
@@ -314,8 +321,7 @@ nav {
 
   /* Item ativo com destaque */
   .menu li.active {
-    background-color: #f4e66c;
-    color: black;
+    background-color: var(--cor_secundaria);
     font-weight: bold;
     padding: 4px 10px;
     font-size: 12px;

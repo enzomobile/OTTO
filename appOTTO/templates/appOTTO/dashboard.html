@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/cores.css' %}">
     <link rel="stylesheet" href="{% static 'appOTTO/CSS/dashboard.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
@@ -19,6 +20,7 @@
             porcentagem.textContent = valor + "%";
         });
     </script>
+    <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
     <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
 </head>
@@ -31,7 +33,7 @@
                 </div>
                 <ul class="menu">
                     <li class="active">Home</li>
-                    <li>Meu Perfil</li>
+                    <li><a>Meu Perfil</a></li>
                     <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
                     <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
                 </ul>
@@ -39,11 +41,11 @@
             <section id="Home" class="conteudo">
                 <div class="conteudo-container">
                     <div class="conteudo-container-info">
-                        <div style="gap: 10px;">
+                        <div>
                             <h3>Olá, {{ user.nome_usuario }}!</h3>
                             <p>Tudo pronto para começar! Vamos nessa?</p>
                         </div>
-                        <p style="color: #7676F0;">{{ nivel.nivel }}</p>
+                        <p>{{ nivel.nivel }}</p>
                     </div>
                     <div class="conteudo-container-progresso">
                         <div class="progresso-barra">
@@ -63,7 +65,7 @@
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
                         <div class="curso-painel" style="background-image: url({% static fase.img %});">
-                            <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'" style="continuarCurso">Continuar</button>
+                            <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'">Continuar</button>
                             <h4>{{ fase.titulo }}</h4>
                         </div>
                     </div>
