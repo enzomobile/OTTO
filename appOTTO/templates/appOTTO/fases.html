@@ -5,11 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/cores.css' %}">
     <link rel="stylesheet" href="{% static 'appOTTO/CSS/fases.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
     <title>Fases</title>
 </head>
 <body>
@@ -36,7 +38,7 @@
             <section id="Home" class="conteudo">
                 {% for i in fases %}
                     {% if i <= progresso|add:"1" %}
-                        <a href="{% url 'pre_fase' i %}" class="fase liberada">
+                        <a href="{% url 'pre_fase' i %}" class="fase_liberada">
                             <span>Fase</span> <span>{{ i }}</span>
                         </a>
                     {% else %}

@@ -12,7 +12,7 @@
 }
 
 body, html{
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
   width: 100%;
 }
 
@@ -37,7 +37,6 @@ nav {
   min-width: 100px;
   max-width: 200px;
   margin: 40px 0px 0px 0px;
-  background-color: #7676F0;
   color: white;
   display: flex;
   flex-direction: column;
@@ -100,7 +99,8 @@ nav {
 }
 
 
-.fase.liberada {
+.fase_liberada {
+  background-color: var(--cor_primaria);
   color: white;
   cursor: pointer;
 }
@@ -116,8 +116,7 @@ nav {
   aspect-ratio: 1/1;        
   width: clamp(20px, 8vw, 60px);    
   border-radius: 50%;                
-  border: 2px solid white;
-  background-color: #7676F0;      
+  border: 2px solid white;     
   color: white;
   font-size: clamp(0.5rem, 1vw, 1rem); 
   display: flex;

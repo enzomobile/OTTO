@@ -22,7 +22,7 @@ button:hover {
 
 body, html{
   width: 100%;
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
 }
 
 main {
@@ -50,7 +50,6 @@ main {
   min-width: 100px;
   max-width: 200px;
   margin: 40px 0px 0px 0px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -79,7 +78,7 @@ main {
 /* Item ativo com destaque */
 .menu li.active {
   display: inline-block;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   color: black;
   font-weight: bold;
   padding: 16px 10px;
@@ -93,7 +92,7 @@ main {
 .conteudo{
   width: 80%;
   min-height: 80vh;
-  background-color: aliceblue;
+  background-color: var(--cor_fundo_conteudo);
   border-radius: 25px;
   margin: 40px 20px 0px 0px;
   padding: 40px 20px;
@@ -115,7 +114,7 @@ main {
   max-width: 800px;
   height: auto;
   display: flex;
-  background-color: #7676F0;
+  background-color: var(--cor_terciaria);
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   border-top-left-radius: 30px;
@@ -126,19 +125,19 @@ main {
   flex: 1;
   padding: 10px;
   font-size: clamp(1rem, 2.5vw, 2rem);
-  background-color: #7676F0;
+  background-color: var(--cor_terciaria);
   border: none;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  color: white;
+  color: var(--cor_claro);
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .conteudo-nav button.active{
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   color: black;
 }
 
@@ -174,6 +173,7 @@ main {
 }
 
 .container-conta-form label{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 2.5vw, 2rem);
   font-weight: bold;
   display: flex;
@@ -184,10 +184,10 @@ main {
 }
 
 .container-conta-form input{
-  background-color: #e2e2e2;
+  background-color: grey;
   border: none;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: 1px solid var(--cor_claro);
   padding: 10px;
   width: 90%;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
@@ -196,7 +196,7 @@ main {
 .container-conta-form button{
   padding: 10px 50px;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   border-radius: 15px;
   border: 2px solid black;
 }
@@ -213,10 +213,12 @@ main {
 
 .conteudo-interface  h3{
   font-weight: bold;
+  color: var(--cor_claro);
   font-size: clamp(2rem, 2.5vw, 2.5rem);
 }
 
 .conteudo-interface  button{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
 
@@ -236,7 +238,7 @@ main {
 .conteudo-interface-tema button{
   border: none;
   padding: 10px;
-  background-color: aliceblue;
+  background-color: var(--cor_fundo_conteudo);
   border-radius: 20px;
   width: 120px;
 }
@@ -244,7 +246,7 @@ main {
 .conteudo-interface-tema button.active{
   border: none;
   padding: 10px;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   border-radius: 20px;
   width: 120px;
 }
@@ -269,6 +271,10 @@ main {
   gap: 40px;
 }
 
+.interfaceLI p {
+  color: var(--cor_claro);
+}
+
 /* switch */
 .switch {
   position: relative;
@@ -286,7 +292,7 @@ main {
 .slider {
   position: absolute;
   cursor: pointer;
-  background-color: #d9d9d9;
+  background-color: #303030;
   width: 50px;
   border-radius: 34px;
   top: 0;
@@ -303,14 +309,14 @@ main {
   width: 20px;
   left: 4px;
   bottom: 4px;
-  background-color: #f9df73; /* amarelo pastel */
+  background-color: var(--cor_secundaria);
   border-radius: 50%;
   transition: 0.4s;
 }
 
 /* quando o switch está ativado */
 .checkbox:checked + .slider {
-  background-color: #d9d9d9; /* pode manter igual ou mudar */
+  background-color: #303030;
 }
 
 .checkbox:checked + .slider::before {
@@ -340,6 +346,7 @@ main {
 
 .conteudo-ajuda-menu > button{
   font-weight: bold;
+  color: var(--cor_claro);
   font-size: clamp(1.5rem, 2vw, 2rem);
   background: none;
   border: none;
@@ -353,6 +360,7 @@ main {
 .voltar-container > button{
   background: none;
   border: none;
+  color: var(--cor_claro);
   font-size: clamp(1.5rem, 2vw, 2rem);
   padding: 1rem;
 }
@@ -371,6 +379,7 @@ main {
 
 .conteudo-ajuda-suporte h2{
   text-align: center;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
   padding: 1rem;
 }
@@ -387,22 +396,20 @@ main {
   gap: 20px;
 }
 
-.form-suporte button{
-  width: 100%;
-  max-width: 200px;
-}
-
 .form-suporte-button{
   font-size: clamp(1rem, 1.5vw, 2rem);
   font-weight: bold;
   padding: 1rem;
-  border: 1px solid black;
+  border: 1px solid var(--cor_claro);
   border-radius: 15px;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   text-align: center;
+  width: 100%;
+  max-width: 200px;
 }
 
 .form-suporte h3{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
   font-weight: 400;
 }
@@ -416,16 +423,19 @@ main {
 }
 
 .form-suporte label{
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1vw, 2rem);
   padding: 0.2rem;
 }
 
 .form-suporte input{
+  background-color: grey;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1vw, 2rem);
   padding: 0.2rem 1rem;
-  background-color: #d9d9d9;
   border: none;
   border-radius: 10px;
+  border: 1px solid var(--cor_claro);
 }
 
 .form-suporte-mensagem{
@@ -437,11 +447,12 @@ main {
 .form-suporte-mensagem textarea{
   height: 100px;
   width: 100%;
-  background-color: #F1F1FF;
+  background-color: grey;
   padding: 1rem;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1vw, 2rem);
   border: none;
-  border: 1px solid black;
+  border: 1px solid var(--cor_claro);
   border-radius: 15px;
   resize: none;
 }
@@ -457,7 +468,7 @@ main {
 .form-contato > div{
   width: 100%;
   height: 30vh;
-  background-color: #F1F1FF;
+  background-color: var(--cor_fundo_conteudo);
   border-radius: 15px;
   display: flex;
   justify-content: center;
@@ -485,12 +496,14 @@ main {
 
 .conteudo-ajuda-faq h2{
   text-align: center;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
   padding: 1rem;
 }
 
 .conteudo-ajuda-faq h3{
   text-align: center;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
@@ -498,10 +511,9 @@ main {
   padding: 1rem;
   font-weight: 400;
   font-size: clamp(1rem, 1.5vw, 2rem);
-  color: #7676F0;
-  border: #7676F0 solid 1px;
+  color: var(--cor_claro);
+  border: 1px solid #7676F0;
   border-radius: 15px;
-  background-color: #E4E4E4;
   display: flex;
   justify-content: space-between;
 }
@@ -510,7 +522,7 @@ main {
   border: none;
   background: none;
   font-size: clamp(1rem, 1.5vw, 2rem);
-  color: #7676F0;
+  color: var(--cor_primaria);
 }
 
 
@@ -547,11 +559,16 @@ main {
   gap: 1rem;
 }
 
+.faq-resposta p {
+  color: var(--cor_claro);
+}
+
 .faq-resposta ul{
   padding: 0 1rem;
 }
 
 .faq-resposta ul li{
+  color: var(--cor_claro);
   list-style-type: decimal;
 }
 
@@ -563,6 +580,7 @@ main {
 
 .conteudo-ajuda-termos h2{
   text-align: center;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
   padding: 1rem;
 }
@@ -577,7 +595,12 @@ main {
 }
 
 .conteudo-termos span{
+  color: var(--cor_claro);
   font-weight: bold;
+}
+
+.conteudo-termos p {
+  color: var(--cor_claro);
 }
 
 .conteudo-termos-ul{
@@ -587,6 +610,7 @@ main {
 }
 
 .conteudo-termos-ul-li {
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1.5vw, 2rem);
   font-weight: bold;
   list-style-type: decimal;
@@ -595,6 +619,7 @@ main {
 
 .conteudo-termos-ul-li p{
   font-weight: 400;
+  color: var(--cor_claro);
   font-size: clamp(1rem, 1vw, 2rem);
   margin: 1rem 0;
 }
@@ -615,7 +640,8 @@ main {
 }
 
 .conteudo-ajuda-sair-conta{
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
+  border: 1px solid var(--cor_claro);
   border-radius: 15px;
   padding: 20px;
   gap: 20px;
@@ -629,13 +655,13 @@ main {
 
 .conteudo-ajuda-sair-conta h3{
   font-size: clamp(2rem, 2.5vw, 3rem);
-  color: aliceblue;
+  color: var(--cor_claro);
 }
 
 .conteudo-ajuda-sair-conta p{
   font-weight: 300;
   font-size: clamp(1rem, 1.5vw, 2rem);
-  color: aliceblue;
+  color: var(--cor_claro);
 }
 
 .conteudo-ajuda-sair-conta div{
@@ -646,18 +672,18 @@ main {
 .conteudo-ajuda-sair-conta div button{
   font-weight: 300;
   font-size: clamp(1rem, 1.5vw, 2rem);
-  color: aliceblue;
+  color: var(--cor_claro);
   background: none;
   padding: 10px 20px;
-  border: 1px solid #7676F0;
+  border: 1px solid var(--cor_primaria);
   border-radius: 10px;
   transition: 0.2s;
 }
 
 .conteudo-ajuda-sair-conta div button:hover{
-  background-color: #f4e66c;
-  color: black;
-  border: aliceblue 1px solid;
+  background-color: var(--cor_secundaria);
+  color: var(--cor_claro);
+  border: var(--cor_escuro) 1px solid;
 }
 
 @media screen and (max-width: 550px) {
@@ -705,8 +731,8 @@ main {
 
   /* Item ativo com destaque */
   .menu li.active {
-    background-color: #f4e66c;
-    color: black;
+    background-color: var(--cor_secundaria);
+    color: var(--cor_claro);
     font-weight: bold;
     padding: 4px 10px;
     margin: 0px;

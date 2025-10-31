@@ -11,8 +11,12 @@
   list-style-type: none;
 }
 
+a {
+  color: var(--cor_claro);
+}
+
 body, html{
-  background-color: #7676F0;
+  background-color: var(--cor_primaria);
   width: 100%;
 }
 
@@ -42,7 +46,6 @@ nav {
   min-width: 100px;
   max-width: 200px;
   margin: 40px 0px 0px 0px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -75,7 +78,7 @@ nav {
 
 /* Item ativo com destaque */
 .menu li.active {
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   color: black;
   font-weight: bold;
   padding: 16px 28px;

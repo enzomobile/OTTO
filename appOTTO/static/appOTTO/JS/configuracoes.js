@@ -32,6 +32,16 @@ function conteudoNav(botaoClicado) {
     if (container) {
         container.style.display = 'block';
     }
+
+    const ativo = localStorage.getItem('tema');
+
+    if (ativo == 1) {
+        document.getElementById('b').className = 'active';
+        document.getElementById('a').className = 'none';
+    } else {
+        document.getElementById('a').className = 'active';
+        document.getElementById('b').className = 'none';
+    }
 }
 
 function abrirAjuda(botao) {
