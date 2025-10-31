@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../Fonts/Inter_28pt-Regular.ttf');
+}
+
 *{
-    font-family: Inter;
+    font-family: 'Inter';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,6 +12,14 @@
 
 html, body {
     height: 100%;
+}
+
+.senha-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .container {
@@ -22,12 +35,13 @@ nav{
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 10px 50px;
+    margin-top: 20px;
 }
 
 .voltar-button{
     width: 50px;
     height: 50px;
+    margin-left: 20px;
 }
 
 main{
@@ -37,18 +51,22 @@ main{
     width: 100%;
     align-items: center;
     justify-content: center;
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 form{
     display: flex;
     width: 100%;
     align-items: center;
-    align-content: center;
-    justify-content: center;
     flex-direction: column;
     gap: 30px;
     padding: 10px;
+}
+
+.esqueci-senha{
+    border: none;
+    color: #7676F0;
+    align-self: flex-start;
 }
 
 footer{
@@ -98,14 +116,10 @@ input::placeholder{
     color: #FFFDFA;
 }
 
-.esqueci-senha{
-    border: none;
-    color: #7676F0;
-}
-
 .button-logar{
     height: auto;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
     border: none;
@@ -119,7 +133,9 @@ input::placeholder{
 }
 
 .google-button {
-    width: 50%;
+    height: 59px;
+    width: 100%;
+    max-width: 600px;
     padding: 10px;
     border: none;
     border-radius: 15px;
@@ -129,6 +145,7 @@ input::placeholder{
     align-items: center;
     text-align: center;
     justify-content: space-evenly;
+    font-weight: 100;
     cursor: pointer;
 }
 

@@ -1,0 +1,363 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../Fonts/Inter_28pt-Regular.ttf');
+}
+
+body {
+    background-color: #7676F0;
+}
+
+*{
+    font-family: 'Inter';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* conteudo */
+
+button:hover, li:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.corpo{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #FFFDFA;
+    min-height: 500px;
+    border-radius: 20px;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+header > div{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #7676F0;
+    margin: 0;
+    z-index: 2000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+}
+
+#containerUl{
+    background-color: #FFFDFA;
+    height: 100%;
+    width: 90%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul {
+    list-style: none;
+    width: 60%;
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;   /* permite quebrar para baixo */
+    padding: 1rem;
+    gap: 1rem;
+}
+
+li {
+    background-color: #7676F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFDFA;
+    font-size: 20px;
+    padding: 10px;
+    min-height: 40px;
+    min-width: 100px;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+#Jogabilidade {
+    flex: 0 0 100%;
+}
+
+ul li:not(#Jogabilidade) {
+    flex: 1;
+}
+
+header > a{
+    display: inline-block;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.JogabilidadeImg{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.Sair{
+    display: none;
+    flex-direction: column;
+    height: 60vh;
+    width: 80%;
+    background-color: #7676F0;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.Sair > h3{
+    font-size: clamp(1rem, 2vw, 3rem);
+    color: #FFFDFA;
+}
+
+.Sair > p{
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    color: #FFFDFA;
+    text-align: center;
+}
+
+.Sair button{
+    background: none;
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    color: #FFFDFA;
+    padding: 0.5rem 1rem;
+    border: 2px solid #7676F0;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.Sair button:hover{
+    background-color: #F9DF73;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: black;
+}
+
+header > button{
+    padding: 0.3rem;
+    background-color: #F9DF73;
+    border: 1px solid black;
+    font-size: clamp(1rem, 1vw, 2rem);
+    border-radius: 10px;
+}
+
+.button-descrição{
+    background-color: #FFFDFA;
+    color: #7676F0;
+    border: 1px solid #7676F0;
+}
+
+
+article{
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex: none;
+}
+
+article > div{
+    flex: 1;
+}
+
+.programacao{
+    padding: 20px;
+}
+
+.programacao > div{
+    min-height: 200px;
+    max-height: 230px;
+    width: 100%;
+}
+
+.injectionDiv {
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+
+.blocklySvg {
+    background-color: #f0f8ff !important;
+    border-radius: 1vw !important;
+}
+
+.resultado{
+    padding: 20px;
+    min-height: 230px;
+    max-height: 230px;
+}
+
+.resultado > div{
+    width: 100%;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1rem;
+    font-size: clamp(1rem, 1vw, 2rem);
+    color: #7676F0;
+}
+
+.resultado div {
+    min-height: 230px;
+}
+
+.programacao div {
+    min-height: 230px;
+}
+
+footer{
+    min-height: 150px;
+    max-width: 100%;
+    background-color: #F9DF73;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 2px solid black ;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+}
+
+footer button{
+    min-height: 40px;
+    max-height: 50px;
+    padding: 0.5rem;
+    background-color: #7676F0;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #f0f8ff;
+    border: 2px solid #f0f8ff;
+}
+
+/* Mensagens de erro e sucesso */
+
+.messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffe6e6;
+    border-radius: 5px;
+    padding: 16px 32px;
+    margin: 0;
+    z-index: 1000;
+    list-style: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 300px;
+    max-width: 90vw;
+    text-align: center;
+}
+
+.messages li {
+    margin: 0.5em 0;
+    font-weight: bold;
+    white-space: pre-line; /* respeita \n e <br> */
+}
+
+.success {
+    color: #207227;
+    border: #207227;
+}
+
+.error {
+    color: #b30000;
+    border: #b30000;
+}
+
+mark {
+    background: none;
+    color: #DC0030; /* cor do texto */
+    font-weight: bold; /* deixa o texto em negrito */
+  }
+
+  /* Modal de descrição */
+.descricao-modal {
+    display: none; /* escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6); /* fundo escuro */
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+}
+
+.descricao-conteudo {
+    background: #FFFDFA;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 60%;
+    max-width: 600px;
+    text-align: center;
+    color: #7676F0;
+}
+
+.descricao-conteudo h2{
+    font-size: clamp(1rem, 2vw, 3rem);
+}
+
+.descricao-conteudo p{
+    font-size: clamp(1rem, 1.2vw, 3rem);
+    margin: 1rem 0;
+}
+
+.descricao-conteudo button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #7676F0;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.2vw, 3rem);
+}
+.descricao-conteudo button:hover {
+    background: #F9DF73;
+    color: black;
+}
+
+@media screen and (max-width: 840px) {
+    article {
+        flex-direction: column;
+    }
+
+    footer {
+        margin: 40px 0px 0px 0px;
+    }
+}

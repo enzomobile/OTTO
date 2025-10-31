@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  {% if progresso >= numero or diferenca == 1 %}
+
+  {% else %}
+    <script>
+      history.back();
+    </script>
+  {% endif %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'appOTTO/css/pre_fase.css' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
+  <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} "> 
+  <title>{{ fase.titulo }}</title>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo">
+        <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
+      </div>
+      <ul class="menu">
+        <li class="botao-navegar" data-url="{% url 'dashboard' %}">Home</li>
+        <li>Meu Perfil</li>
+        <li class="active" >Fases</li>
+        <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
+      </ul>
+    </nav>
+    <main>
+      <section class="conteudo">
+        <a href="{% url 'fases' %}" class="button-voltar">Voltar</a>
+        <img src="{% static fase.img %}" alt="">
+        <div class="div-titulo">
+          <h1>{{ fase.titulo }}</h1>
+          <p>Fase {{ fase.fase }}</p>
+        </div>
+        <div class="div-conteudo">
+          <h2>Descrição:</h2>
+          <p>{{ fase.descricao }}</p>
+        </div>
+        
+        <p class="button-iniciar">
+          <a href="{% url 'fase' numero %}">
+            <button>
+              {% if progresso >= numero %}
+                Reiniciar
+              {% else %}
+                Iniciar
+              {% endif %}
+            </button>
+          </a>
+        </p>
+      </section>
+    </main>
+  </div>
+  <script src="{% static 'appOTTO/JS/fases.js' %}"></script>
+</body>
+</html>

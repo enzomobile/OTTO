@@ -5,13 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'appOTTO/css/login.css' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
-    <link rel="manifest" href="{% static 'appOTTO/img/site.webmanifest' %}">
     <title>Login</title>
 </head>
 <body>
@@ -34,9 +32,11 @@
                 </div>
                 <input type="email" id="email_usuario" name="email_usuario" required placeholder="EMAIL">
                 
-                <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
-                <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
-                
+                <div class="senha-container">
+                    <input type="password" id="senha_usuario" name="senha_usuario" required placeholder="SENHA">
+                    <a class="esqueci-senha" href="{% url 'password_reset' %}">ESQUECEU A SENHA?</a>
+                </div>
+
                 <button class="button-logar" type="submit">LOGAR</button>
                 <button type="button" class="google-button" onclick="window.location.href='{% url 'social:begin' 'google-oauth2' %}'">
                     <img src="{% static 'appOTTO/img/Google__G__logo.svg.png' %}" alt="Logo Google" class="img-google">
@@ -49,12 +49,7 @@
         </main>
     </div>
     <footer>
-        <ul class="rodape">
-            <a href="#"><li class="rodape-info">Brasil</li></a>
-            <a href="#"><li class="rodape-info">Termos de Uso</li></a>
-            <a href="#"><li class="rodape-info">Sobre Nós</li></a>
-            <a href="#"><li class="rodape-info">Contato</li></a>
-        </ul>
+        
     </footer>
 </body>
 </html>
