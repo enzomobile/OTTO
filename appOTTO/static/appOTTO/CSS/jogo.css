@@ -1,13 +1,17 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../Fonts/Inter_28pt-Regular.ttf');
+}
+
+body {
+    background-color: #7676F0;
+}
+
 *{
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-.container{
-    background-color: #ffe6e6;
-    height: 100%;
 }
 
 /* conteudo */
@@ -17,29 +21,29 @@ button:hover, li:hover {
 }
 
 a {
-    text-decoration: none;;
+    text-decoration: none;
 }
 
 main{
-    background-color: #7676F0;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3rem 5rem;
+    padding: 30px;
 }
 
 .corpo{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #FFFDFA;
-    height: 100%;
-    border-radius: 1.2vw;
+    min-height: 500px;
+    border-radius: 20px;
 }
 
 header{
     width: 100%;
-    height: 10%;
     display: flex;
     align-items: center;
     padding: 2rem;
@@ -55,19 +59,18 @@ header > div{
     height: 100vh;
     background: #7676F0;
     margin: 0;
-    padding: 0;
     z-index: 2000;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3rem 5rem;
+    padding: 20px 0px;
 }
 
 #containerUl{
     background-color: #FFFDFA;
     height: 100%;
-    width: 100%;
-    border-radius: 1.2vw;
+    width: 90%;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +79,8 @@ header > div{
 
 ul {
     list-style: none;
-    width: 40%;
+    width: 60%;
+    max-width: 400px;
     display: flex;
     flex-wrap: wrap;   /* permite quebrar para baixo */
     padding: 1rem;
@@ -89,9 +93,10 @@ li {
     justify-content: center;
     align-items: center;
     color: #FFFDFA;
-    font-size: clamp(1rem, 1vw, 2rem);
-    padding: 1em;
-    min-height: 3em;
+    font-size: 20px;
+    padding: 10px;
+    min-height: 40px;
+    min-width: 100px;
     flex: 1 1 auto;
     text-align: center;
 }
@@ -106,7 +111,7 @@ ul li:not(#Jogabilidade) {
 
 header > a{
     display: inline-block;
-    font-size: 2vw;
+    font-size: 25px;
     cursor: pointer;
 }
 
@@ -127,7 +132,7 @@ header > a{
     display: none;
     flex-direction: column;
     height: 60vh;
-    width: 50vw;
+    width: 80%;
     background-color: #7676F0;
     justify-content: space-around;
     align-items: center;
@@ -142,6 +147,7 @@ header > a{
 .Sair > p{
     font-size: clamp(1rem, 1.5vw, 3rem);
     color: #FFFDFA;
+    text-align: center;
 }
 
 .Sair button{
@@ -178,25 +184,29 @@ header > button{
 
 article{
     width: 100%;
-    height: 60%;
+    padding: 10px;
     display: flex;
-    padding: 0 2rem;
+    flex-direction: row;
+    flex: none;
 }
 
 article > div{
     flex: 1;
-    height: 100%;
 }
 
-.programação{
-    padding: 2rem;
+.programacao{
+    padding: 20px;
 }
 
-.programação > div{
-    height: 100%;
+.programacao > div{
+    min-height: 200px;
+    max-height: 230px;
     width: 100%;
-    background-color: #f0f8ff;
-    border-radius: 1vw;
+}
+
+.injectionDiv {
+    border-radius: 20px;
+    border: 1px solid grey;
 }
 
 .blocklySvg {
@@ -205,25 +215,37 @@ article > div{
 }
 
 .resultado{
-    padding: 2rem;
+    padding: 20px;
+    min-height: 230px;
+    max-height: 230px;
 }
 
 .resultado > div{
-    height: 100%;
     width: 100%;
     background-color: #D9D9D9;
-    border-radius: 1vw;
+    border-radius: 10px;
     border: 1px solid black;
     padding: 1rem;
     font-size: clamp(1rem, 1vw, 2rem);
     color: #7676F0;
 }
 
+.resultado div {
+    min-height: 230px;
+}
+
+.programacao div {
+    min-height: 230px;
+}
+
 footer{
+    min-height: 150px;
     max-width: 100%;
-    height: 30%;
     background-color: #F9DF73;
-    border-radius: 1.2vw;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border: 2px solid black ;
     display: flex;
     flex-wrap: wrap;
@@ -231,11 +253,12 @@ footer{
 }
 
 footer button{
-    height: 8vh;
+    min-height: 40px;
+    max-height: 50px;
     padding: 0.5rem;
     background-color: #7676F0;
     border-radius: 10px;
-    font-size: clamp(1rem, 1.5vw, 3rem);
+    font-size: 20px;
     color: #f0f8ff;
     border: 2px solid #f0f8ff;
 }
@@ -327,4 +350,14 @@ mark {
 .descricao-conteudo button:hover {
     background: #F9DF73;
     color: black;
+}
+
+@media screen and (max-width: 840px) {
+    article {
+        flex-direction: column;
+    }
+
+    footer {
+        margin: 40px 0px 0px 0px;
+    }
 }
