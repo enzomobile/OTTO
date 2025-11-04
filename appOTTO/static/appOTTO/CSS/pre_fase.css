@@ -12,7 +12,7 @@
 }
 
 a {
-  color: var(--cor_claro);
+  color: white;
 }
 
 body, html{
@@ -95,7 +95,7 @@ nav {
   height: 100%;
   width: 90%;
   margin: 40px 20px 0px 0px;
-  background-color: aliceblue;
+  background-color: var(--cor_fundo_conteudo);
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -108,7 +108,7 @@ nav {
   padding: 0 2rem;
   font-size: clamp(1rem, 1.2vw, 3rem);
   text-decoration: none;
-  color: black;
+  color: var(--cor_claro);
 }
 
 .conteudo > img{
@@ -129,7 +129,7 @@ nav {
   position: relative;
   top: -5%;
   left: 5%;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
 }
 
 .div-titulo > h1{
@@ -147,10 +147,12 @@ nav {
 }
 
 .div-conteudo > h2{
+  color: var(--cor_claro);
   font-size: 20px;
 }
 
 .div-conteudo > p{
+  color: var(--cor_claro);
   margin-top: 10px;
   height: 100%;
   display: flex;
@@ -170,7 +172,7 @@ nav {
   padding: 10px;
   border: 1px solid black;
   border-radius: 10px;
-  background-color: #f4e66c;
+  background-color: var(--cor_secundaria);
   cursor: pointer;
 }
 

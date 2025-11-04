@@ -145,6 +145,7 @@ nav {
 
 .conteudo-container-info > div{
   height: 100%;
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

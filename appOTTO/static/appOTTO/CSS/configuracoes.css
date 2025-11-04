@@ -131,7 +131,7 @@ main {
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  color: var(--cor_claro);
+  color: white;
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
@@ -184,7 +184,7 @@ main {
 }
 
 .container-conta-form input{
-  background-color: grey;
+  background-color: lightgrey;
   border: none;
   border-radius: 5px;
   border: 1px solid var(--cor_claro);
@@ -247,6 +247,7 @@ main {
   border: none;
   padding: 10px;
   background-color: var(--cor_secundaria);
+  color: black;
   border-radius: 20px;
   width: 120px;
 }
@@ -400,7 +401,7 @@ main {
   font-size: clamp(1rem, 1.5vw, 2rem);
   font-weight: bold;
   padding: 1rem;
-  border: 1px solid var(--cor_claro);
+  border: 1px solid black;
   border-radius: 15px;
   background-color: var(--cor_secundaria);
   text-align: center;
@@ -425,14 +426,14 @@ main {
 .form-suporte label{
   color: var(--cor_claro);
   font-size: clamp(1rem, 1vw, 2rem);
-  padding: 0.2rem;
+  padding: 3px;
 }
 
 .form-suporte input{
-  background-color: grey;
-  color: var(--cor_claro);
+  background-color: lightgrey;
+  color: black;
   font-size: clamp(1rem, 1vw, 2rem);
-  padding: 0.2rem 1rem;
+  padding: 3px 6px;
   border: none;
   border-radius: 10px;
   border: 1px solid var(--cor_claro);
@@ -444,19 +445,18 @@ main {
   width: 100%;
 }
 
-.form-suporte-mensagem textarea{
+textarea{
   height: 100px;
   width: 100%;
-  background-color: grey;
-  padding: 1rem;
-  color: var(--cor_claro);
+  background-color: lightgrey;
+  padding: 10px 6px;
+  color: black;
   font-size: clamp(1rem, 1vw, 2rem);
   border: none;
   border: 1px solid var(--cor_claro);
   border-radius: 15px;
   resize: none;
 }
-
 
 .form-contato{
   width: 100%;
