@@ -1,12 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Depois de deslogar, se o usuário voltar para a página de configurações, ele será redirecionado para a página de login.
-    window.addEventListener("pageshow", function (event) {
-        if (event.persisted) {
-            window.location.reload();
-        }
-    });
-});
-
 document.querySelectorAll(".botao-navegar").forEach(function(botao) {
     botao.addEventListener("click", function() {
         window.location.href = this.dataset.url;

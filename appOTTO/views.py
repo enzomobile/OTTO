@@ -3,11 +3,8 @@ from .models import Usuario, MensagemSuporte
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from .models import MensagemSuporte
 from django.core.mail import send_mail
-from django.conf import settings
 from django.contrib.auth import views as auth_views
-from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
@@ -73,6 +70,7 @@ def cadastro(request):
         messages.success(request, "Verifique sua caixa de E-mail!")
         return redirect('cadastro')
 
+    request.session.flush()
     return render(request, 'appOTTO/cadastro.html')
 
 def verificar_email(request, token):
@@ -113,19 +111,22 @@ def login(request):
             messages.error(request, "Usuário ou senha inválidos.")
             return redirect('login')
 
+    request.session.flush()
     return render(request, 'appOTTO/login.html')
 
 @login_required
 def deletar_conta(request):
-    user = request.user
     if request.method == 'POST':
         try:
+            user = request.user
             user.delete()
             messages.success(request, "Sua conta foi deletada com sucesso.")
             return redirect('home')
         except:
             messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
             return redirect('config')
+    
+    return redirect('home')
 
 @login_required
 def enviar_suporte(request):
@@ -221,6 +222,10 @@ def dashboard(request):
     return render(request, 'appOTTO/dashboard.html', {"nivel": nivel, "progresso": progresso, "fase": fase})
 
 @login_required
+def perfil(request):
+    return render(request, 'appOTTO/meuPerfil.html')
+
+@login_required
 def redefinir_senha(request):
     if request.method == 'POST':
         usuario = request.user
@@ -282,6 +287,10 @@ def pre_fase(request, numero):
 
 @login_required
 def fase(request, numero):
+    referer = request.META.get('HTTP_REFERER')
+    if not referer:
+        return render(request, 'appOTTO/home.html')
+
     if numero not in FASES:
         raise Http404("Fase não encontrada")
     
@@ -302,9 +311,6 @@ def concluir_fase(request, numero):
     referer = request.META.get('HTTP_REFERER')
     if not referer:
         return render(request, 'appOTTO/home.html')
-    
-    usuario = request.user
-    progresso = usuario.progresso_usuario
 
     inicio_str = request.session.get("inicio_fase")
     if inicio_str:
@@ -314,7 +320,10 @@ def concluir_fase(request, numero):
         minutos, segundos = divmod(tempo_total.seconds, 60)
         tempo_formatado = f"{minutos} min {segundos} s"
     else:
-        tempo_formatado = "Não registrado"
+        return redirect('dashboard')
+
+    usuario = request.user
+    progresso = usuario.progresso_usuario
 
     if progresso < numero:
         usuario.progresso_usuario = usuario.progresso_usuario + 1
@@ -331,4 +340,6 @@ def concluir_fase(request, numero):
         "tempo": tempo_formatado,
         "progresso": usuario.progresso_usuario,
     }
+
+    del request.session['inicio_fase']
     return render(request, "appOTTO/pos_fase.html", contexto)

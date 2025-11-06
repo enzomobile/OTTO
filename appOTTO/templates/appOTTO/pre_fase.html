@@ -17,7 +17,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
-  <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} "> 
+  <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+  <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
   <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
   <title>{{ fase.titulo }}</title>
 </head>
@@ -29,7 +30,7 @@
       </div>
       <ul class="menu">
         <li><a class="botao-navegar" data-url="{% url 'dashboard' %}">Home</a></li>
-        <li><a class="bota-navegar" data-url="">Meu Perfil</a></li>
+        <li><a class="botao-navegar" href="{% url 'perfil' %}">Meu Perfil</a></li>
         <li class="active">Fases</li>
         <li><a class="botao-navegar" data-url="{% url 'config' %}">Configurações</a></li>
       </ul>

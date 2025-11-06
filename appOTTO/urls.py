@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from django.contrib.auth import views as auth_views
 from .passwordResetForm import customPasswordResetForm
 from .views import CustomPasswordResetCompleteView
 
@@ -12,6 +11,7 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('perfil/', views.perfil, name='perfil'),
     path('config/', views.config, name='config'),
     path('redefinir_senha/', views.redefinir_senha, name='redefinir_senha'),
     path('deletar_conta/', views.deletar_conta, name='deletar_conta'),
@@ -19,19 +19,19 @@ urlpatterns = [
     path('fases/', views.fases, name='fases'),
     path('pre_fase/<int:numero>/', views.pre_fase, name='pre_fase'),
     path('fase/<int:numero>/', views.fase, name='fase'),
-    path("concluir_fase/<int:numero>/", views.concluir_fase, name="concluir_fase"),
+    path('concluir_fase/<int:numero>/', views.concluir_fase, name='concluir_fase'),
 
     # Django urls para trocar senha com 2 fatores.
     path(
-        "recuperar-senha/",
+        'recuperar-senha/',
         auth_views.PasswordResetView.as_view(
-            template_name="auth/password_reset.html",
-            email_template_name="auth/password_reset_email.html",
-            subject_template_name="auth/password_reset_subject.txt",
-            success_url="/recuperar-senha/feito/",
+            template_name='auth/password_reset.html',
+            email_template_name='auth/password_reset_email.html',
+            subject_template_name='auth/password_reset_subject.txt',
+            success_url='/recuperar-senha/feito/',
             form_class=customPasswordResetForm,
         ),
-        name="password_reset",
+        name='password_reset',
     ),
 
     # Passo 2: Confirmação que email foi enviado

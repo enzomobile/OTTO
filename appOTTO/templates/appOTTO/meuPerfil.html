@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/cores.css' %}">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/meuPerfil.css' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
+    <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
+    <script src="{% static 'appOTTO/JS/meuPerfil.js' %}"></script>
+    <title>Meu perfil</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <main>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
+                </div>
+                <ul class="menu">
+                    <li><a class="botao-navegar" href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="active">Meu Perfil</li>
+                    <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
+                    <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
+                </ul>
+            </nav>
+            <section class="conteudo">
+                
+            </section>
+        </div>
+    </main>
+</body>

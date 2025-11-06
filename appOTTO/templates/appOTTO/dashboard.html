@@ -10,8 +10,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
-    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
-    <title>Dashboard</title>
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const progresso = document.getElementById("progresso");
@@ -21,8 +21,7 @@
         });
     </script>
     <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
-    <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
-    <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
+    <title>Dashboard</title>
 </head>
 <body>
     <main>
@@ -33,7 +32,7 @@
                 </div>
                 <ul class="menu">
                     <li class="active">Home</li>
-                    <li><a>Meu Perfil</a></li>
+                    <li><a class="botao-navegar" href="{% url 'perfil' %}">Meu Perfil</a></li>
                     <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
                     <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
                 </ul>
@@ -53,14 +52,6 @@
                             <p id="porcentagem"></p>
                             <progress id="progresso" value="{{ progresso }}" max="100"></progress>
                         </div>
-                        <!--
-                            <div class="progresso-dica">
-                                <div class="balao-dica">
-                                    <p>dica</p>
-                                </div>
-                                <img src="{% static 'appOTTO/img/OTTO.png' %}" alt="">
-                            </div>
-                        -->
                     </div>
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
