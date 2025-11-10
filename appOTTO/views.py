@@ -223,7 +223,35 @@ def dashboard(request):
 
 @login_required
 def perfil(request):
-    return render(request, 'appOTTO/meuPerfil.html')
+    if request.method == 'POST':
+        n_completo = request.POST.get('nome_completo')
+        n_usuario = request.POST.get('nome_usuario')
+
+        n_completo_s = n_completo.strip()
+        n_usuario_s = n_usuario.strip()
+
+        if n_completo_s == "" and n_usuario_s == "":
+            messages.error(request, "Escolha um nome para mudar.")
+            return redirect('perfil')
+
+        if Usuario.objects.filter(nome_usuario=n_usuario).exists():
+            messages.error(request, "Nome de usuário já está em uso.")
+            return redirect('perfil')
+
+        user = request.user
+        if (n_usuario_s != ""):
+            user.nome_usuario = n_usuario
+        if (n_completo_s != ""):
+            user.nome_completo = n_completo
+
+        user.save()
+        messages.success(request, "Usuário atualizado!")
+
+    nivel = NIVEL.get(request.user.nivel_usuario)
+    if not nivel:
+        raise Http404("Nivel de usuário inválido.")
+    
+    return render(request, 'appOTTO/meuPerfil.html', {"nivel": nivel})
 
 @login_required
 def redefinir_senha(request):

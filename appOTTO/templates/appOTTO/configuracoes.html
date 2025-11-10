@@ -62,30 +62,34 @@
                     <div class="container-interface conteudo-box" style="display: none;">
                         <div class="conteudo-interface">
                             <div class="conteudo-interface-tema">
-                                <h3>Tema</h3>
-                                <ul>
-                                    <li><button id="a" onclick="definirTema('claro'), temaAtual(0)">Claro</button></li>
-                                    <li><button id="b" onclick="definirTema('escuro'), temaAtual(1)">Escuro</button></li>
-                                </ul>
+                                <div class="tema">
+                                    <h3>Tema</h3>
+                                    <ul>
+                                        <li><button id="a" onclick="definirTema('claro'), temaAtual(0)">Claro</button></li>
+                                        <li><button id="b" onclick="definirTema('escuro'), temaAtual(1)">Escuro</button></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="conteudo-interface-tema-acessibilidade">
-                                <h3>Acessibilidade</h3>
-                                <ul>
-                                    <li class="interfaceLI">
-                                        <label class="switch">
-                                            <input class="checkbox" type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <p>Leitura em voz alta/suporte de texto para fala</p>
-                                    </li>
-                                    <li class="interfaceLI">
-                                        <label class="switch">
-                                            <input class="checkbox" type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <p>Navegação por Teclado Visível</p>
-                                    </li>
-                                </ul>
+                                <div class="acessibilidade">
+                                    <h3>Acessibilidade</h3>
+                                    <ul>
+                                        <li class="interfaceLI">
+                                            <label class="switch">
+                                                <input class="checkbox" type="checkbox">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <p>Leitura em voz alta/suporte de texto para fala</p>
+                                        </li>
+                                        <li class="interfaceLI">
+                                            <label class="switch">
+                                                <input id="vlibras" class="checkbox" type="checkbox" onclick="vlibras()">
+                                                <span id="slider" class="slider"></span>
+                                            </label>
+                                            <p>Ativar/Desativar Vlibras</p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -488,5 +492,6 @@
             </section>
         </div>
     </main>
+    {% include 'appOTTO/vlibras.html' %}
 </body>
 </html>

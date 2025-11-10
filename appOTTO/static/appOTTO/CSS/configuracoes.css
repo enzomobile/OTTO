@@ -201,6 +201,14 @@ main {
   border: 2px solid black;
 }
 
+.container-interface {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .conteudo-interface{
   padding: 20px 0px;
   height: 100%;
@@ -208,7 +216,8 @@ main {
   gap: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
 .conteudo-interface  h3{
@@ -224,42 +233,59 @@ main {
 
 .conteudo-interface-tema{
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
+  width: 100%;
 }
 
-.conteudo-interface-tema > ul{
+.tema {
+  width: 100%;
+  max-width: 410px;
+}
+
+.tema > ul{
   display: flex;
-  gap: 2rem;
-  padding: 0 0 0 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px;
+  gap: 30px;
 }
 
-.conteudo-interface-tema button{
+.tema button{
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: var(--cor_fundo_conteudo);
   border-radius: 20px;
-  width: 120px;
+}
+
+.acessibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 410px;
+  height: 150px;
 }
 
 .conteudo-interface-tema button.active{
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: var(--cor_secundaria);
   color: black;
   border-radius: 20px;
-  width: 120px;
 }
 
 .conteudo-interface-tema-acessibilidade{
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
+  width: 100%;
 }
 
-.conteudo-interface-tema-acessibilidade > ul{
+.acessibilidade > ul{
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -273,6 +299,8 @@ main {
 }
 
 .interfaceLI p {
+  display: flex;
+  align-items: center;
   color: var(--cor_claro);
 }
 
@@ -280,7 +308,7 @@ main {
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
+  min-width: 30px;
   height: 28px;
 }
 
@@ -731,11 +759,9 @@ textarea{
 
   /* Item ativo com destaque */
   .menu li.active {
-    background-color: var(--cor_secundaria);
-    color: var(--cor_claro);
     font-weight: bold;
-    padding: 4px 10px;
-    margin: 0px;
+    padding: 4px 6px;
+    margin: 0px 5px;
     font-size: 12px;
     border-radius: 10px;
   }

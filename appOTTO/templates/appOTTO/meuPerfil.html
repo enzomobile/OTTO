@@ -35,8 +35,27 @@
                 </ul>
             </nav>
             <section class="conteudo">
+                <div class="topo">
+                    <div class="textoTopo">
+                        <h2>{{ user.nome_completo }}</h2>
+                        <p>Bem Vindo(a)</p>
+                    </div>
+                    <p id="nivel">{{ nivel.nivel }}</p>
+                </div>
                 
+                <div class="alterarDados">
+                    <h3>Troque seu nome completo <br>ou de usuário</h3>
+                    <form name="form" id="form" method="POST">
+                        {% csrf_token %}
+                        <label>Nome completo:</label>
+                        <input name="nome_completo" placeholder="Alterar seu nome completo"></input>
+                        <label>Nome de usuário:</label>
+                        <input name="nome_usuario" placeholder="Alterar seu nome de usuário"></input>
+                        <button type="submit">Alterar</button>
+                    </form>
+                </div>
             </section>
         </div>
     </main>
+    {% include 'appOTTO/vlibras.html' %}
 </body>

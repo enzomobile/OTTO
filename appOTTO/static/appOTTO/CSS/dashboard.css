@@ -155,9 +155,8 @@ nav {
   color: #7676F0;
 }
 
-.conteudo-container-info > div > h3{
+.conteudo-container-info > div > h1{
   color: var(--cor_claro);
-  font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
 .conteudo-container-info > div > p{

@@ -1,3 +1,25 @@
+// O input vai começar com o valor que estiver no item 'vlibras', o switch fica dinâmico
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('vlibras').value = localStorage.getItem('vlibras');
+    if (document.getElementById('vlibras').value == 1) {
+        document.getElementById("vlibras").checked = true;
+    }
+});
+
+// Ao clicar no botão, pega o valor do input e verifica qual valor vai pro item 'vlibras' (localStorage)
+// Então a página recarrega e mostra (ou não) o Vlibras
+function vlibras() {
+    var checkbox = document.getElementById('vlibras').value;
+    if (checkbox == 0) {
+        localStorage.setItem('vlibras', 1);
+        document.getElementById('vlibras').value = 1;
+    } else {
+        localStorage.setItem('vlibras', 0);
+        document.getElementById('vlibras').value = 0;
+    }
+    window.location.reload();
+}
+
 document.querySelectorAll(".botao-navegar").forEach(function(botao) {
     botao.addEventListener("click", function() {
         window.location.href = this.dataset.url;

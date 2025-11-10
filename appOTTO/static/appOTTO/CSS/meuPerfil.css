@@ -89,11 +89,91 @@ nav {
 
 /* Conteúdo */
 .conteudo{
+  display: flex;
+  flex-direction: column;
   width: 80%;
-  padding: 10px 0px 10px 0px;
+  min-height: 80vh;
+  padding: 50px 30px;
   margin: 40px 20px 0px 0px;
   background-color: var(--cor_fundo_conteudo);
   border-radius: 25px;
+}
+
+.topo {
+  width: 100%;
+  min-height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textoTopo {
+  gap: 5px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.textoTopo h2 {
+  color: var(--cor_claro);
+}
+
+.textoTopo p {
+  color: grey;
+}
+
+#nivel {
+  text-align: end;
+  color: #7676F0;
+}
+
+.alterarDados {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  width: 100%;
+  min-height: 80%;
+  gap: 20px;
+}
+
+.alterarDados h3 {
+  color: var(--cor_claro);
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  color: var(--cor_claro);
+}
+
+input {
+  background-color: lightgrey;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid var(--cor_claro);
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+button {
+  align-self: center;
+  padding: 10px 20px;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  background-color: var(--cor_secundaria);
+  border-radius: 15px;
+  border: 2px solid black;
+  width: 80%;
+  cursor: pointer;
 }
 
 .messages {
@@ -119,7 +199,12 @@ nav {
 }
 
 @media screen and (max-width: 550px) {
+  .alterarDados {
+    gap: 40px;
+    min-height: 60vh;
+  }
   .container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -165,16 +250,15 @@ nav {
   .menu li.active {
     color: black;
     font-weight: bold;
-    padding: 4px 10px;
-    margin: 0px;
+    padding: 4px 6px;
     font-size: 12px;
     transform: scale(1.0);
     border-radius: 10px;
   }
 
   .conteudo {
+    display: flex;
     margin: 40px 0px 0px 0px;
     width: 90%;
-    min-height: 60vh;
   }
 }
