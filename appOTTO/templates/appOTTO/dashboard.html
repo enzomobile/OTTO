@@ -55,10 +55,16 @@
                     </div>
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
-                        <div class="curso-painel" style="background-image: url({% static fase.img %});">
-                            <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'">Continuar</button>
-                            <h4>{{ fase.titulo }}</h4>
-                        </div>
+                        {% if user.progresso_usuario == 10 %}
+                            <div class="curso-painel" style="align-items: center; justify-content: center;">
+                                <h1>Párabens! Você concluiu todas as fases!</h1>
+                            </div>
+                        {% else %}
+                            <div class="curso-painel" style="background-image: url({% static fase.img %});">
+                                <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'">Continuar</button>
+                                <h4>{{ fase.titulo }}</h4>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </section>

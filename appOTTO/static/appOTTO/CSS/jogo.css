@@ -123,7 +123,7 @@ header > a{
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 2000;
+    content: url("../img/tela_jogo.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -222,6 +222,7 @@ article > div{
 }
 
 .resultado > div{
+    max-height: 230px;
     width: 100%;
     background-color: #D9D9D9;
     border-radius: 10px;
@@ -229,6 +230,7 @@ article > div{
     padding: 1rem;
     font-size: clamp(1rem, 1vw, 2rem);
     color: #7676F0;
+    overflow: auto;
 }
 
 .resultado div {
@@ -242,7 +244,7 @@ article > div{
 footer{
     min-height: 150px;
     max-width: 100%;
-    background-color: var(--cor_secundaria);
+    background-color: var(--cor_amarelo_jogo);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 10px;
@@ -356,5 +358,11 @@ mark {
 
     footer {
         margin: 40px 0px 0px 0px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .JogabilidadeImg {
+        content: url("../img/tela_jogo_vertical.png");
     }
 }

@@ -194,11 +194,11 @@ plateia = True
 ritmo = 1
 if luzes and musica and plateia:
   while ritmo <= 3:
-    print('Tocando ritmo ' + str(plateia))
+    print('Tocando ritmo ' + str(ritmo))
     ritmo = ritmo + 1
-  print('Show completo, Todos aplaudam')
+  print('Show completo, todos aplaudam')
 else:
-  print('Algo deu errado, O show não pode começar')
+  print('Algo deu errado, o show não pode começar')
 `
 ];
 

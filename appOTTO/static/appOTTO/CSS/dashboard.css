@@ -248,6 +248,7 @@ nav {
   border: 1px solid black;
   width: 100%;
   min-height: 200px;
+  background-color: darkgrey;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
