@@ -13,7 +13,6 @@
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
     <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
-    <script src="{% static 'appOTTO/JS/navegacaoTI.js' %}"></script>
     <title>Configurações</title>
 </head>
 <body>
@@ -72,18 +71,18 @@
                                 <h3>Acessibilidade</h3>
                                 <ul>
                                     <li class="interfaceLI">
-                                        <label class="switch">
-                                            <input class="checkbox" type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <p>Leitura em voz alta/suporte de texto para fala</p>
+<label class="switch">
+  <input type="checkbox" id="modoLeitura" class="checkbox">
+  <span class="slider"></span>
+</label>
+<span>Leitor de texto</span>
                                     </li>
                                     <li class="interfaceLI">
                                         <label class="switch">
                                             <input class="checkbox" type="checkbox">
                                             <span class="slider"></span>
                                         </label>
-                                        <p>Navegação por Teclado Visível</p>
+                                        <p class="ler">Navegação por Teclado Visível</p>
                                     </li>
                                 </ul>
                             </div>
@@ -488,5 +487,7 @@
             </section>
         </div>
     </main>
+    <script src="{% static 'appOTTO/JS/navegacaoTI.js' %}"></script>
+    <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
 </body>
 </html>
