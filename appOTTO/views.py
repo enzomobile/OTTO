@@ -3,11 +3,8 @@ from .models import Usuario, MensagemSuporte
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from .models import MensagemSuporte
 from django.core.mail import send_mail
-from django.conf import settings
 from django.contrib.auth import views as auth_views
-from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
@@ -73,6 +70,7 @@ def cadastro(request):
         messages.success(request, "Verifique sua caixa de E-mail!")
         return redirect('cadastro')
 
+    request.session.flush()
     return render(request, 'appOTTO/cadastro.html')
 
 def verificar_email(request, token):
@@ -113,19 +111,22 @@ def login(request):
             messages.error(request, "Usuário ou senha inválidos.")
             return redirect('login')
 
+    request.session.flush()
     return render(request, 'appOTTO/login.html')
 
 @login_required
 def deletar_conta(request):
-    user = request.user
     if request.method == 'POST':
         try:
+            user = request.user
             user.delete()
             messages.success(request, "Sua conta foi deletada com sucesso.")
             return redirect('home')
         except:
             messages.error(request, "Não foi possível excluir a conta. Tente novamente.")
             return redirect('config')
+    
+    return redirect('home')
 
 @login_required
 def enviar_suporte(request):
@@ -221,6 +222,38 @@ def dashboard(request):
     return render(request, 'appOTTO/dashboard.html', {"nivel": nivel, "progresso": progresso, "fase": fase})
 
 @login_required
+def perfil(request):
+    if request.method == 'POST':
+        n_completo = request.POST.get('nome_completo')
+        n_usuario = request.POST.get('nome_usuario')
+
+        n_completo_s = n_completo.strip()
+        n_usuario_s = n_usuario.strip()
+
+        if n_completo_s == "" and n_usuario_s == "":
+            messages.error(request, "Escolha um nome para mudar.")
+            return redirect('perfil')
+
+        if Usuario.objects.filter(nome_usuario=n_usuario).exists():
+            messages.error(request, "Nome de usuário já está em uso.")
+            return redirect('perfil')
+
+        user = request.user
+        if (n_usuario_s != ""):
+            user.nome_usuario = n_usuario
+        if (n_completo_s != ""):
+            user.nome_completo = n_completo
+
+        user.save()
+        messages.success(request, "Usuário atualizado!")
+
+    nivel = NIVEL.get(request.user.nivel_usuario)
+    if not nivel:
+        raise Http404("Nivel de usuário inválido.")
+    
+    return render(request, 'appOTTO/meuPerfil.html', {"nivel": nivel})
+
+@login_required
 def redefinir_senha(request):
     if request.method == 'POST':
         usuario = request.user
@@ -266,7 +299,7 @@ FASES = {
 7: {"fase": "7", "titulo": "OTTO lanchando", "img": "appOTTO/img/cenarios/lv7.png", "descricao": "OTTO foi em um restaurante almoçar! OTTO tinha 50 moedas em sua carteira e o lanche custa 15 moedas. Seu troco deveria ser de 35 moedas. Crie uma variável para a carteira do OTTO, para o lanche, resposta e o troco que deverá ser o produto da carteira menos o custo do lanche. Depois verifique se o troco for o mesmo valor da resposta, imprima a mensagem 'O troco está certo' e se não 'O troco está errado'."},
 8: {"fase": "8", "titulo": "OTTO treinando", "img": "appOTTO/img/cenarios/lv8.png", "descricao": "OTTO começou a malhar, ajude ele a contar suas repetições! Comece inicializando o contador como 0 e depois, para verificar se o OTTO está treinando, crie a variável treino como verdadeiro. Agora vamos verificar o treino do OTTO: se treino for verdadeiro, chamar a função 'treinar'. Para isso temos que criá-la. Dentro da função treinar, defina que o contador seja ele mesmo somado com 1 e logo após imprima uma mensagem juntando o texto 'Exercícios feitos:' + a variável contador."},
 9: {"fase": "9", "titulo": "Passeio do OTTO", "img": "appOTTO/img/cenarios/lv9.png", "descricao": "OTTO foi passear e anotou em uma lista seus gastos, ajude ele a anotar e analisar os custos! Primeiro OTTO criou uma lista vazia e colocou em uma variável chamada 'contas' e depois ele adicionou todos os seus gastos. Começando pelo sorvete que custou '5' moedas, seu segundo gasto foi comprando uma bola que custou '20' moedas e o terceiro e último foi um lanche por '15' moedas. Agora imprima a variável contas mostrando sua lista de gastos."},
-10: {"fase": "10", "titulo": "Apresentação Final", "img": "appOTTO/img/cenarios/lv10.png", "descricao": "OTTO vai fazer sua apresentação! Para que a sua apresentação aconteça, é necessário luzes, música e plateia. Defina elas como variáveis verdadeiras. Logo quando a apresentação começar, o ritmo inicia em 1, e se as luzes E música E plateia existirem, faça com que se repita enquanto o ritmo for menor ou igual a 3. Imprima a mensagem: 'Tocando ritmo ' + a variável plateia. Após isso, some a variável ritmo + 1 e, após o ritmo chegar ao ideal, mostre a mensagem 'Show completo, Todos aplaudam'. Se as condições não estiverem corretas, aparecerá a mensagem 'Algo deu errado, O show não pode começar'."},
+10: {"fase": "10", "titulo": "Apresentação Final", "img": "appOTTO/img/cenarios/lv10.png", "descricao": "OTTO vai fazer sua apresentação! Para que a sua apresentação aconteça, é necessário luzes, música e plateia. Defina elas como variáveis verdadeiras. Logo quando a apresentação começar, o ritmo inicia em 1, e se as luzes E música E plateia existirem, faça com que se repita enquanto o ritmo for menor ou igual a 3. Imprima a mensagem: 'Tocando ritmo ' + a variável plateia. Após isso, some a variável ritmo + 1 e, após o ritmo chegar ao ideal, mostre a mensagem 'Show completo, todos aplaudam'. Se as condições não estiverem corretas, aparecerá a mensagem 'Algo deu errado, o show não pode começar'."},
 }
 
 @login_required
@@ -282,6 +315,10 @@ def pre_fase(request, numero):
 
 @login_required
 def fase(request, numero):
+    referer = request.META.get('HTTP_REFERER')
+    if not referer:
+        return render(request, 'appOTTO/home.html')
+
     if numero not in FASES:
         raise Http404("Fase não encontrada")
     
@@ -302,9 +339,6 @@ def concluir_fase(request, numero):
     referer = request.META.get('HTTP_REFERER')
     if not referer:
         return render(request, 'appOTTO/home.html')
-    
-    usuario = request.user
-    progresso = usuario.progresso_usuario
 
     inicio_str = request.session.get("inicio_fase")
     if inicio_str:
@@ -314,7 +348,10 @@ def concluir_fase(request, numero):
         minutos, segundos = divmod(tempo_total.seconds, 60)
         tempo_formatado = f"{minutos} min {segundos} s"
     else:
-        tempo_formatado = "Não registrado"
+        return redirect('dashboard')
+
+    usuario = request.user
+    progresso = usuario.progresso_usuario
 
     if progresso < numero:
         usuario.progresso_usuario = usuario.progresso_usuario + 1
@@ -331,4 +368,6 @@ def concluir_fase(request, numero):
         "tempo": tempo_formatado,
         "progresso": usuario.progresso_usuario,
     }
+
+    del request.session['inicio_fase']
     return render(request, "appOTTO/pos_fase.html", contexto)

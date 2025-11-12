@@ -6,6 +6,7 @@
     --cor_secundaria: #F9DF73;
     --cor_terciaria: #7676F0;
     --cor_fundo_conteudo: aliceblue;
+    --cor_amarelo_jogo: #F9DF73;
 }
 
 :root.escuro {
@@ -15,4 +16,5 @@
     --cor_secundaria: #FFD52E;
     --cor_terciaria: #303030;
     --cor_fundo_conteudo: #0f0d29;
+    --cor_amarelo_jogo: #ffd52ec2;
 }

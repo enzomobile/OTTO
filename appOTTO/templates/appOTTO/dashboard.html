@@ -10,8 +10,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
-    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
-    <title>Dashboard</title>
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const progresso = document.getElementById("progresso");
@@ -24,6 +24,7 @@
     <script src="{% static 'appOTTO/JS/dashboard.js'%}"></script>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
     <script src="{% static 'appOTTO/JS/navegacaoTI.js' %}"></script>
+    <title>Dashboard</title>
 </head>
 <body>
     <main>
@@ -34,7 +35,7 @@
                 </div>
                 <ul class="menu">
                     <li class="active">Home</li>
-                    <li><a>Meu Perfil</a></li>
+                    <li><a class="botao-navegar" href="{% url 'perfil' %}">Meu Perfil</a></li>
                     <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
                     <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
                 </ul>
@@ -43,7 +44,7 @@
                 <div class="conteudo-container">
                     <div class="conteudo-container-info">
                         <div>
-                            <h3>Olá, {{ user.nome_usuario }}!</h3>
+                            <h1>Olá, {{ user.nome_usuario }}!</h1>
                             <p>Tudo pronto para começar! Vamos nessa?</p>
                         </div>
                         <p>{{ nivel.nivel }}</p>
@@ -54,25 +55,25 @@
                             <p id="porcentagem"></p>
                             <progress id="progresso" value="{{ progresso }}" max="100"></progress>
                         </div>
-                        <!--
-                            <div class="progresso-dica">
-                                <div class="balao-dica">
-                                    <p>dica</p>
-                                </div>
-                                <img src="{% static 'appOTTO/img/OTTO.png' %}" alt="">
-                            </div>
-                        -->
                     </div>
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
-                        <div class="curso-painel" style="background-image: url({% static fase.img %});">
-                            <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'">Continuar</button>
-                            <h4>{{ fase.titulo }}</h4>
-                        </div>
+                        {% if user.progresso_usuario == 10 %}
+                            <div class="curso-painel" style="align-items: center; justify-content: center;">
+                                <h1>Párabens! Você concluiu todas as fases!</h1>
+                            </div>
+                        {% else %}
+                            <div class="curso-painel" style="background-image: url({% static fase.img %});">
+                                <button onclick="window.location.href='{% url 'pre_fase' fase.fase %}'">Continuar</button>
+                                <h4>{{ fase.titulo }}</h4>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </section>
         </div>
     </main>
+    {% include 'appOTTO/vlibras.html' %}
+    <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
 </body>
 </html>

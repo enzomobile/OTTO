@@ -10,7 +10,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'appOTTO/img/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
-    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
     <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
     <script src="{% static 'appOTTO/JS/configuracoes.js' %}"></script>
     <title>Configurações</title>
@@ -31,7 +32,7 @@
                 </div>
                 <ul class="menu">
                     <li><a class="botao-navegar" href="{% url 'dashboard' %}">Home</a></li>
-                    <li><a>Meu Perfil</a></li>
+                    <li><a class="botao-navegar" href="{% url 'perfil' %}">Meu Perfil</a></li>
                     <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
                     <li class="active">Configurações</li>
                 </ul>
@@ -61,30 +62,34 @@
                     <div class="container-interface conteudo-box" style="display: none;">
                         <div class="conteudo-interface">
                             <div class="conteudo-interface-tema">
-                                <h3>Tema</h3>
-                                <ul>
-                                    <li><button id="a" onclick="definirTema('claro'), temaAtual(0)">Claro</button></li>
-                                    <li><button id="b" onclick="definirTema('escuro'), temaAtual(1)">Escuro</button></li>
-                                </ul>
+                                <div class="tema">
+                                    <h3>Tema</h3>
+                                    <ul>
+                                        <li><button id="a" onclick="definirTema('claro'), temaAtual(0)">Claro</button></li>
+                                        <li><button id="b" onclick="definirTema('escuro'), temaAtual(1)">Escuro</button></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="conteudo-interface-tema-acessibilidade">
-                                <h3>Acessibilidade</h3>
-                                <ul>
-                                    <li class="interfaceLI">
-<label class="switch">
-  <input type="checkbox" id="modoLeitura" class="checkbox">
-  <span class="slider"></span>
-</label>
-<span>Leitor de texto</span>
-                                    </li>
-                                    <li class="interfaceLI">
-                                        <label class="switch">
-                                            <input class="checkbox" type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                        <p class="ler">Navegação por Teclado Visível</p>
-                                    </li>
-                                </ul>
+                                <div class="acessibilidade">
+                                    <h3>Acessibilidade</h3>
+                                    <ul>
+<li class="interfaceLI">
+    <label class="switch">
+        <input id="leitorVoz" class="checkbox" type="checkbox">
+        <span class="slider"></span>
+    </label>
+    <span class="switch-label"> Ativar/desativar o Leitor de Voz</span>
+</li>
+                                        <li class="interfaceLI">
+                                            <label class="switch">
+                                                <input id="vlibras" class="checkbox" type="checkbox" onclick="vlibras()">
+                                                <span id="slider" class="slider"></span>
+                                            </label>
+                                            <p>Ativar/Desativar Vlibras</p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -487,7 +492,7 @@
             </section>
         </div>
     </main>
-    <script src="{% static 'appOTTO/JS/navegacaoTI.js' %}"></script>
+    {% include 'appOTTO/vlibras.html' %}
     <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
 </body>
 </html>

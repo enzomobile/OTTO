@@ -11,6 +11,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'appOTTO/img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'appOTTO/img/favicon-16x16.png' %}">
     <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %} ">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
     <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
     <script src="{% static 'appOTTO/JS/navegacaoTI.js' %}"></script>
     <title>Fases</title>
@@ -31,7 +32,7 @@
                 </div>
                 <ul class="menu">
                     <li class="botao-navegar" data-url="{% url 'dashboard' %}">Home</li>
-                    <li>Meu Perfil</li>
+                    <li class="botao-navegar" data-url="{% url 'perfil' %}">Meu Perfil</li>
                     <li class="active">Fases</li>
                     <li class="botao-navegar" data-url="{% url 'config' %}">Configurações</li>
                 </ul>
@@ -52,5 +53,7 @@
         </div>
     </main>
     <script src="{% static 'appOTTO/JS/fases.js' %}"></script>
+    {% include 'appOTTO/vlibras.html' %}
+    <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
 </body>
 </html>

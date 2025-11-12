@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/cores.css' %}">
+    <link rel="stylesheet" href="{% static 'appOTTO/CSS/meuPerfil.css' %}">
+    <link rel="icon" href="{% static 'appOTTO/img/favicon.ico' %}">
+    <script src="{% static 'appOTTO/JS/reload.js' %}"></script>
+    <script src="{% static 'appOTTO/JS/trocarTema.js' %}"></script>
+    <script src="{% static 'appOTTO/JS/meuPerfil.js' %}"></script>
+    <title>Meu perfil</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <main>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a><img src="{% static 'appOTTO/img/OTTO.png' %}" class="voltar-OTTO"></a>
+                </div>
+                <ul class="menu">
+                    <li><a class="botao-navegar" href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="active">Meu Perfil</li>
+                    <li><a class="botao-navegar" href="{% url 'fases' %}">Fases</a></li>
+                    <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
+                </ul>
+            </nav>
+            <section class="conteudo">
+                <div class="topo">
+                    <div class="textoTopo">
+                        <h2>{{ user.nome_completo }}</h2>
+                        <p>Bem Vindo(a)</p>
+                    </div>
+                    <p id="nivel">{{ nivel.nivel }}</p>
+                </div>
+                
+                <div class="alterarDados">
+                    <h3>Troque seu nome completo <br>ou de usuário</h3>
+                    <form name="form" id="form" method="POST">
+                        {% csrf_token %}
+                        <label>Nome completo:</label>
+                        <input name="nome_completo" placeholder="Alterar seu nome completo"></input>
+                        <label>Nome de usuário:</label>
+                        <input name="nome_usuario" placeholder="Alterar seu nome de usuário"></input>
+                        <button type="submit">Alterar</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+    {% include 'appOTTO/vlibras.html' %}
+    <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
+</body>
