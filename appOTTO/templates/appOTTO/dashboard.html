@@ -40,8 +40,10 @@
                     <li><a class="botao-navegar" href="{% url 'config' %}">Configurações</a></li>
                 </ul>
             </nav>
+            
             <section id="Home" class="conteudo">
                 <div class="conteudo-container">
+                    <!-- INFORMAÇÕES DO USUÁRIO -->
                     <div class="conteudo-container-info">
                         <div>
                             <h1>Olá, {{ user.nome_usuario }}!</h1>
@@ -49,6 +51,8 @@
                         </div>
                         <p>{{ nivel.nivel }}</p>
                     </div>
+                    
+                    <!-- BARRA DE PROGRESSO -->
                     <div class="conteudo-container-progresso">
                         <div class="progresso-barra">
                             <h4>Progresso</h4>
@@ -56,11 +60,13 @@
                             <progress id="progresso" value="{{ progresso }}" max="100"></progress>
                         </div>
                     </div>
+                    
+                    <!-- CURSO ATUAL -->
                     <div class="conteudo-container-curso">
                         <h4>Curso</h4>
                         {% if user.progresso_usuario == 10 %}
                             <div class="curso-painel" style="align-items: center; justify-content: center;">
-                                <h1>Párabens! Você concluiu todas as fases!</h1>
+                                <h1>Parabéns! Você concluiu todas as fases!</h1>
                             </div>
                         {% else %}
                             <div class="curso-painel" style="background-image: url({% static fase.img %});">
@@ -73,6 +79,7 @@
             </section>
         </div>
     </main>
+    
     {% include 'appOTTO/vlibras.html' %}
     <script src="{% static 'appOTTO/JS/LeitorVoz.js' %}"></script>
 </body>

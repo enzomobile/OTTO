@@ -1,37 +1,49 @@
-// leitor de voz para todas as telas
+// leitor de voz
 class LeitorVozInvisivel {
     constructor() {
         this.ativo = false;
         this.timeoutLeitura = null;
         this.ultimoElemento = null;
         this.ultimoTexto = '';
+        this.isMobile = this.detectarMobile();
         
         this.inicializar();
     }
     
+    detectarMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               'ontouchstart' in window ||
+               navigator.maxTouchPoints > 0;
+    }
+    
     inicializar() {
-        // Criar o toggle switch INVISÍVEL
         this.criarToggleInvisivel();
-        
         this.configurarEventos();
-        
         this.carregarEstado();
         
-        console.log('🎯 Leitor Invisível carregado - Use Ctrl+Shift+V para ativar/desativar');
+        if (this.isMobile) {
+            console.log('Leitor Mobile carregado - Toque triplo para ativar/desativar');
+        } else {
+            console.log('Leitor Desktop carregado - Use Ctrl+Shift+V');
+        }
     }
     
     criarToggleInvisivel() {
         if (document.getElementById('leitorVozInvisivel')) return;
-        // Criar elemento invisivel
+        
         const toggle = document.createElement('div');
         toggle.id = 'leitorVozInvisivel';
         toggle.style.cssText = `
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 10000;
-            opacity: 0.1;
-            transition: opacity 0.3s;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 1px !important;
+            height: 1px !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
+            overflow: hidden !important;
+            z-index: -9999 !important;
         `;
         
         toggle.innerHTML = `
@@ -43,19 +55,6 @@ class LeitorVozInvisivel {
         `;
         
         document.body.appendChild(toggle);
-        
-        // Mostrar ao passar o mouse (melhora a acessibilidade)
-        toggle.addEventListener('mouseenter', () => {
-            toggle.style.opacity = '1';
-        });
-        
-        toggle.addEventListener('mouseleave', () => {
-            if (!this.ativo) {
-                toggle.style.opacity = '0.1';
-            }
-        });
-        
-        // Adiciona o css
         this.adicionarCSSInvisivel();
     }
     
@@ -63,11 +62,18 @@ class LeitorVozInvisivel {
         const style = document.createElement('style');
         style.textContent = `
             .leitor-switch {
-                position: relative;
-                display: inline-block;
-                width: 40px;
-                height: 20px;
-                vertical-align: middle;
+                position: absolute !important;
+                width: 1px !important;
+                height: 1px !important;
+                padding: 0 !important;
+                margin: -1px !important;
+                overflow: hidden !important;
+                clip: rect(0, 0, 0, 0) !important;
+                white-space: nowrap !important;
+                border: 0 !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                visibility: hidden !important;
             }
             .leitor-checkbox {
                 opacity: 0;
@@ -76,44 +82,33 @@ class LeitorVozInvisivel {
                 position: absolute;
             }
             .leitor-slider {
-                position: absolute;
-                cursor: pointer;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: #ccc;
-                transition: .4s;
-                border-radius: 20px;
-            }
-            .leitor-slider:before {
-                position: absolute;
-                content: "";
-                height: 14px;
-                width: 14px;
-                left: 3px;
-                bottom: 3px;
-                background-color: white;
-                transition: .4s;
-                border-radius: 50%;
-            }
-            .leitor-checkbox:checked + .leitor-slider {
-                background-color: #2196F3;
-            }
-            .leitor-checkbox:checked + .leitor-slider:before {
-                transform: translateX(20px);
+                display: none !important;
             }
             .leitor-label {
-                margin-left: 5px;
-                font-size: 12px;
-                vertical-align: middle;
-                color: #666;
+                display: none !important;
             }
             
-            /* Highlight MÍNIMO para elemento sendo lido */
+            /* Highlight para mobile e desktop */
             .leitor-lendo {
-                outline: 2px dashed #2196F3 !important;
-                outline-offset: 2px;
+                outline: 2px solid #2196F3 !important;
+                outline-offset: 2px !important;
+                background-color: rgba(33, 150, 243, 0.1) !important;
+                transition: all 0.3s ease !important;
+            }
+            
+            /* Feedback visual para mobile */
+            .leitor-status {
+                position: fixed !important;
+                top: 10px !important;
+                right: 10px !important;
+                background: #2196F3 !important;
+                color: white !important;
+                padding: 8px 12px !important;
+                border-radius: 20px !important;
+                font-size: 12px !important;
+                z-index: 10000 !important;
+                opacity: 0.9 !important;
+                pointer-events: none !important;
             }
         `;
         document.head.appendChild(style);
@@ -131,27 +126,109 @@ class LeitorVozInvisivel {
             }
         });
         
-        // Evento de mouseover
-        document.addEventListener('mouseover', (e) => {
-            if (this.ativo) {
-                this.processarElemento(e.target);
-            }
-        });
+        // EVENTOS PARA DESKTOP
+        if (!this.isMobile) {
+            document.addEventListener('mouseover', (e) => {
+                if (this.ativo) {
+                    this.processarElemento(e.target);
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.shiftKey && e.key === 'V') {
+                    e.preventDefault();
+                    this.toggleLeitor();
+                }
+            });
+        }
         
-        // Atalho de teclado (Ctrl+Shift+V)
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'V') {
-                e.preventDefault();
-                this.toggleLeitor();
-            }
-        });
+        // EVENTOS PARA MOBILE
+        if (this.isMobile) {
+            let lastTouchTime = 0;
+            let touchCount = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                const currentTime = new Date().getTime();
+                const timeDiff = currentTime - lastTouchTime;
+                
+                if (timeDiff < 300) {
+                    touchCount++;
+                } else {
+                    touchCount = 1;
+                }
+                
+                lastTouchTime = currentTime;
+                
+                // Toque triplo para ativar/desativar
+                if (touchCount === 3) {
+                    e.preventDefault();
+                    this.toggleLeitor();
+                    touchCount = 0;
+                    
+                    // Feedback visual
+                    this.mostrarStatusMobile(this.ativo ? 'Leitor ATIVADO' : 'Leitor DESATIVADO');
+                }
+                
+                // Processar elemento tocado
+                if (this.ativo) {
+                    const touch = e.touches[0];
+                    const elemento = document.elementFromPoint(touch.clientX, touch.clientY);
+                    if (elemento) {
+                        this.processarElemento(elemento);
+                    }
+                }
+            });
+            
+            // Swipe para parar leitura
+            let startX, startY;
+            
+            document.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                if (!this.ativo) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+                
+                // Swipe longo para cima para parar leitura
+                if (Math.abs(diffY) > 100 && Math.abs(diffY) > Math.abs(diffX)) {
+                    window.speechSynthesis.cancel();
+                    this.mostrarStatusMobile('Leitura parada');
+                }
+            });
+        }
         
-        // Parar leitura ao clicar
+        // Evento comum para ambos
         document.addEventListener('click', () => {
             if (this.ativo) {
                 window.speechSynthesis.cancel();
             }
         });
+    }
+    
+    mostrarStatusMobile(mensagem) {
+        // Remove status anterior se existir
+        const statusAnterior = document.querySelector('.leitor-status');
+        if (statusAnterior) {
+            statusAnterior.remove();
+        }
+        
+        const status = document.createElement('div');
+        status.className = 'leitor-status';
+        status.textContent = mensagem;
+        document.body.appendChild(status);
+        
+        // Remove após 2 segundos
+        setTimeout(() => {
+            if (status.parentNode) {
+                status.remove();
+            }
+        }, 2000);
     }
     
     toggleLeitor() {
@@ -160,17 +237,6 @@ class LeitorVozInvisivel {
         
         checkbox.checked = !checkbox.checked;
         checkbox.dispatchEvent(new Event('change'));
-        
-        // Feedback visual
-        const toggle = document.getElementById('leitorVozInvisivel');
-        if (toggle) {
-            toggle.style.opacity = '1';
-            setTimeout(() => {
-                if (!this.ativo) {
-                    toggle.style.opacity = '0.1';
-                }
-            }, 2000);
-        }
     }
     
     carregarEstado() {
@@ -186,34 +252,29 @@ class LeitorVozInvisivel {
     }
     
     ativar() {
-        console.log('🎯 Leitor ATIVADO (Passe o mouse sobre o texto)');
+        console.log('Leitor ATIVADO');
         this.ativo = true;
         localStorage.setItem('leitorVozInvisivel', 'true');
         
-        // Mostrar toggle quando ativo
-        const toggle = document.getElementById('leitorVozInvisivel');
-        if (toggle) {
-            toggle.style.opacity = '0.8';
+        if (this.isMobile) {
+            this.mostrarStatusMobile('Leitor ATIVADO - Toque triplo para desativar');
         }
         
         window.speechSynthesis.cancel();
     }
     
     desativar() {
-        console.log('🛑 Leitor DESATIVADO');
+        console.log('Leitor DESATIVADO');
         this.ativo = false;
         localStorage.setItem('leitorVozInvisivel', 'false');
         
-        // Esconder toggle quando nao usado
-        const toggle = document.getElementById('leitorVozInvisivel');
-        if (toggle) {
-            toggle.style.opacity = '0.1';
+        if (this.isMobile) {
+            this.mostrarStatusMobile('Leitor DESATIVADO - Toque triplo para ativar');
         }
         
         window.speechSynthesis.cancel();
         clearTimeout(this.timeoutLeitura);
         
-        // Remover o destaque do mouse
         document.querySelectorAll('.leitor-lendo').forEach(el => {
             el.classList.remove('leitor-lendo');
         });
@@ -232,12 +293,15 @@ class LeitorVozInvisivel {
         const texto = this.extrairTexto(elementoTexto);
         if (!this.isTextoValido(texto)) return;
         
-        // Destacar ao redor de um modo bem simples
+        // Destacar elemento
         this.destacarElemento(elementoTexto);
+        
+        // Timeout menor para mobile
+        const timeoutMobile = this.isMobile ? 300 : 500;
         
         this.timeoutLeitura = setTimeout(() => {
             this.lerTexto(texto, elementoTexto);
-        }, 500);
+        }, timeoutMobile);
     }
     
     encontrarElementoComTexto(elemento) {
@@ -309,7 +373,7 @@ class LeitorVozInvisivel {
         utterance.volume = 0.9;
         
         utterance.onstart = () => {
-            console.log('✅ Iniciou leitura');
+            console.log('Iniciou leitura');
         };
         
         utterance.onend = () => {
@@ -324,7 +388,7 @@ class LeitorVozInvisivel {
     }
 }
 
-//inicia
+// Inicialização
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.leitorVozInvisivel = new LeitorVozInvisivel();
