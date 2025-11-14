@@ -70,13 +70,12 @@ def cadastro(request):
         messages.success(request, "Verifique sua caixa de E-mail!")
         return redirect('cadastro')
 
-    request.session.flush()
     return render(request, 'appOTTO/cadastro.html')
 
 def verificar_email(request, token):
     session_token = request.session.get('token')
 
-    if session_token and session_token == token:
+    if session_token == token:
         email_usuario = request.session.get('email_usuario')
         nome_usuario = request.session.get('nome_usuario')
         nome_completo = request.session.get('nome_completo')
